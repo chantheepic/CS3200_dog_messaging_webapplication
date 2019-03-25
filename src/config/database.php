@@ -1,9 +1,9 @@
 <?php
-class DogAppDatabase{
+class Database{
     private $servername = "chanminis.online";
-    private $username = "chanmini_dog_api";
+    private $username = "chanmini_user";
     private $password = "cascade";
-    private $dbname = "chanmini_cs3200_dog";
+    private $dbname = "chanmini_alexandra_db";
     private $conn = null;
 
     public function connect() {
