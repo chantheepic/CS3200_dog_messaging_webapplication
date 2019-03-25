@@ -23,8 +23,7 @@
             <a class="navbar-brand" href=""> Dog App </a>
 
             <div class="navbar-nav">
-                <a class="nav-item active nav-link" href="dogapp_api.html">API</a>
-                <a class="nav-item active nav-link" href="registeration.html">Register</a>
+                <a class="nav-item active nav-link" href="dogapp.html">Home</a>
                 <a class="nav-item active nav-link" href="login.html">Log In</a>
             </div>
         </nav>
@@ -35,10 +34,17 @@
 
             <!-- Upper -->
             <div class="upper jumbotron my-4">
-                <h1 class="display-4">Explanation</h1>
+                <h1 class="display-4">Sign Up</h1>
                 <hr class="my-4" />
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quibusdam.</p>
             </div>
+
+            <h2>Image Upload</h2>
+            <form method="POST" name="upfrm" action="" enctype="multipart/form-data">
+                <input type="text" placeholder="enter caption" name="imagename" class="tb" />
+                <input type="file" name="fileImg" class="imagefile" />
+                <input type="submit" value="Upload" name="imagesubmit" class="btn" />
+            </form>
         </div>
     </section>
 
