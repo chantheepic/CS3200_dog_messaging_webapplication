@@ -133,3 +133,13 @@ CREATE TABLE breed (
     breed_id INT(10) PRIMARY KEY AUTO_INCREMENT,
     breed_name VARCHAR(40) NOT NULL
 );
+
+-- User Session
+
+DROP TABLE IF EXISTS session;
+CREATE TABLE session (
+    session_id VARCHAR(32) PRIMARY KEY,
+    session_start DATETIME NOT NULL,
+    session_timeout DATETIME NOT NULL
+);
+
