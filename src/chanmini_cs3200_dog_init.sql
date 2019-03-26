@@ -139,7 +139,7 @@ CREATE TABLE breed (
 DROP TABLE IF EXISTS session;
 CREATE TABLE session (
     session_id VARCHAR(32) PRIMARY KEY,
-    session_start DATETIME NOT NULL,
-    session_timeout DATETIME NOT NULL
+    user_id VARCHAR(32) NOT NULL,
+    session_start DATETIME NOT NULL
 );
 
