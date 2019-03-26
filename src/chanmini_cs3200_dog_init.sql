@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user (
     user_id INT(10) PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(60) NOT NULL,
-    username VARCHAR(18) NOT NULL,
+    username VARCHAR(18) NOT NULL UNIQUE,
     password VARCHAR(32) NOT NULL,
     gender ENUM('Male', 'Female', 'Other'),
     zipcode VARCHAR(10) NOT NULL,
