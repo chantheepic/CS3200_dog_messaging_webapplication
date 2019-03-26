@@ -1,0 +1,650 @@
+[
+  {
+    "Breed": "Affenpinscher"
+  },
+  {
+    "Breed": "Afghan Hound"
+  },
+  {
+    "Breed": "Airedale Terrier"
+  },
+  {
+    "Breed": "Akita"
+  },
+  {
+    "Breed": "Alaskan Klee Kai"
+  },
+  {
+    "Breed": "Alaskan Malamute"
+  },
+  {
+    "Breed": "American Bulldog"
+  },
+  {
+    "Breed": "American English Coonhound"
+  },
+  {
+    "Breed": "American Eskimo Dog"
+  },
+  {
+    "Breed": "American Foxhound"
+  },
+  {
+    "Breed": "American Pit Bull Terrier"
+  },
+  {
+    "Breed": "American Staffordshire Terrier"
+  },
+  {
+    "Breed": "American Water Spaniel"
+  },
+  {
+    "Breed": "Anatolian Shepherd Dog"
+  },
+  {
+    "Breed": "Appenzeller Sennenhunde"
+  },
+  {
+    "Breed": "Australian Cattle Dog"
+  },
+  {
+    "Breed": "Australian Kelpie"
+  },
+  {
+    "Breed": "Australian Shepherd"
+  },
+  {
+    "Breed": "Australian Terrier"
+  },
+  {
+    "Breed": "Azawakh"
+  },
+  {
+    "Breed": "Barbet"
+  },
+  {
+    "Breed": "Basenji"
+  },
+  {
+    "Breed": "Basset Hound"
+  },
+  {
+    "Breed": "Beagle"
+  },
+  {
+    "Breed": "Bearded Collie"
+  },
+  {
+    "Breed": "Bedlington Terrier"
+  },
+  {
+    "Breed": "Belgian Malinois"
+  },
+  {
+    "Breed": "Belgian Sheepdog"
+  },
+  {
+    "Breed": "Belgian Tervuren"
+  },
+  {
+    "Breed": "Berger Picard"
+  },
+  {
+    "Breed": "Bernedoodle"
+  },
+  {
+    "Breed": "Bernese Mountain Dog"
+  },
+  {
+    "Breed": "Bichon Frise"
+  },
+  {
+    "Breed": "Black and Tan Coonhound"
+  },
+  {
+    "Breed": "Black Mouth Cur"
+  },
+  {
+    "Breed": "Black Russian Terrier"
+  },
+  {
+    "Breed": "Bloodhound"
+  },
+  {
+    "Breed": "Blue Lacy"
+  },
+  {
+    "Breed": "Bluetick Coonhound"
+  },
+  {
+    "Breed": "Boerboel"
+  },
+  {
+    "Breed": "Bolognese"
+  },
+  {
+    "Breed": "Border Collie"
+  },
+  {
+    "Breed": "Border Terrier"
+  },
+  {
+    "Breed": "Borzoi"
+  },
+  {
+    "Breed": "Boston Terrier"
+  },
+  {
+    "Breed": "Bouvier des Flandres"
+  },
+  {
+    "Breed": "Boxer"
+  },
+  {
+    "Breed": "Boykin Spaniel"
+  },
+  {
+    "Breed": "Bracco Italiano"
+  },
+  {
+    "Breed": "Briard"
+  },
+  {
+    "Breed": "Brittany"
+  },
+  {
+    "Breed": "Brussels Griffon"
+  },
+  {
+    "Breed": "Bull Terrier"
+  },
+  {
+    "Breed": "Bulldog"
+  },
+  {
+    "Breed": "Bullmastiff"
+  },
+  {
+    "Breed": "Cairn Terrier"
+  },
+  {
+    "Breed": "Canaan Dog"
+  },
+  {
+    "Breed": "Cane Corso"
+  },
+  {
+    "Breed": "Cardigan Welsh Corgi"
+  },
+  {
+    "Breed": "Catahoula Leopard Dog"
+  },
+  {
+    "Breed": "Caucasian Shepherd Dog"
+  },
+  {
+    "Breed": "Cavalier King Charles Spaniel"
+  },
+  {
+    "Breed": "Cesky Terrier"
+  },
+  {
+    "Breed": "Chesapeake Bay Retriever"
+  },
+  {
+    "Breed": "Chihuahua"
+  },
+  {
+    "Breed": "Chinese Crested"
+  },
+  {
+    "Breed": "Chinese Shar-Pei"
+  },
+  {
+    "Breed": "Chinook"
+  },
+  {
+    "Breed": "Chow Chow"
+  },
+  {
+    "Breed": "Clumber Spaniel"
+  },
+  {
+    "Breed": "Cockapoo"
+  },
+  {
+    "Breed": "Cocker Spaniel"
+  },
+  {
+    "Breed": "Collie"
+  },
+  {
+    "Breed": "Coton de Tulear"
+  },
+  {
+    "Breed": "Curly-Coated Retriever"
+  },
+  {
+    "Breed": "Dachshund"
+  },
+  {
+    "Breed": "Dalmatian"
+  },
+  {
+    "Breed": "Dandie Dinmont Terrier"
+  },
+  {
+    "Breed": "Doberman Pinscher"
+  },
+  {
+    "Breed": "Dogo Argentino"
+  },
+  {
+    "Breed": "Dogue de Bordeaux"
+  },
+  {
+    "Breed": "Dutch Shepherd"
+  },
+  {
+    "Breed": "English Cocker Spaniel"
+  },
+  {
+    "Breed": "English Foxhound"
+  },
+  {
+    "Breed": "English Setter"
+  },
+  {
+    "Breed": "English Springer Spaniel"
+  },
+  {
+    "Breed": "English Toy Spaniel"
+  },
+  {
+    "Breed": "Entlebucher Mountain Dog"
+  },
+  {
+    "Breed": "Field Spaniel"
+  },
+  {
+    "Breed": "Finnish Lapphund"
+  },
+  {
+    "Breed": "Finnish Spitz"
+  },
+  {
+    "Breed": "Flat-Coated Retriever"
+  },
+  {
+    "Breed": "Fox Terrier"
+  },
+  {
+    "Breed": "French Bulldog"
+  },
+  {
+    "Breed": "German Pinscher"
+  },
+  {
+    "Breed": "German Shepherd Dog"
+  },
+  {
+    "Breed": "German Shorthaired Pointer"
+  },
+  {
+    "Breed": "German Wirehaired Pointer"
+  },
+  {
+    "Breed": "Giant Schnauzer"
+  },
+  {
+    "Breed": "Glen of Imaal Terrier"
+  },
+  {
+    "Breed": "Goldador"
+  },
+  {
+    "Breed": "Golden Retriever"
+  },
+  {
+    "Breed": "Goldendoodle"
+  },
+  {
+    "Breed": "Gordon Setter"
+  },
+  {
+    "Breed": "Great Dane"
+  },
+  {
+    "Breed": "Great Pyrenees"
+  },
+  {
+    "Breed": "Greater Swiss Mountain Dog"
+  },
+  {
+    "Breed": "Greyhound"
+  },
+  {
+    "Breed": "Harrier"
+  },
+  {
+    "Breed": "Havanese"
+  },
+  {
+    "Breed": "Ibizan Hound"
+  },
+  {
+    "Breed": "Icelandic Sheepdog"
+  },
+  {
+    "Breed": "Irish Red and White Setter"
+  },
+  {
+    "Breed": "Irish Setter"
+  },
+  {
+    "Breed": "Irish Terrier"
+  },
+  {
+    "Breed": "Irish Water Spaniel"
+  },
+  {
+    "Breed": "Irish Wolfhound"
+  },
+  {
+    "Breed": "Italian Greyhound"
+  },
+  {
+    "Breed": "Jack Russell Terrier"
+  },
+  {
+    "Breed": "Japanese Chin"
+  },
+  {
+    "Breed": "Japanese Spitz"
+  },
+  {
+    "Breed": "Karelian Bear Dog"
+  },
+  {
+    "Breed": "Keeshond"
+  },
+  {
+    "Breed": "Kerry Blue Terrier"
+  },
+  {
+    "Breed": "Komondor"
+  },
+  {
+    "Breed": "Kooikerhondje"
+  },
+  {
+    "Breed": "Korean Jindo Dog"
+  },
+  {
+    "Breed": "Kuvasz"
+  },
+  {
+    "Breed": "Labradoodle"
+  },
+  {
+    "Breed": "Labrador Retriever"
+  },
+  {
+    "Breed": "Lagotto Romagnolo"
+  },
+  {
+    "Breed": "Lakeland Terrier"
+  },
+  {
+    "Breed": "Lancashire Heeler"
+  },
+  {
+    "Breed": "Leonberger"
+  },
+  {
+    "Breed": "Lhasa Apso"
+  },
+  {
+    "Breed": "Lowchen"
+  },
+  {
+    "Breed": "Maltese"
+  },
+  {
+    "Breed": "Maltese Shih Tzu"
+  },
+  {
+    "Breed": "Maltipoo"
+  },
+  {
+    "Breed": "Manchester Terrier"
+  },
+  {
+    "Breed": "Mastiff"
+  },
+  {
+    "Breed": "Miniature Pinscher"
+  },
+  {
+    "Breed": "Miniature Schnauzer"
+  },
+  {
+    "Breed": "Mudi"
+  },
+  {
+    "Breed": "Mutt"
+  },
+  {
+    "Breed": "Neapolitan Mastiff"
+  },
+  {
+    "Breed": "Newfoundland"
+  },
+  {
+    "Breed": "Norfolk Terrier"
+  },
+  {
+    "Breed": "Norwegian Buhund"
+  },
+  {
+    "Breed": "Norwegian Elkhound"
+  },
+  {
+    "Breed": "Norwegian Lundehund"
+  },
+  {
+    "Breed": "Norwich Terrier"
+  },
+  {
+    "Breed": "Nova Scotia Duck Tolling Retriever"
+  },
+  {
+    "Breed": "Old English Sheepdog"
+  },
+  {
+    "Breed": "Otterhound"
+  },
+  {
+    "Breed": "Papillon"
+  },
+  {
+    "Breed": "Peekapoo"
+  },
+  {
+    "Breed": "Pekingese"
+  },
+  {
+    "Breed": "Pembroke Welsh Corgi"
+  },
+  {
+    "Breed": "Petit Basset Griffon Vendeen"
+  },
+  {
+    "Breed": "Pharaoh Hound"
+  },
+  {
+    "Breed": "Plott"
+  },
+  {
+    "Breed": "Pocket Beagle"
+  },
+  {
+    "Breed": "Pointer"
+  },
+  {
+    "Breed": "Polish Lowland Sheepdog"
+  },
+  {
+    "Breed": "Pomeranian"
+  },
+  {
+    "Breed": "Pomsky"
+  },
+  {
+    "Breed": "Poodle"
+  },
+  {
+    "Breed": "Portuguese Water Dog"
+  },
+  {
+    "Breed": "Pug"
+  },
+  {
+    "Breed": "Puggle"
+  },
+  {
+    "Breed": "Puli"
+  },
+  {
+    "Breed": "Pyrenean Shepherd"
+  },
+  {
+    "Breed": "Rat Terrier"
+  },
+  {
+    "Breed": "Redbone Coonhound"
+  },
+  {
+    "Breed": "Rhodesian Ridgeback"
+  },
+  {
+    "Breed": "Rottweiler"
+  },
+  {
+    "Breed": "Saint Bernard"
+  },
+  {
+    "Breed": "Saluki"
+  },
+  {
+    "Breed": "Samoyed"
+  },
+  {
+    "Breed": "Schipperke"
+  },
+  {
+    "Breed": "Schnoodle"
+  },
+  {
+    "Breed": "Scottish Deerhound"
+  },
+  {
+    "Breed": "Scottish Terrier"
+  },
+  {
+    "Breed": "Sealyham Terrier"
+  },
+  {
+    "Breed": "Shetland Sheepdog"
+  },
+  {
+    "Breed": "Shiba Inu"
+  },
+  {
+    "Breed": "Shih Tzu"
+  },
+  {
+    "Breed": "Siberian Husky"
+  },
+  {
+    "Breed": "Silken Windhound"
+  },
+  {
+    "Breed": "Silky Terrier"
+  },
+  {
+    "Breed": "Skye Terrier"
+  },
+  {
+    "Breed": "Sloughi"
+  },
+  {
+    "Breed": "Small Munsterlander Pointer"
+  },
+  {
+    "Breed": "Soft Coated Wheaten Terrier"
+  },
+  {
+    "Breed": "Stabyhoun"
+  },
+  {
+    "Breed": "Staffordshire Bull Terrier"
+  },
+  {
+    "Breed": "Standard Schnauzer"
+  },
+  {
+    "Breed": "Sussex Spaniel"
+  },
+  {
+    "Breed": "Swedish Vallhund"
+  },
+  {
+    "Breed": "Tibetan Mastiff"
+  },
+  {
+    "Breed": "Tibetan Spaniel"
+  },
+  {
+    "Breed": "Tibetan Terrier"
+  },
+  {
+    "Breed": "Toy Fox Terrier"
+  },
+  {
+    "Breed": "Treeing Tennessee Brindle"
+  },
+  {
+    "Breed": "Treeing Walker Coonhound"
+  },
+  {
+    "Breed": "Vizsla"
+  },
+  {
+    "Breed": "Weimaraner"
+  },
+  {
+    "Breed": "Welsh Springer Spaniel"
+  },
+  {
+    "Breed": "Welsh Terrier"
+  },
+  {
+    "Breed": "West Highland White Terrier"
+  },
+  {
+    "Breed": "Whippet"
+  },
+  {
+    "Breed": "Wirehaired Pointing Griffon"
+  },
+  {
+    "Breed": "Xoloitzcuintli"
+  },
+  {
+    "Breed": "Yorkipoo"
+  },
+  {
+    "Breed": "Yorkshire Terrier"
+  }
+]

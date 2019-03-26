@@ -1,0 +1,17 @@
+List of Dog Breeds
+https://dogtime.com/dog-breeds/profiles
+
+jQuery
+https://jquery.com/
+
+Bootstrap
+https://getbootstrap.com/
+
+Slim Framework
+https://www.slimframework.com/
+
+MySQL
+https://www.mysql.com/
+
+jQuery Typeahead
+https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md
