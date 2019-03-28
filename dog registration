@@ -1,3 +1,13 @@
+Name
+<br>
+<input type="text">
+<br>
+<br>
+Weight
+<br>
+<input type="text">
+<br>
+<br>
 Breed
 <br>
 <select>
@@ -13,6 +23,14 @@ Gender
 <input type="radio" name="gender" value="male"> Male<br>
 <input type="radio" name="gender" value="female"> Female<br>
 <br>
+Fixed
+<br>
+<select>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+<br>
+<br>
 Temperament
 <br>
 <input type="checkbox" name="temperament1" value="friendly"> Friendly <br>
@@ -20,3 +38,5 @@ Temperament
 <input type="checkbox" name="temperament3" value="Playfu"> Playful <br>
 <input type="checkbox" name="temperament4" value="children"> Not good with children <br>
 <input type="checkbox" name="temperament5" value="puppies"> Not good with puppies <br>
+<br>
+<input type="submit">
