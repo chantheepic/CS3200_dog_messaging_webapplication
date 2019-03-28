@@ -1,0 +1,3 @@
+<input type="checkbox" name="temperament1" value="friendly"> Friendly <br>
+<input type="checkbox" name="temperament2" value="friendly"> Aggressive <br>
+<input type="checkbox" name="temperament3" value="friendly"> Playful <br>
