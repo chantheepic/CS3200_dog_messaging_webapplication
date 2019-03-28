@@ -1,3 +1,22 @@
+Breed
+<br>
+<select>
+  <option value="akita">Akita</option>
+  <option value="siberian husky">Siberian Husky</option>
+  <option value="pitbull">Pitbull</option>
+  <option value="frenchie">French Bulldog</option>
+</select>
+<br>
+<br>
+Gender
+<br>
+<input type="radio" name="gender" value="male"> Male<br>
+<input type="radio" name="gender" value="female"> Female<br>
+<br>
+Temperament
+<br>
 <input type="checkbox" name="temperament1" value="friendly"> Friendly <br>
-<input type="checkbox" name="temperament2" value="friendly"> Aggressive <br>
-<input type="checkbox" name="temperament3" value="friendly"> Playful <br>
+<input type="checkbox" name="temperament2" value="Aggressive"> Aggressive <br>
+<input type="checkbox" name="temperament3" value="Playfu"> Playful <br>
+<input type="checkbox" name="temperament4" value="children"> Not good with children <br>
+<input type="checkbox" name="temperament5" value="puppies"> Not good with puppies <br>
