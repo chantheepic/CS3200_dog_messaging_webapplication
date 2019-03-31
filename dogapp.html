@@ -22,13 +22,9 @@
 
             <div class="navbar-nav">
                 <a class="nav-item active nav-link" href="dogapp_api.html">API</a>
-                <a class="nav-item active nav-link button2" href="" data-toggle="modal"
-                    data-target="#userRegisterModal">Register</a>
-                <a class="nav-item active nav-link button3" href="" data-toggle="modal"
-                    data-target="#loginModal">LogIn</a>
-                <span class="navbar-text">
-                    Hello, citizen 6452363
-                </span>
+                <a class="nav-item active nav-link button2" href="" data-toggle="modal"></a>
+                <a class="nav-item active nav-link button3" href="" data-toggle="modal"></a>
+                <span class="navbar-text user"> </span>
             </div>
         </nav>
     </header>
@@ -77,19 +73,83 @@
                         <h5>Justice Samuel Alito</h5>
                     </div>
 
-                    <div>your content</div>
-                    <div>your content</div>
-                    <div>your content</div>
-                    <div>your content</div>
-                    <div>your content</div>
-                    <div>your content</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="swipe">
+    <section class="matcher">
+        <div class="container">
+            <style>
+                .swipe-candidate img {
+                    height: 350px;
+                }
 
+                .new-matches .btn {
+                    min-height: 400px;
+                }
+
+                .old-matches-list {
+                    height: 400px;
+                    overflow: scroll;
+                    overflow-x: hidden;
+                    text-align: left;
+                }
+
+                .new-matches,
+                .old-matches {
+                    text-align: center;
+                }
+            </style>
+            <div class="row">
+                <div class="col-md-6 old-matches">
+                    <h2>Previous Matches</h2>
+                    <hr class="my-4" />
+                    <div class="list-group old-matches-list">
+                        <a class="list-group-item list-group-item-action" id="f1">Friend 1</a>
+                        <a class="list-group-item list-group-item-action" id="f2">Friend 2</a>
+                        <a class="list-group-item list-group-item-action" id="f3">Friend 3</a>
+                        <a class="list-group-item list-group-item-action" id="f4">Friend 4</a>
+                        <a class="list-group-item list-group-item-action" id="f5">Friend 5</a>
+                        <a class="list-group-item list-group-item-action" id="f6">Friend 6</a>
+                        <a class="list-group-item list-group-item-action" id="f7">Friend 7</a>
+                        <a class="list-group-item list-group-item-action" id="f8">Friend 8</a>
+                        <a class="list-group-item list-group-item-action" id="f9">Friend 9</a>
+                        <a class="list-group-item list-group-item-action" id="f10">Friend 10</a>
+                    </div>
+                </div>
+
+                <!-- Swiper Start -->
+                <div class="col-md-6 new-matches">
+                    <h2>Find New Matches</h2>
+                    <hr class="my-4" />
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-secondary" id="decline">Decline</button>
+                        <div class="swipe-candidate">
+                            <h2>Justice Antonin Scalia</h2>
+                            <img src="src/jas.jpg" class="img-fluid img-thumbnail">
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="accept">Accept</button>
+                    </div>
+                </div>
+                <!-- Swiper End -->
+            </div>
+        </div>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <style>
+            footer {
+                margin-bottom: 100px;
+            }
+        </style>
+    </footer>
 
     <!-- User Register Modal -->
     <div class="modal" id="userRegisterModal">
@@ -204,6 +264,20 @@
                                 <input class="form-check-input" type="checkbox" value="option5">
                                 <label class="form-check-label">Not good with puppies </label>
                             </div>
+                            <!-- Picture -->
+                            <style>
+                                .profile-pic img {
+                                    height: 150px;
+                                }
+                            </style>
+                            <hr class="my-4" />
+                            <div class="profile-pic">
+                                <h5>Profile Picture</h5>
+                                <img src="src/jas.jpg" class="img-fluid img-thumbnail">
+                            </div>
+                            <div>
+                                <input type="file" name="fileImg" class="imagefile" />
+                            </div>
                             <!-- end of Right Div -->
                         </div>
                     </div>
@@ -255,17 +329,24 @@
     <script>
 
         var logstate = true;
+        console.log("login state: " + logstate);
 
         if (logstate) {
             $(".logout").hide();
             $(".login").show();
             $(".navbar-nav > .button2").text("Edit User Profile");
-            $(".navbar-nav > .button2").attr("data-target", "#loginModal");
+            $(".navbar-nav > .button2").attr("data-target", "#userRegisterModal");
             $(".navbar-nav > .button3").text("Add Doggo");
             $(".navbar-nav > .button3").attr("data-target", "#dogRegisterModal");
+            $(".navbar-nav > .user").text("Hello, citizen 6452363");
         } else {
             $(".logout").show();
             $(".login").hide();
+            $(".navbar-nav > .button2").text("Register");
+            $(".navbar-nav > .button2").attr("data-target", "#userRegisterModal");
+            $(".navbar-nav > .button3").text("Log In");
+            $(".navbar-nav > .button3").attr("data-target", "#loginModal");
+            $(".navbar-nav > .user").text("");
         }
 
         var dogCount = $('.choose-dog').children().length;
@@ -277,7 +358,7 @@
             infinite: true,
             slidesToShow: dogCount,
             slidesToScroll: 3
-        });
+        })
 
         var dogarr = { jrbg: "Justice Ruth Bader Ginsberg", jas: "Justice Antonin Scalia", jsa: "Justice Samuel Alito" };
         var selected;
@@ -285,6 +366,7 @@
         $('.dog').click(function (d) {
             selected = d.currentTarget.id
             $('.selected-dog').text('Selected ' + dogarr[selected]);
+            console.log("selected dog:" + selected);
         })
 
     </script>
@@ -295,11 +377,11 @@
 
         $(".navbar-nav > .button3").click(function () {
             $input.val("");
-        });
+        })
 
         $.get("src/breeds.json", function (data) {
             $input.typeahead({ source: data, autoSelect: false });
-        }, 'json');
+        }, 'json')
 
         $input.change(function () {
             var current = $input.typeahead("getActive");
@@ -312,19 +394,52 @@
                 }
             }
 
-            console.log(breed);
+            $input.attr("value", breed);
+            console.log("breed is: " + breed);
 
-        });
+        })
+    </script>
+
+    <script>
+        var matchesCount = $(".old-matches-list")[0].childElementCount;
+        if (matchesCount < 9) {
+            $(".old-matches-list").css("overflow-y", "hidden");
+        }
+
+        var messageReceiver;
+        $(".old-matches-list").click(function (d) {
+            $(".old-matches-list > .active").removeClass("active")
+            $(d.target).addClass("active");
+            messageReceiver = d.target;
+            console.log("message receiver is: " + messageReceiver.id);
+        })
+
+        var accepted;
+        var candidate = $(".swipe-candidate");
+        var candarr = ["jrbg", "jas", "jsa"];
+        var dogarr = { jrbg: "Justice Ruth Bader Ginsberg", jas: "Justice Antonin Scalia", jsa: "Justice Samuel Alito" };
+        var picarr = { jrbg: "src/jrbg.png", jas: "src/jas.jpg", jsa: "src/jsa.jpg" };
+
+        var candnum = 1;
+        $(".new-matches").click(function (d) {
+            if (d.target.id == "accept") {
+                accepted = true;
+            }
+            if (d.target.id == "decline") {
+                accepted = false;
+            }
+
+            candidate.slideUp(function () {
+                candnum = (candnum + 1) % 3;
+                var cand = candarr[candnum];
+                candidate.children().text(dogarr[cand]);
+                candidate.children().attr("src", picarr[cand]);
+                candidate.fadeIn();
+            })
+            console.log("accepted? " + accepted);
+        })
+
     </script>
 </body>
 
 </html>
-
-<!-- <div>
-        <h2>Image Upload</h2>
-        <form method="POST" name="upfrm" action="" enctype="multipart/form-data">
-            <input type="text" placeholder="enter caption" name="imagename" class="tb" />
-            <input type="file" name="fileImg" class="imagefile" />
-            <input type="submit" value="Upload" name="imagesubmit" class="btn" />
-        </form>
-    </div> -->
