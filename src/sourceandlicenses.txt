@@ -7,11 +7,14 @@ https://jquery.com/
 Bootstrap
 https://getbootstrap.com/
 
+Bootstrap 3 Typeahead
+https://github.com/bassjobsen/Bootstrap-3-Typeahead
+
+Slick Carousel
+http://kenwheeler.github.io/slick/
+
 Slim Framework
 https://www.slimframework.com/
 
 MySQL
 https://www.mysql.com/
-
-jQuery Typeahead
-https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md

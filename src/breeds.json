@@ -1,650 +1,650 @@
 [
   {
-    "Breed": "Affenpinscher"
+    "name": "Affenpinscher"
   },
   {
-    "Breed": "Afghan Hound"
+    "name": "Afghan Hound"
   },
   {
-    "Breed": "Airedale Terrier"
+    "name": "Airedale Terrier"
   },
   {
-    "Breed": "Akita"
+    "name": "Akita"
   },
   {
-    "Breed": "Alaskan Klee Kai"
+    "name": "Alaskan Klee Kai"
   },
   {
-    "Breed": "Alaskan Malamute"
+    "name": "Alaskan Malamute"
   },
   {
-    "Breed": "American Bulldog"
+    "name": "American Bulldog"
   },
   {
-    "Breed": "American English Coonhound"
+    "name": "American English Coonhound"
   },
   {
-    "Breed": "American Eskimo Dog"
+    "name": "American Eskimo Dog"
   },
   {
-    "Breed": "American Foxhound"
+    "name": "American Foxhound"
   },
   {
-    "Breed": "American Pit Bull Terrier"
+    "name": "American Pit Bull Terrier"
   },
   {
-    "Breed": "American Staffordshire Terrier"
+    "name": "American Staffordshire Terrier"
   },
   {
-    "Breed": "American Water Spaniel"
+    "name": "American Water Spaniel"
   },
   {
-    "Breed": "Anatolian Shepherd Dog"
+    "name": "Anatolian Shepherd Dog"
   },
   {
-    "Breed": "Appenzeller Sennenhunde"
+    "name": "Appenzeller Sennenhunde"
   },
   {
-    "Breed": "Australian Cattle Dog"
+    "name": "Australian Cattle Dog"
   },
   {
-    "Breed": "Australian Kelpie"
+    "name": "Australian Kelpie"
   },
   {
-    "Breed": "Australian Shepherd"
+    "name": "Australian Shepherd"
   },
   {
-    "Breed": "Australian Terrier"
+    "name": "Australian Terrier"
   },
   {
-    "Breed": "Azawakh"
+    "name": "Azawakh"
   },
   {
-    "Breed": "Barbet"
+    "name": "Barbet"
   },
   {
-    "Breed": "Basenji"
+    "name": "Basenji"
   },
   {
-    "Breed": "Basset Hound"
+    "name": "Basset Hound"
   },
   {
-    "Breed": "Beagle"
+    "name": "Beagle"
   },
   {
-    "Breed": "Bearded Collie"
+    "name": "Bearded Collie"
   },
   {
-    "Breed": "Bedlington Terrier"
+    "name": "Bedlington Terrier"
   },
   {
-    "Breed": "Belgian Malinois"
+    "name": "Belgian Malinois"
   },
   {
-    "Breed": "Belgian Sheepdog"
+    "name": "Belgian Sheepdog"
   },
   {
-    "Breed": "Belgian Tervuren"
+    "name": "Belgian Tervuren"
   },
   {
-    "Breed": "Berger Picard"
+    "name": "Berger Picard"
   },
   {
-    "Breed": "Bernedoodle"
+    "name": "Bernedoodle"
   },
   {
-    "Breed": "Bernese Mountain Dog"
+    "name": "Bernese Mountain Dog"
   },
   {
-    "Breed": "Bichon Frise"
+    "name": "Bichon Frise"
   },
   {
-    "Breed": "Black and Tan Coonhound"
+    "name": "Black and Tan Coonhound"
   },
   {
-    "Breed": "Black Mouth Cur"
+    "name": "Black Mouth Cur"
   },
   {
-    "Breed": "Black Russian Terrier"
+    "name": "Black Russian Terrier"
   },
   {
-    "Breed": "Bloodhound"
+    "name": "Bloodhound"
   },
   {
-    "Breed": "Blue Lacy"
+    "name": "Blue Lacy"
   },
   {
-    "Breed": "Bluetick Coonhound"
+    "name": "Bluetick Coonhound"
   },
   {
-    "Breed": "Boerboel"
+    "name": "Boerboel"
   },
   {
-    "Breed": "Bolognese"
+    "name": "Bolognese"
   },
   {
-    "Breed": "Border Collie"
+    "name": "Border Collie"
   },
   {
-    "Breed": "Border Terrier"
+    "name": "Border Terrier"
   },
   {
-    "Breed": "Borzoi"
+    "name": "Borzoi"
   },
   {
-    "Breed": "Boston Terrier"
+    "name": "Boston Terrier"
   },
   {
-    "Breed": "Bouvier des Flandres"
+    "name": "Bouvier des Flandres"
   },
   {
-    "Breed": "Boxer"
+    "name": "Boxer"
   },
   {
-    "Breed": "Boykin Spaniel"
+    "name": "Boykin Spaniel"
   },
   {
-    "Breed": "Bracco Italiano"
+    "name": "Bracco Italiano"
   },
   {
-    "Breed": "Briard"
+    "name": "Briard"
   },
   {
-    "Breed": "Brittany"
+    "name": "Brittany"
   },
   {
-    "Breed": "Brussels Griffon"
+    "name": "Brussels Griffon"
   },
   {
-    "Breed": "Bull Terrier"
+    "name": "Bull Terrier"
   },
   {
-    "Breed": "Bulldog"
+    "name": "Bulldog"
   },
   {
-    "Breed": "Bullmastiff"
+    "name": "Bullmastiff"
   },
   {
-    "Breed": "Cairn Terrier"
+    "name": "Cairn Terrier"
   },
   {
-    "Breed": "Canaan Dog"
+    "name": "Canaan Dog"
   },
   {
-    "Breed": "Cane Corso"
+    "name": "Cane Corso"
   },
   {
-    "Breed": "Cardigan Welsh Corgi"
+    "name": "Cardigan Welsh Corgi"
   },
   {
-    "Breed": "Catahoula Leopard Dog"
+    "name": "Catahoula Leopard Dog"
   },
   {
-    "Breed": "Caucasian Shepherd Dog"
+    "name": "Caucasian Shepherd Dog"
   },
   {
-    "Breed": "Cavalier King Charles Spaniel"
+    "name": "Cavalier King Charles Spaniel"
   },
   {
-    "Breed": "Cesky Terrier"
+    "name": "Cesky Terrier"
   },
   {
-    "Breed": "Chesapeake Bay Retriever"
+    "name": "Chesapeake Bay Retriever"
   },
   {
-    "Breed": "Chihuahua"
+    "name": "Chihuahua"
   },
   {
-    "Breed": "Chinese Crested"
+    "name": "Chinese Crested"
   },
   {
-    "Breed": "Chinese Shar-Pei"
+    "name": "Chinese Shar-Pei"
   },
   {
-    "Breed": "Chinook"
+    "name": "Chinook"
   },
   {
-    "Breed": "Chow Chow"
+    "name": "Chow Chow"
   },
   {
-    "Breed": "Clumber Spaniel"
+    "name": "Clumber Spaniel"
   },
   {
-    "Breed": "Cockapoo"
+    "name": "Cockapoo"
   },
   {
-    "Breed": "Cocker Spaniel"
+    "name": "Cocker Spaniel"
   },
   {
-    "Breed": "Collie"
+    "name": "Collie"
   },
   {
-    "Breed": "Coton de Tulear"
+    "name": "Coton de Tulear"
   },
   {
-    "Breed": "Curly-Coated Retriever"
+    "name": "Curly-Coated Retriever"
   },
   {
-    "Breed": "Dachshund"
+    "name": "Dachshund"
   },
   {
-    "Breed": "Dalmatian"
+    "name": "Dalmatian"
   },
   {
-    "Breed": "Dandie Dinmont Terrier"
+    "name": "Dandie Dinmont Terrier"
   },
   {
-    "Breed": "Doberman Pinscher"
+    "name": "Doberman Pinscher"
   },
   {
-    "Breed": "Dogo Argentino"
+    "name": "Dogo Argentino"
   },
   {
-    "Breed": "Dogue de Bordeaux"
+    "name": "Dogue de Bordeaux"
   },
   {
-    "Breed": "Dutch Shepherd"
+    "name": "Dutch Shepherd"
   },
   {
-    "Breed": "English Cocker Spaniel"
+    "name": "English Cocker Spaniel"
   },
   {
-    "Breed": "English Foxhound"
+    "name": "English Foxhound"
   },
   {
-    "Breed": "English Setter"
+    "name": "English Setter"
   },
   {
-    "Breed": "English Springer Spaniel"
+    "name": "English Springer Spaniel"
   },
   {
-    "Breed": "English Toy Spaniel"
+    "name": "English Toy Spaniel"
   },
   {
-    "Breed": "Entlebucher Mountain Dog"
+    "name": "Entlebucher Mountain Dog"
   },
   {
-    "Breed": "Field Spaniel"
+    "name": "Field Spaniel"
   },
   {
-    "Breed": "Finnish Lapphund"
+    "name": "Finnish Lapphund"
   },
   {
-    "Breed": "Finnish Spitz"
+    "name": "Finnish Spitz"
   },
   {
-    "Breed": "Flat-Coated Retriever"
+    "name": "Flat-Coated Retriever"
   },
   {
-    "Breed": "Fox Terrier"
+    "name": "Fox Terrier"
   },
   {
-    "Breed": "French Bulldog"
+    "name": "French Bulldog"
   },
   {
-    "Breed": "German Pinscher"
+    "name": "German Pinscher"
   },
   {
-    "Breed": "German Shepherd Dog"
+    "name": "German Shepherd Dog"
   },
   {
-    "Breed": "German Shorthaired Pointer"
+    "name": "German Shorthaired Pointer"
   },
   {
-    "Breed": "German Wirehaired Pointer"
+    "name": "German Wirehaired Pointer"
   },
   {
-    "Breed": "Giant Schnauzer"
+    "name": "Giant Schnauzer"
   },
   {
-    "Breed": "Glen of Imaal Terrier"
+    "name": "Glen of Imaal Terrier"
   },
   {
-    "Breed": "Goldador"
+    "name": "Goldador"
   },
   {
-    "Breed": "Golden Retriever"
+    "name": "Golden Retriever"
   },
   {
-    "Breed": "Goldendoodle"
+    "name": "Goldendoodle"
   },
   {
-    "Breed": "Gordon Setter"
+    "name": "Gordon Setter"
   },
   {
-    "Breed": "Great Dane"
+    "name": "Great Dane"
   },
   {
-    "Breed": "Great Pyrenees"
+    "name": "Great Pyrenees"
   },
   {
-    "Breed": "Greater Swiss Mountain Dog"
+    "name": "Greater Swiss Mountain Dog"
   },
   {
-    "Breed": "Greyhound"
+    "name": "Greyhound"
   },
   {
-    "Breed": "Harrier"
+    "name": "Harrier"
   },
   {
-    "Breed": "Havanese"
+    "name": "Havanese"
   },
   {
-    "Breed": "Ibizan Hound"
+    "name": "Ibizan Hound"
   },
   {
-    "Breed": "Icelandic Sheepdog"
+    "name": "Icelandic Sheepdog"
   },
   {
-    "Breed": "Irish Red and White Setter"
+    "name": "Irish Red and White Setter"
   },
   {
-    "Breed": "Irish Setter"
+    "name": "Irish Setter"
   },
   {
-    "Breed": "Irish Terrier"
+    "name": "Irish Terrier"
   },
   {
-    "Breed": "Irish Water Spaniel"
+    "name": "Irish Water Spaniel"
   },
   {
-    "Breed": "Irish Wolfhound"
+    "name": "Irish Wolfhound"
   },
   {
-    "Breed": "Italian Greyhound"
+    "name": "Italian Greyhound"
   },
   {
-    "Breed": "Jack Russell Terrier"
+    "name": "Jack Russell Terrier"
   },
   {
-    "Breed": "Japanese Chin"
+    "name": "Japanese Chin"
   },
   {
-    "Breed": "Japanese Spitz"
+    "name": "Japanese Spitz"
   },
   {
-    "Breed": "Karelian Bear Dog"
+    "name": "Karelian Bear Dog"
   },
   {
-    "Breed": "Keeshond"
+    "name": "Keeshond"
   },
   {
-    "Breed": "Kerry Blue Terrier"
+    "name": "Kerry Blue Terrier"
   },
   {
-    "Breed": "Komondor"
+    "name": "Komondor"
   },
   {
-    "Breed": "Kooikerhondje"
+    "name": "Kooikerhondje"
   },
   {
-    "Breed": "Korean Jindo Dog"
+    "name": "Korean Jindo Dog"
   },
   {
-    "Breed": "Kuvasz"
+    "name": "Kuvasz"
   },
   {
-    "Breed": "Labradoodle"
+    "name": "Labradoodle"
   },
   {
-    "Breed": "Labrador Retriever"
+    "name": "Labrador Retriever"
   },
   {
-    "Breed": "Lagotto Romagnolo"
+    "name": "Lagotto Romagnolo"
   },
   {
-    "Breed": "Lakeland Terrier"
+    "name": "Lakeland Terrier"
   },
   {
-    "Breed": "Lancashire Heeler"
+    "name": "Lancashire Heeler"
   },
   {
-    "Breed": "Leonberger"
+    "name": "Leonberger"
   },
   {
-    "Breed": "Lhasa Apso"
+    "name": "Lhasa Apso"
   },
   {
-    "Breed": "Lowchen"
+    "name": "Lowchen"
   },
   {
-    "Breed": "Maltese"
+    "name": "Maltese"
   },
   {
-    "Breed": "Maltese Shih Tzu"
+    "name": "Maltese Shih Tzu"
   },
   {
-    "Breed": "Maltipoo"
+    "name": "Maltipoo"
   },
   {
-    "Breed": "Manchester Terrier"
+    "name": "Manchester Terrier"
   },
   {
-    "Breed": "Mastiff"
+    "name": "Mastiff"
   },
   {
-    "Breed": "Miniature Pinscher"
+    "name": "Miniature Pinscher"
   },
   {
-    "Breed": "Miniature Schnauzer"
+    "name": "Miniature Schnauzer"
   },
   {
-    "Breed": "Mudi"
+    "name": "Mudi"
   },
   {
-    "Breed": "Mutt"
+    "name": "Mutt"
   },
   {
-    "Breed": "Neapolitan Mastiff"
+    "name": "Neapolitan Mastiff"
   },
   {
-    "Breed": "Newfoundland"
+    "name": "Newfoundland"
   },
   {
-    "Breed": "Norfolk Terrier"
+    "name": "Norfolk Terrier"
   },
   {
-    "Breed": "Norwegian Buhund"
+    "name": "Norwegian Buhund"
   },
   {
-    "Breed": "Norwegian Elkhound"
+    "name": "Norwegian Elkhound"
   },
   {
-    "Breed": "Norwegian Lundehund"
+    "name": "Norwegian Lundehund"
   },
   {
-    "Breed": "Norwich Terrier"
+    "name": "Norwich Terrier"
   },
   {
-    "Breed": "Nova Scotia Duck Tolling Retriever"
+    "name": "Nova Scotia Duck Tolling Retriever"
   },
   {
-    "Breed": "Old English Sheepdog"
+    "name": "Old English Sheepdog"
   },
   {
-    "Breed": "Otterhound"
+    "name": "Otterhound"
   },
   {
-    "Breed": "Papillon"
+    "name": "Papillon"
   },
   {
-    "Breed": "Peekapoo"
+    "name": "Peekapoo"
   },
   {
-    "Breed": "Pekingese"
+    "name": "Pekingese"
   },
   {
-    "Breed": "Pembroke Welsh Corgi"
+    "name": "Pembroke Welsh Corgi"
   },
   {
-    "Breed": "Petit Basset Griffon Vendeen"
+    "name": "Petit Basset Griffon Vendeen"
   },
   {
-    "Breed": "Pharaoh Hound"
+    "name": "Pharaoh Hound"
   },
   {
-    "Breed": "Plott"
+    "name": "Plott"
   },
   {
-    "Breed": "Pocket Beagle"
+    "name": "Pocket Beagle"
   },
   {
-    "Breed": "Pointer"
+    "name": "Pointer"
   },
   {
-    "Breed": "Polish Lowland Sheepdog"
+    "name": "Polish Lowland Sheepdog"
   },
   {
-    "Breed": "Pomeranian"
+    "name": "Pomeranian"
   },
   {
-    "Breed": "Pomsky"
+    "name": "Pomsky"
   },
   {
-    "Breed": "Poodle"
+    "name": "Poodle"
   },
   {
-    "Breed": "Portuguese Water Dog"
+    "name": "Portuguese Water Dog"
   },
   {
-    "Breed": "Pug"
+    "name": "Pug"
   },
   {
-    "Breed": "Puggle"
+    "name": "Puggle"
   },
   {
-    "Breed": "Puli"
+    "name": "Puli"
   },
   {
-    "Breed": "Pyrenean Shepherd"
+    "name": "Pyrenean Shepherd"
   },
   {
-    "Breed": "Rat Terrier"
+    "name": "Rat Terrier"
   },
   {
-    "Breed": "Redbone Coonhound"
+    "name": "Redbone Coonhound"
   },
   {
-    "Breed": "Rhodesian Ridgeback"
+    "name": "Rhodesian Ridgeback"
   },
   {
-    "Breed": "Rottweiler"
+    "name": "Rottweiler"
   },
   {
-    "Breed": "Saint Bernard"
+    "name": "Saint Bernard"
   },
   {
-    "Breed": "Saluki"
+    "name": "Saluki"
   },
   {
-    "Breed": "Samoyed"
+    "name": "Samoyed"
   },
   {
-    "Breed": "Schipperke"
+    "name": "Schipperke"
   },
   {
-    "Breed": "Schnoodle"
+    "name": "Schnoodle"
   },
   {
-    "Breed": "Scottish Deerhound"
+    "name": "Scottish Deerhound"
   },
   {
-    "Breed": "Scottish Terrier"
+    "name": "Scottish Terrier"
   },
   {
-    "Breed": "Sealyham Terrier"
+    "name": "Sealyham Terrier"
   },
   {
-    "Breed": "Shetland Sheepdog"
+    "name": "Shetland Sheepdog"
   },
   {
-    "Breed": "Shiba Inu"
+    "name": "Shiba Inu"
   },
   {
-    "Breed": "Shih Tzu"
+    "name": "Shih Tzu"
   },
   {
-    "Breed": "Siberian Husky"
+    "name": "Siberian Husky"
   },
   {
-    "Breed": "Silken Windhound"
+    "name": "Silken Windhound"
   },
   {
-    "Breed": "Silky Terrier"
+    "name": "Silky Terrier"
   },
   {
-    "Breed": "Skye Terrier"
+    "name": "Skye Terrier"
   },
   {
-    "Breed": "Sloughi"
+    "name": "Sloughi"
   },
   {
-    "Breed": "Small Munsterlander Pointer"
+    "name": "Small Munsterlander Pointer"
   },
   {
-    "Breed": "Soft Coated Wheaten Terrier"
+    "name": "Soft Coated Wheaten Terrier"
   },
   {
-    "Breed": "Stabyhoun"
+    "name": "Stabyhoun"
   },
   {
-    "Breed": "Staffordshire Bull Terrier"
+    "name": "Staffordshire Bull Terrier"
   },
   {
-    "Breed": "Standard Schnauzer"
+    "name": "Standard Schnauzer"
   },
   {
-    "Breed": "Sussex Spaniel"
+    "name": "Sussex Spaniel"
   },
   {
-    "Breed": "Swedish Vallhund"
+    "name": "Swedish Vallhund"
   },
   {
-    "Breed": "Tibetan Mastiff"
+    "name": "Tibetan Mastiff"
   },
   {
-    "Breed": "Tibetan Spaniel"
+    "name": "Tibetan Spaniel"
   },
   {
-    "Breed": "Tibetan Terrier"
+    "name": "Tibetan Terrier"
   },
   {
-    "Breed": "Toy Fox Terrier"
+    "name": "Toy Fox Terrier"
   },
   {
-    "Breed": "Treeing Tennessee Brindle"
+    "name": "Treeing Tennessee Brindle"
   },
   {
-    "Breed": "Treeing Walker Coonhound"
+    "name": "Treeing Walker Coonhound"
   },
   {
-    "Breed": "Vizsla"
+    "name": "Vizsla"
   },
   {
-    "Breed": "Weimaraner"
+    "name": "Weimaraner"
   },
   {
-    "Breed": "Welsh Springer Spaniel"
+    "name": "Welsh Springer Spaniel"
   },
   {
-    "Breed": "Welsh Terrier"
+    "name": "Welsh Terrier"
   },
   {
-    "Breed": "West Highland White Terrier"
+    "name": "West Highland White Terrier"
   },
   {
-    "Breed": "Whippet"
+    "name": "Whippet"
   },
   {
-    "Breed": "Wirehaired Pointing Griffon"
+    "name": "Wirehaired Pointing Griffon"
   },
   {
-    "Breed": "Xoloitzcuintli"
+    "name": "Xoloitzcuintli"
   },
   {
-    "Breed": "Yorkipoo"
+    "name": "Yorkipoo"
   },
   {
-    "Breed": "Yorkshire Terrier"
+    "name": "Yorkshire Terrier"
   }
 ]
