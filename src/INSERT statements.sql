@@ -52,8 +52,8 @@ INSERT INTO dog_has_temperament(dog_id, temperament_id) VALUES
 
 -- Photo
 INSERT INTO photo(dog_id, photo, caption) VALUES
-(1, 'C:/Users/mahwa/Downloads/akita.jpg', 'Out for a walk'),
-(1, 'C:/Users/mahwa/Downloads/akita.jpg', 'Playing'),
+(1, 'C:\Users\mahwa\Downloads\akita.jpg', 'Out for a walk'),
+(1, 'C:\Users\mahwa\Downloads\akita.jpg', 'Playing'),
 (2, 'C:\Users\mahwa\Downloads\malamute.jpg', 'Training'),
 (3, 'C:\Users\mahwa\Downloads\bulldog.jpg', 'Day out'),
 (4, 'C:\Users\mahwa\Downloads\beagle2.JPG', 'Day out'),
