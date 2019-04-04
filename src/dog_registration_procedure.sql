@@ -4,7 +4,7 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS RegisterDog;
 CREATE PROCEDURE RegisterDog
 (
-    IN user_id INT(3),
+    IN user_name INT(3),
     IN breed VARCHAR(40),
     IN name VARCHAR(60),
     IN fixed BOOLEAN,
@@ -15,6 +15,12 @@ CREATE PROCEDURE RegisterDog
   BEGIN
 
     DECLARE dog_breed_id INT;
+    DECLARE user_id INT;
+
+    SELECT user_id
+    INTO user_id
+    FROM user
+    WHERE username = user_name;
 
     SELECT breed_id
     INTO dog_breed_id
@@ -35,4 +41,4 @@ CREATE PROCEDURE RegisterDog
   END //
 DELIMITER ;
 
-CALL RegisterDog(2, 'Akita', 'Dirk', 1, 40, 'Female', 'Dirk is dog');
+CALL RegisterDog('sarah97', 'Akita', 'Dirk', 1, 40, 'Female', 'Dirk is dog');
