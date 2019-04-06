@@ -94,7 +94,8 @@
                     min-height: 400px;
                 }
 
-                .old-matches-list {
+                .old-matches-list,
+                .messenger-body {
                     height: 400px;
                     overflow: scroll;
                     overflow-x: hidden;
@@ -124,20 +125,66 @@
                     </div>
                 </div>
 
-                <!-- Swiper Start -->
-                <div class="col-md-6 new-matches">
-                    <h2>Find New Matches</h2>
-                    <hr class="my-4" />
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-secondary" id="decline">Decline</button>
-                        <div class="swipe-candidate" id="photo">
-                            <h2 id="photo">Justice Antonin Scalia</h2>
-                            <img src="src/jas.jpg" class="img-fluid img-thumbnail" id="photo">
+                <div class="col-md-6">
+                    <!-- Swiper Start -->
+                    <div class="new-matches">
+                        <h2>Find New Matches</h2>
+                        <hr class="my-4" />
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-secondary" id="decline">Decline</button>
+                            <div class="swipe-candidate" id="photo">
+                                <!-- Name -->
+                                <h2 id="photo">Justice Antonin Scalia</h2>
+                                <!-- Image -->
+                                <img src="src/jas.jpg" class="img-fluid img-thumbnail" id="photo">
+                            </div>
+                            <button type="button" class="btn btn-secondary" id="accept">Accept</button>
                         </div>
-                        <button type="button" class="btn btn-secondary" id="accept">Accept</button>
+                        <!-- Temperament -->
+                        <div class="swipe-candidate-temperaments" id="photo">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="option1" checked disabled>
+                                <label class="form-check-label">Friendly </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="option2" disabled>
+                                <label class="form-check-label">Aggressive </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="option3" checked disabled>
+                                <label class="form-check-label">Playful </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="option4" disabled>
+                                <label class="form-check-label">Not good with children </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="option5" disabled>
+                                <label class="form-check-label">Not good with puppies </label>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Swiper End -->
+
+                    <!-- Messeger Start-->
+                    <div class="messenger">
+                        <div class="row">
+                            <h2 class="col-md-4">Message</h2>
+                            <button type="button" class="btn btn-outline-primary">Back to swiping</button>
+                        </div>
+                        <hr class="my-4" />
+
+                        <div class="list-group messenger-body">
+                            <a class="list-group-item">
+                                <p class="sender">RECEPIENT NAME</p>
+                                <small class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+                                    voluptas nemo quos tempora.</small>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Messeger End-->
                 </div>
-                <!-- Swiper End -->
+
             </div>
         </div>
     </section>
@@ -166,29 +213,32 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="User Name *" value="" />
+                                <input type="text" class="form-control" placeholder="User Name *" name="userName" />
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Screen Name *" value="" />
+                                <input type="text" class="form-control" placeholder="Screen Name *" name="screenName" />
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Address *" value="" />
+                                <input type="text" class="form-control" placeholder="Zipcode *" name="zipCode" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="City Name *" name="cityName" />
                             </div>
                             <button type="submit" class="btn btn-primary">Sign up</button>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Your Password *" value="" />
+                                <input type="password" class="form-control" placeholder="Your Password *" name="password" />
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
+                                <input type="password" class="form-control" placeholder="Confirm Password *" name="passwordConfirm" />
                             </div>
                             <div class="form-group">
                                 <select class="form-control">
                                     <option>Gender</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Other</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
                                 </select>
                             </div>
                         </div>
@@ -328,7 +378,9 @@
     <script src="bootstrap3-typeahead.js"></script>
     <script>
 
-        var logstate = true;
+        localStorage.setItem("dinder-sessionid", "102384628shas286");
+
+        var logstate = false;
         console.log("login state: " + logstate);
 
         if (logstate) {
@@ -401,6 +453,9 @@
     </script>
 
     <script>
+        $(".new-matches").show();
+        $(".messenger").hide();
+
         var matchesCount = $(".old-matches-list")[0].childElementCount;
         if (matchesCount < 9) {
             $(".old-matches-list").css("overflow-y", "hidden");
@@ -408,10 +463,22 @@
 
         var messageReceiver;
         $(".old-matches-list").click(function (d) {
-            $(".old-matches-list > .active").removeClass("active")
+            $(".old-matches-list > .active").removeClass("active");
             $(d.target).addClass("active");
             messageReceiver = d.target;
+
+            $(".messenger").fadeIn("slow").show();
+            $(".new-matches").fadeOut("slow").hide();
+
             console.log("message receiver is: " + messageReceiver.id);
+        })
+
+        $(".messenger").click(function (d) {
+            if (d.target.type == 'button') {
+                $(".old-matches-list > .active").removeClass("active");
+                $(".new-matches").fadeIn("slow").show();
+                $(".messenger").fadeOut("slow").hide();
+            }
         })
 
         var accepted;
@@ -428,7 +495,7 @@
             if (d.target.id == "decline") {
                 accepted = false;
             }
-            if(d.target.id == "photo"){
+            if (d.target.id == "photo") {
                 return;
             }
 

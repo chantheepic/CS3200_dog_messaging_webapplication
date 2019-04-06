@@ -4,7 +4,7 @@ DROP PROCEDURE IF EXISTS RegisterUser;
 CREATE PROCEDURE RegisterUser(IN name VARCHAR(60), IN username VARCHAR(18), IN password VARCHAR(32), IN gender VARCHAR(10), IN zipcode VARCHAR(10), IN city VARCHAR(30))
  BEGIN
 
-    IF(gender != 'Male' OR gender != 'Female' OR gender != 'Other') THEN
+    IF(gender != 'Male' AND gender != 'Female' AND gender != 'Other') THEN
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = "not one of predetermined gender";
     END IF;
@@ -24,8 +24,8 @@ CREATE PROCEDURE RegisterUser(IN name VARCHAR(60), IN username VARCHAR(18), IN p
 DELIMITER ;
 
 describe user;
-
-CALL RegisterUser('Alex Name', 'asda', 'Password', 'MM', 02115, 'Boston');
+CALL RegisterUser('Alex Name', 'alex1', 'Password', 'Male', 02115, 'Boston');
+CALL RegisterUser('Alex Name', 'alex1', 'Password', 'MM', 02115, 'Boston');
 
 SELECT * FROM user;
 
@@ -56,10 +56,10 @@ SELECT @session_id;
 SELECT @user_hash;
 
 # succeed
-CALL LogIn('Alex', 'Password', @login_status, @session_id, @user_hash);
+CALL LogIn('alex1', 'Password', @login_status, @session_id, @user_hash);
 SELECT * FROM session;
 # fail
-CALL LogIn('Alex', 'password', @login_status, @session_id, @user_hash);
+CALL LogIn('alex1', 'password', @login_status, @session_id, @user_hash);
 # fail
 CALL LogIn('alex', 'Password', @login_status, @session_id, @user_hash);
 
