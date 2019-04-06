@@ -73,12 +73,12 @@
                         <h5>Justice Samuel Alito</h5>
                     </div>
 
-                    <div>Your Future Dog</div>
-                    <div>Your Future Dog</div>
-                    <div>Your Future Dog</div>
-                    <div>Your Future Dog</div>
-                    <div>Your Future Dog</div>
-                    <div>Your Future Dog</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
+                    <div>another dog</div>
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
             </style>
             <div class="row">
                 <div class="col-md-6 old-matches">
-                    <h2>Your Puppy Pals</h2>
+                    <h2>Previous Matches</h2>
                     <hr class="my-4" />
                     <div class="list-group old-matches-list">
                         <a class="list-group-item list-group-item-action" id="f1">Friend 1</a>
@@ -130,9 +130,9 @@
                     <hr class="my-4" />
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-secondary" id="decline">Decline</button>
-                        <div class="swipe-candidate">
-                            <h2>Justice Antonin Scalia</h2>
-                            <img src="src/jas.jpg" class="img-fluid img-thumbnail">
+                        <div class="swipe-candidate" id="photo">
+                            <h2 id="photo">Justice Antonin Scalia</h2>
+                            <img src="src/jas.jpg" class="img-fluid img-thumbnail" id="photo">
                         </div>
                         <button type="button" class="btn btn-secondary" id="accept">Accept</button>
                     </div>
@@ -427,6 +427,9 @@
             }
             if (d.target.id == "decline") {
                 accepted = false;
+            }
+            if(d.target.id == "photo"){
+                return;
             }
 
             candidate.slideUp(function () {

@@ -8,9 +8,15 @@ $app->get('/api/dogapp/test', function(Request $request, Response $response){
     return fetch_d($query, $response);
 });
 
+$app->get('/api/dogapp/users', function(Request $request, Response $response){
+    $query = "SELECT * FROM user;";
+    return fetch_d($query, $response);
+});
+
+
 function fetch_d($query, $response){
     try{
-        $database = new AlexandraDatabase();
+        $database = new DogDatabase();
         $database = $database->connect();
 
         $statement = $database->query($query);
