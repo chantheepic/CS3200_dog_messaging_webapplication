@@ -15,11 +15,22 @@ CREATE PROCEDURE test2(IN n VARCHAR(60))
  
  IF(n = 'm') THEN
     SIGNAL SQLSTATE '45000'
-    SET MESSAGE_TEXT = "ahhh";
+    SET MESSAGE_TEXT = "ahbh";
     END IF;
     
     SELECT n;
+	SELECT "hi";
  END //
 DELIMITER ;
 
-CALL test2('a');
+CALL test2('g');
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS test3;
+CREATE PROCEDURE test3(IN n VARCHAR(60))
+ BEGIN
+ 
+ SELECT n;
+ SELECT "hi";
+ END //
+DELIMITER ;

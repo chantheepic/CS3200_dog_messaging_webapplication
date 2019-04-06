@@ -24,8 +24,8 @@ CREATE PROCEDURE RegisterUser(IN name VARCHAR(60), IN username VARCHAR(18), IN p
 DELIMITER ;
 
 describe user;
-CALL RegisterUser('Alex Name', 'alex1', 'Password', 'Male', 02115, 'Boston');
-CALL RegisterUser('Alex Name', 'alex1', 'Password', 'MM', 02115, 'Boston');
+CALL RegisterUser('Alex Name', 'asda', 'Password', 'Male', 02115, 'Boston');
+CALL RegisterUser('Alex Name', 'asda', 'Password', 'MM', 02115, 'Boston');
 
 SELECT * FROM user;
 
@@ -59,20 +59,20 @@ SELECT @user_hash;
 CALL LogIn('alex1', 'Password', @login_status, @session_id, @user_hash);
 SELECT * FROM session;
 # fail
-CALL LogIn('alex1', 'password', @login_status, @session_id, @user_hash);
+CALL LogIn('Alex', 'password', @login_status, @session_id, @user_hash);
 # fail
 CALL LogIn('alex', 'Password', @login_status, @session_id, @user_hash);
 
 # Return LogIn
 DELIMITER //
 DROP PROCEDURE IF EXISTS ReturnLogIn;
-CREATE PROCEDURE ReturnLogIn(IN session_id VARCHAR(32), IN user_hash VARCHAR(32), OUT login_status boolean)
+CREATE PROCEDURE ReturnLogIn(IN session_code VARCHAR(32), IN user_hash VARCHAR(32), OUT login_status boolean)
  BEGIN
     DECLARE standard_session_start DATETIME;
     DECLARE standard_session_id VARCHAR(32);
-    SELECT session_id INTO standard_session_id, session_start INTO  FROM session WHERE user_id = 'a08372b70196c21a9229cf04db6b7ceb' ORDER BY session_start DESC LIMIT 1;
+    SELECT session_id, session_start INTO standard_session_id, standard_session_start FROM session WHERE user_id = user_hash ORDER BY session_start DESC LIMIT 1;
 
-    IF(session_id = standard_session_id AND datediff(now(), standard_session_start) = 0) 
+    IF(session_code = standard_session_id AND datediff(now(), standard_session_start) = 0) 
     THEN
         SET login_status = true;
     ELSE 
@@ -80,6 +80,11 @@ CREATE PROCEDURE ReturnLogIn(IN session_id VARCHAR(32), IN user_hash VARCHAR(32)
     END IF;
  END //
 DELIMITER ;
+
+SELECT @login_status2;
+CAll ReturnLogIn('b48f8c3183d0d91c4db1ef62158ebb60','946d20c91f154795805cebdefe919ef7', @login_status2);
+CAll ReturnLogIn('b48f8c3183d0d91c4db1ef62158ebb61','946d20c91f154795805cebdefe919ef7', @login_status2);
+CAll ReturnLogIn('b48f8c3183d0d91c4db1ef62158ebb60','946d20c91f154795805cebdefe919ef6', @login_status2);
 
 # pass
 SELECT 'a08372b70196c21a9229cf04db6b7ceb' = 'a08372b70196c21a9229cf04db6b7ceb' AND datediff(now(), '2019-03-26 0:16:10') = 0;

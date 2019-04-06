@@ -24,6 +24,14 @@ $app->get('/api/dogapp/procedure/test2/{string}', function(Request $request, Res
     return fetch_call($call, $response);
 });
 
+$app->get('/api/dogapp/procedure/test3/{string}', function(Request $request, Response $response){
+    $string = $request->getAttribute('string');
+    $ret = "";
+    $call = "CALL test2('$string', '$ret')";
+    echo($ret);
+    return fetch_call($call, $response);
+});
+
 
 function fetch_d($query, $response){
     try{
