@@ -29,14 +29,15 @@ SELECT @n;
 
 DELIMITER //
 DROP PROCEDURE IF EXISTS test3;
-CREATE PROCEDURE test3(in m VARCHAR(60), OUT n VARCHAR(60))
+CREATE PROCEDURE test3(in m VARCHAR(60), OUT n VARCHAR(60), OUT o VARCHAR(60))
  BEGIN
  
  SET n := m;
+ SET o := m;
  END //
 DELIMITER ;
 
-CALL test3('AA', @n);
+CALL test3('AA', @n, @o);
 
 DELIMITER //
 DROP PROCEDURE IF EXISTS test4;
@@ -48,4 +49,5 @@ CREATE PROCEDURE test4(in m VARCHAR(60))
  END //
 DELIMITER ;
 
+SELECT * FROM user WHERE name = 'Alex Name' or name = 'a';
 CALL test4('AA');

@@ -18,48 +18,36 @@ $app->get('/api/dogapp/procedure/test1', function(Request $request, Response $re
     return fetch_procedure($call, $response);
 });
 
-$app->get('/api/dogapp/procedure/test2/{string}', function(Request $request, Response $response){
-    $string = $request->getAttribute('string');
-    $call = "CALL test2('$string')";
-    return fetch_procedure($call, $response);
+$app->get('/api/dogapp/procedure/test2', function(Request $request, Response $response){
+    return $response->withJson(registerUser(), 200);
 });
-
-// $app->get('/api/dogapp/procedure/test3', function(Request $request, Response $response){
-//     $pdo = new DogDatabase();
-//     $pdo = $pdo->connect();
-
-//     $stmt = $pdo->prepare("CALL test3(hello, @ostring)");
-//     $stmt->bindParam(':istring', 'AAZZ');
-//     $stmt->execute();
-//     $outputArray = $this->dbh->query("select @ostring")->fetch(PDO::FETCH_ASSOC);
-//     // $outputArray['@ostring']
-//     echo('aaa');
-// });
 
 $app->get('/api/dogapp/procedure/test3', function(Request $request, Response $response){
     $pdo = new DogDatabase();
     $pdo = $pdo->connect();
 
-    $stmt = $pdo->query("CALL test3('hello', @ostring)");
-    // $stmt->bindParam(1, 'AAZZ');
+    $stmt = $pdo->prepare("CALL test3('asdahsbj', @return)");
+    $stmt->bindParam('@return', $return_value, PDO::PARAM_STR, 4000); 
+    $return_value = null;
     $stmt->execute();
-    $outputArray = $this->dbh->query("select @ostring")->fetch(PDO::FETCH_ASSOC);
-    // $outputArray['@ostring']
-    echo('aaa');
+
+    $sql = "SELECT @return";
+    $results = current($pdo->query($sql)->fetchAll());
+    return $response->withJson($results, 200);
 });
 
 $app->get('/api/dogapp/procedure/test4', function(Request $request, Response $response){
     $pdo = new DogDatabase();
     $pdo = $pdo->connect();
 
-    $ppp = 'katie';
-    $stmt = $pdo->prepare("CALL test4('$ppp')");
+    $stmt = $pdo->prepare("CALL test4(:name)");
+    $stmt->bindParam(':name', $name);
+    $name = 'one';
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-    $stmt->nextRowset();
+    
     return $response->withJson($result, 200);
 });
-
 
 function fetch_d($query, $response){
     try{
