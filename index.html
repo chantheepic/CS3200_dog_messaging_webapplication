@@ -209,7 +209,7 @@
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quibusdam.</p>
 
                 <!-- Form -->
-                <form method="POST" name="upfrm" action="" enctype="multipart/form-data">
+                <form method="POST" name="upfrm" action="registerUser.php" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -228,17 +228,19 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Your Password *" name="password" />
+                                <input type="password" class="form-control" placeholder="Your Password *"
+                                    name="password" />
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password *" name="passwordConfirm" />
+                                <input type="password" class="form-control" placeholder="Confirm Password *"
+                                    name="passwordConfirm" />
                             </div>
                             <div class="form-group">
-                                <select class="form-control">
+                                <select class="form-control" name="gender">
                                     <option>Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
                         </div>
