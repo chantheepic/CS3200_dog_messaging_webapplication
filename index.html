@@ -22,8 +22,20 @@
             user-select: none;
         }
 
-        ul li.active {
-            background-color: rgba(0, 0, 0, 0.1);
+        ul .activeMessageSelectionText {
+            color: white !important;
+        }
+
+        ul .activeMessageSelection {
+            background-color: sandybrown !important;
+        }
+
+        ul .activeDogSelectionText {
+            color: white !important;
+        }
+
+        ul .activeDogSelection {
+            background-color: sandybrown !important;
         }
     </style>
 
@@ -54,20 +66,17 @@
                     <li class="collection-header orange darken-1 white-text">
                         <h4>User Dogs</h4>
                     </li>
-                    <a class="collection-item avatar">
+                    <a class="collection-item avatar" id='jas2'>
                         <img src="src/jas.jpg" alt="" class="circle">
-                        <span class="title deep-orange-text">Justice Antonin Scalia</span>
-                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                        <span class="title orange-text">Justice Antonin Scalia</span>
                     </a>
-                    <a class="collection-item avatar">
+                    <a class="collection-item avatar" id='jrbg2'>
                         <img src="src/jrbg.png" alt="" class="circle">
-                        <span class="title deep-orange-text">Justice Ruth <br> Bader Ginsburg</span>
-                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                        <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
                     </a>
-                    <a class="collection-item avatar">
+                    <a class="collection-item avatar" id='jsa2'>
                         <img src="src/jsa.jpg" alt="" class="circle">
-                        <span class="title deep-orange-text">Justice Samuel Alito</span>
-                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                        <span class="title orange-text">Justice Samuel Alito</span>
                     </a>
                 </ul>
             </div>
@@ -78,20 +87,17 @@
                     <li class="collection-header orange darken-1 white-text">
                         <h4>Selected Dog Pals</h4>
                     </li>
-                    <a class="collection-item avatar">
+                    <a class="collection-item avatar" id='jas'>
                         <img src="src/jas.jpg" alt="" class="circle">
-                        <span class="title deep-orange-text">Justice Antonin Scalia</span>
-                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                        <span class="title orange-text">Justice Antonin Scalia</span>
                     </a>
-                    <a class="collection-item avatar">
+                    <a class="collection-item avatar" id='jrbg'>
                         <img src="src/jrbg.png" alt="" class="circle">
-                        <span class="title deep-orange-text">Justice Ruth <br> Bader Ginsburg</span>
-                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                        <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
                     </a>
-                    <a class="collection-item avatar">
+                    <a class="collection-item avatar" id='jsa'>
                         <img src="src/jsa.jpg" alt="" class="circle">
-                        <span class="title deep-orange-text">Justice Samuel Alito</span>
-                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                        <span class="title orange-text">Justice Samuel Alito</span>
                     </a>
                 </ul>
             </div>
@@ -123,13 +129,15 @@
 
                 <!--  Message Area -->
                 <ul class="collection with-header old-pal-messager">
-                    <li class="collection-header orange darken-1 white-text">
-                        <h4>Message</h4>
+                    <li class="collection-header orange darken-1 white-text row">
+                        <h4 class="col s8">Message</h4>
+                        <h4 href="#" class="btn btn-flat waves-effect waves-light amber return-to-swipe-btn">Return to
+                            swiping</h4>
                     </li>
                     <li class="collection-item">
-                        <div class="input-field row">
-                            <i class="material-icons prefix">send</i>
-                            <input placeholder="Message Here" id="msg" type="text" class="">
+                        <div class="input-field send-message row">
+                            <input placeholder="Message Here" id="msg" type="text" class="col s10">
+                            <a href="#" class="btn btn-flat waves-effect waves-light amber">Send</a>
                         </div>
                     </li>
                     <li class="collection-item">
@@ -176,7 +184,7 @@
                     <p>Things</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save</a>
+                    <a href="#!" class="modal-close waves-effect waves-light btn-flat">Save</a>
                 </div>
             </div>
 
@@ -239,7 +247,7 @@
                 </div>
                 <!-- Modal Button -->
                 <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Register</a>
+                    <a href="#!" class="modal-close waves-effect waves-light btn-flat">Register</a>
                 </div>
             </div>
     </section>
@@ -250,6 +258,8 @@
         </script>
     <script src="src/materialize/js/materialize.js"></script>
     <script>
+        var selectedMyDog
+        var messageRecepient;
 
         // Initialize Carousel
         $('.carousel.carousel-slider').carousel({
@@ -275,9 +285,10 @@
         });
     </script>
     <script>
+        // Login state of user
         var logstate = true;
-        $('.old-pal-messager').hide();
 
+        // Toggle sections based on user login state
         if (logstate) {
             $('.logout').hide();
             $('.login').show();
@@ -285,19 +296,29 @@
             $('.login').hide();
             $('.logout').show();
         }
+
+        // Initially hide message function until a dog pal is selected. Will need to be placed in a function
+        $('.old-pal-messager').hide();
+
+        // Initial user dog selection. will be given first returned dog id. Will need to be placed in a function
+        selectedMyDog = 'jas2';
+        var parent = $(`#${selectedMyDog}`);
+        parent.addClass("activeDogSelection");
+        parent[0].childNodes[3].classList.add("activeDogSelectionText");
+
+        // Return values from modal. For use with post
         $('.modal-trigger').click(function (d) {
             var target = d.target.attributes.href.nodeValue;
-            if (target == "#registerDog") {
-                $('.breedAuto').val("");
-                $('.charSel').val([]);
-                $('.genSel').val("None");
-                $('.fixSel').val("None");
-                $('#dogNameText').val("");
-                $('#dogWeightText').val("");
-                $('.input-field label').removeClass('active');
-
-            }
-
+            // reset params
+            // if (target == "#registerDog") {
+            //     $('.breedAuto').val("");
+            //     $('.charSel').val([]);
+            //     $('.genSel').val("None");
+            //     $('.fixSel').val("None");
+            //     $('#dogNameText').val("");
+            //     $('#dogWeightText').val("");
+            //     $('.input-field label').removeClass('active');
+            // }
         });
 
         // setInterval(function () {
@@ -315,6 +336,7 @@
         //     console.log(f);
         // }, 3000);
 
+        // Carousel Buttons
         $('.new-pal-btn a').click(function (d) {
             if (d.target.text == "Accept") {
                 $('.carousel.carousel-slider').carousel('prev');
@@ -322,20 +344,79 @@
             if (d.target.text == "Deny") {
                 $('.carousel.carousel-slider').carousel('next');
             }
-            console.log($('.carousel.carousel-slider'));
             console.log(d.target.text);
         });
 
+        // Select User dog
         $('.my-dog-select').click(function (d) {
+            var targ = $(d.target.parentElement);
+            var id;
+            if (targ.prop("nodeName") == "A") {
+                id = targ[0].id;
+            } else {
+                if (targ.prop("nodeName") == "LI") {
+                    id = targ[0].parentElement.id;
+                } else {
+                    id = d.target.id;
+                }
+            }
+            selectedMyDog = id;
+            $('.activeDogSelection').removeClass('activeDogSelection')
+            $('.activeDogSelectionText').removeClass('activeDogSelectionText')
 
-            console.log(d.target);
+            var parent = $(`#${id}`);
+            parent.addClass("activeDogSelection");
+            parent[0].childNodes[3].classList.add("activeDogSelectionText");
+
+            console.log(id + ' is sending a message to ' + messageRecepient);
         });
 
+        
+        // Select message recipient dog
         $('.old-pal-select').click(function (d) {
-            $('.new-pal-slider').hide();
-            $('.old-pal-messager').show();
-            console.log(d);
+            $('.new-pal-slider').fadeOut('fast', function () {
+                $('.old-pal-messager').fadeIn('fast');
+            });
+
+            var targ = $(d.target.parentElement);
+            var id;
+            if (targ.prop("nodeName") == "A") {
+                id = targ[0].id;
+            } else {
+                if (targ.prop("nodeName") == "LI") {
+                    id = targ[0].parentElement.id;
+                } else {
+                    id = d.target.id;
+                }
+            }
+            messageRecepient = id;
+            $('.activeMessageSelection').removeClass('activeMessageSelection')
+            $('.activeMessageSelectionText').removeClass('activeMessageSelectionText')
+
+            var parent = $(`#${id}`);
+            parent.addClass("activeMessageSelection");
+            parent[0].childNodes[3].classList.add("activeMessageSelectionText");
+            console.log(parent[0].childNodes[3]);
+
+            console.log(selectedMyDog + ' is sending a message to ' + id);
         });
+
+        // Return to swipe button inside message section
+        $('.return-to-swipe-btn').click(function () {
+            $('.old-pal-messager').fadeOut('fast', function () {
+                $('.new-pal-slider').fadeIn('fast');
+            });
+            console.log('Swipe Mode');
+        });
+
+        // Send button inside message section
+        $('.send-message').click(function (d) {
+            if (d.target.nodeName == 'A') {
+                console.log('sent: ' + $('#msg').val() + ' to ' + messageRecepient);
+                $('#msg').val("");
+            }
+        })
+
 
     </script>
 </body>
