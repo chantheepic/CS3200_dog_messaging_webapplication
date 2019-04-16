@@ -6,529 +6,336 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="stylesheet" type="text/css" href="slick.css" />
-    <link rel="stylesheet" type="text/css" href="slick-theme.css" />
+    <!-- Materialize CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="src/materialize/css/materialize.css">
     <title>DogApp</title>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="">Dinder</a>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto">
-                    <!-- <li class="nav-item active">
-                        <a class="nav-item active nav-link" href="dogapp_api.html">API</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a class="nav-item active nav-link button2" href="" data-toggle="modal">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-item active nav-link button3" href="" data-toggle="modal">Register</a>
-                    </li>
-                </ul>
-                <span class="navbar-text user">
-                    Welcome Back User
-                </span>
-            </div>
-        </nav>
-    </header>
-
+    <!-- General Styling -->
     <style>
-        .logout,
-        .login {
-            display: none;
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        ul li.active {
+            background-color: rgba(0, 0, 0, 0.1);
         }
     </style>
-    <section class="selection">
-        <!-- When Logged Out -->
-        <div class="logout outer container">
-            <!-- Upper -->
-            <div class="jumbotron my-4">
-                <h1 class="display-4">Explanation</h1>
-                <hr class="my-4" />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quibusdam.</p>
-            </div>
+
+    <!-- Navbar -->
+    <nav class="orange darken-1 noselect">
+        <div class="nav-wrapper container">
+            <a class="brand-logo">Dinder</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="orange lighten-1 waves-effect waves-light "><a class="modal-trigger" href="#userProfile">Edit
+                        User Profile</a></li>
+                <li class="orange lighten-1 waves-effect waves-light "><a class="modal-trigger" href="#registerDog">Add
+                        Doggo</a></li>
+                <li style="margin: 0px 2em;" class="noselect"> Welcome Back User </li>
+            </ul>
         </div>
+    </nav>
 
-        <!-- When Logged In -->
-        <div class="login outer container">
-            <!-- Upper -->
-            <div class="dog-selector jumbotron my-4">
-                <style>
-                    .selected-dog.display-4 {
-                        font-size: 2em;
-                    }
-                </style>
-                <h1 class="selected-dog display-4">Select Dog</h1>
-                <hr class="my-4" />
 
-                <style>
-                    .choose-dog {
-                        text-align: center;
-                        font-size: 0.5em;
-                    }
-                </style>
-                <div class="choose-dog row">
-                    <div class="card dog" id="jrbg" style="width: 10rem;">
-                        <img src="src/jrbg.png" class="card-img-top">
-                        <p class="card-text">Justice Ruth Bader Ginsberg</p>
-                    </div>
-                    <div class="card dog" id="jas" style="width: 10rem;">
-                        <img src="src/jas.jpg" class="card-img-top">
-                        <p class="card-text">Justice Antonin Scalia</p>
-                    </div>
-                    <div class="card dog" id="jsa" style="width: 10rem;">
-                        <img src="src/jsa.jpg" class="card-img-top">
-                        <p class="card-text">Justice Samuel Alito</p>
-                    </div>
+    <!--  Main Body -->
+    <section class="login">
+        <div class="section">
 
-                    <div>another dog</div>
-                    <div>another dog</div>
-                    <div>another dog</div>
-                    <div>another dog</div>
-                    <div>another dog</div>
-                    <div>another dog</div>
-                </div>
-            </div>
         </div>
-    </section>
-    <section class="matcher login">
-        <div class="container">
+        <div class="section row noselect">
+            <!--  User Dog Selector -->
+            <div class="col s3">
+                <ul class="collection with-header my-dog-select">
+                    <li class="collection-header orange darken-1 white-text">
+                        <h4>User Dogs</h4>
+                    </li>
+                    <a class="collection-item avatar">
+                        <img src="src/jas.jpg" alt="" class="circle">
+                        <span class="title deep-orange-text">Justice Antonin Scalia</span>
+                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                    </a>
+                    <a class="collection-item avatar">
+                        <img src="src/jrbg.png" alt="" class="circle">
+                        <span class="title deep-orange-text">Justice Ruth <br> Bader Ginsburg</span>
+                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                    </a>
+                    <a class="collection-item avatar">
+                        <img src="src/jsa.jpg" alt="" class="circle">
+                        <span class="title deep-orange-text">Justice Samuel Alito</span>
+                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                    </a>
+                </ul>
+            </div>
+
+            <!--  Message Selector -->
+            <div class="col s3">
+                <ul class="collection with-header old-pal-select">
+                    <li class="collection-header orange darken-1 white-text">
+                        <h4>Selected Dog Pals</h4>
+                    </li>
+                    <a class="collection-item avatar">
+                        <img src="src/jas.jpg" alt="" class="circle">
+                        <span class="title deep-orange-text">Justice Antonin Scalia</span>
+                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                    </a>
+                    <a class="collection-item avatar">
+                        <img src="src/jrbg.png" alt="" class="circle">
+                        <span class="title deep-orange-text">Justice Ruth <br> Bader Ginsburg</span>
+                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                    </a>
+                    <a class="collection-item avatar">
+                        <img src="src/jsa.jpg" alt="" class="circle">
+                        <span class="title deep-orange-text">Justice Samuel Alito</span>
+                        <li class="secondary-content deep-orange-text"><i class="material-icons">send</i></li>
+                    </a>
+                </ul>
+            </div>
+
+            <!--  Slider Area -->
+            <div class="col s6">
+                <ul class="collection with-header new-pal-slider">
+                    <li class="collection-header orange darken-1 white-text">
+                        <h4>Slider</h4>
+                    </li>
+                    <div style="margin-top: -1px" class="carousel carousel-slider center">
+                        <div class="carousel-fixed-item left new-pal-btn">
+                            <a class="col s1"></a>
+                            <a class="btn waves-effect white deep-orange-text darken-text-2 col s4">Accept</a>
+                            <a class="col s2"></a>
+                            <a class="btn waves-effect white deep-orange-text darken-text-2 col s4">Deny</a>
+                            <a class="col s1"></a>
+                        </div>
+                        <div class="carousel-item red white-text" href="#one!">
+                            <h2>Current Suggestion</h2>
+                            <p class="white-text">This is your first panel</p>
+                        </div>
+                        <div class="carousel-item blue white-text" href="#two!">
+                            <h2>Next Suggestion</h2>
+                            <p class="white-text">This is your second panel</p>
+                        </div>
+                    </div>
+                </ul>
+
+                <!--  Message Area -->
+                <ul class="collection with-header old-pal-messager">
+                    <li class="collection-header orange darken-1 white-text">
+                        <h4>Message</h4>
+                    </li>
+                    <li class="collection-item">
+                        <div class="input-field row">
+                            <i class="material-icons prefix">send</i>
+                            <input placeholder="Message Here" id="msg" type="text" class="">
+                        </div>
+                    </li>
+                    <li class="collection-item">
+                        <span class="title">Name</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
+                    </li>
+                    <li class="collection-item">
+                        <span class="title">Name</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
+                    </li>
+                    <li class="collection-item">
+                        <span class="title">Name</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
+                    </li>
+                    <li class="collection-item">
+                        <span class="title">Name</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
+                    </li>
+                    <li class="collection-item">
+                        <span class="title">Name</span>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto illo natus, ut culpa
+                            unde quasi, quibusdam repudiandae odit provident quos quam in odio facere molestiae?
+                            Reprehenderit, blanditiis! Blanditiis veniam voluptate fugit quibusdam, provident corrupti
+                            doloremque nemo temporibus eaque placeat magnam.</p>
+                    </li>
+                    <li class="collection-item">
+                        <span class="title">Name</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Modals -->
             <style>
-                .swipe-candidate img {
-                    height: 350px;
+                .modal {
+                    height: 100% !important
                 }
-
-                .new-matches .btn {
-                    min-height: 400px;
-                }
-
-                .old-matches-list,
-                .messenger-body {
-                    height: 400px;
-                    overflow: scroll;
-                    overflow-x: hidden;
-                    text-align: left;
-                }
-
-                .new-matches,
-                .old-matches {
-                    text-align: center;
-                }
-
-                .old-matches a {
-                    color: grey !important;
-                }
-
-                .old-matches .active a {
-                    color: white !important;
-                }
-
             </style>
-            <div class="row">
-                <div class="col-md-6 old-matches">
-                    <h5 display-4>Previous Matches</h5>
-                    <hr class="my-4" />
-                    <div class="list-group old-matches-list">
-                        <a class="list-group-item list-group-item-action" id="f1">Friend 1</a>
-                        <a class="list-group-item list-group-item-action" id="f2">Friend 2</a>
-                        <a class="list-group-item list-group-item-action" id="f3">Friend 3</a>
-                        <a class="list-group-item list-group-item-action" id="f4">Friend 4</a>
-                        <a class="list-group-item list-group-item-action" id="f5">Friend 5</a>
-                        <a class="list-group-item list-group-item-action" id="f6">Friend 6</a>
-                        <a class="list-group-item list-group-item-action" id="f7">Friend 7</a>
-                        <a class="list-group-item list-group-item-action" id="f8">Friend 8</a>
-                        <a class="list-group-item list-group-item-action" id="f9">Friend 9</a>
-                        <a class="list-group-item list-group-item-action" id="f10">Friend 10</a>
-                    </div>
+
+            <!-- User Profile Modal -->
+            <div id="userProfile" class="modal">
+                <div class="modal-content">
+                    <h4>User Profile</h4>
+                    <p>Things</p>
                 </div>
-
-                <div class="col-md-6">
-                    <!-- Swiper Start -->
-                    <div class="new-matches">
-                        <h5 display-4>Find New Matches</h5>
-                        <hr class="my-4" />
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-secondary" id="decline">Decline</button>
-                            <div class="swipe-candidate" id="photo">
-                                <!-- Name -->
-                                <h4 id="photo">Justice Antonin Scalia</h4>
-                                <!-- Image -->
-                                <img src="src/jas.jpg" class="img-fluid img-thumbnail" id="photo">
-                            </div>
-                            <button type="button" class="btn btn-secondary" id="accept">Accept</button>
-                        </div>
-                        <!-- Temperament -->
-                        <div class="swipe-candidate-temperaments" id="photo">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option1" checked disabled>
-                                <label class="form-check-label">Friendly </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option2" disabled>
-                                <label class="form-check-label">Aggressive </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option3" checked disabled>
-                                <label class="form-check-label">Playful </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option4" disabled>
-                                <label class="form-check-label">Not good with children </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option5" disabled>
-                                <label class="form-check-label">Not good with puppies </label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Swiper End -->
-
-                    <!-- Messeger Start-->
-                    <div class="messenger">
-                        <div class="row">
-                            <h2 class="col-md-8">Message</h2>
-                            <button type="button" class="btn btn-outline-primary">Back to swiping</button>
-                        </div>
-                        <hr class="my-4" />
-
-                        <div class="list-group messenger-body">
-                            <a class="list-group-item">
-                                <p class="sender">RECEPIENT NAME</p>
-                                <small class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
-                                    voluptas nemo quos tempora.</small>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Messeger End-->
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save</a>
                 </div>
-
             </div>
-        </div>
+
+            <!-- Register Dog Modal -->
+            <div id="registerDog" class="modal">
+                <div class="modal-content">
+                    <div class="collection with-header">
+                        <div class="collection-header orange darken-1 white-text">
+                            <h4>Register Doggo</h4>
+                        </div>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="dogNameText" type="text" class="">
+                        <label for="dogName">Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select multiple class="charSel">
+                            <option value="" disabled selected>Select all that apply</option>
+                            <option value="Friendly">Friendly</option>
+                            <option value="Aggressive">Aggressive</option>
+                            <option value="Playful">Playful</option>
+                            <option value="Not good with children">Not good with children</option>
+                            <option value="Not good with puppies">Not good with puppies</option>
+                        </select>
+                        <label>Temperament</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select class="genSel">
+                            <option value="None" disabled selected>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <label>Gender</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" id="autocomplete-input" class="autocomplete breedAuto">
+                        <label for="autocomplete-input">Breed</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select class="fixSel">
+                            <option value="None" disabled selected>Fixed?</option>
+                            <option value="True">Yes</option>
+                            <option value="False">No</option>
+                        </select>
+                        <label>Fixed</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="dogWeightText" type="text" class="">
+                        <label for="dogWeight">Weight</label>
+                    </div>
+                    <div class="col s2">
+                        <img src="src/jas.jpg" alt="" class="responsive-img">
+                    </div>
+                    <div class="file-field input-field col s4">
+                        <div class="btn btn-flat">
+                            <span>Upload Profile Picture</span>
+                            <input type="file">
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Button -->
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Register</a>
+                </div>
+            </div>
     </section>
-
-    <!-- Footer -->
-    <footer>
-        <style>
-            footer {
-                margin-bottom: 100px;
-            }
-        </style>
-    </footer>
-
-    <!-- User Register Modal -->
-    <div class="modal" id="userRegisterModal">
-        <div class="outer container">
-            <!-- Content -->
-            <div class="upper jumbotron my-4">
-                <!-- Description -->
-                <h1 class="display-4">Sign Up</h1>
-                <hr class="my-4" />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quibusdam.</p>
-
-                <!-- Form -->
-                <form method="POST" name="upfrm" action="registerUser.php" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="User Name *" name="userName" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Screen Name *" name="screenName" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Zipcode *" name="zipCode" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="City Name *" name="cityName" />
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign up</button>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Your Password *"
-                                    name="password" />
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password *"
-                                    name="passwordConfirm" />
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control" name="gender">
-                                    <option>Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Dog Register Modal -->
-    <div class="modal" id="dogRegisterModal">
-        <div class="outer container">
-            <!-- Content -->
-            <div class="upper jumbotron my-4">
-                <!-- Description -->
-                <h1 class="display-4">Register Doggo</h1>
-                <hr class="my-4" />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quibusdam.</p>
-
-                <!-- Form -->
-                <form method="POST" name="upfrm" action="" enctype="multipart/form-data">
-                    <div class="row">
-                        <!-- start of Left Div -->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Doggo Name *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control">
-                                    <option>Doggo Gender</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control">
-                                    <option>Fixed?</option>
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Doggo Weight *" value="" />
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign up</button>
-                        </div>
-                        <!-- end of Left Div -->
-                        <!-- start of Right Div -->
-                        <div class="col-md-6">
-                            <!-- Breed -->
-                            <div class="form-group">
-                                <input class="breed-typeahead form-control" placeholder="Dog Breed *" value="" />
-                            </div>
-                            <!-- Temperament -->
-                            <h5>Temperament</h5>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option1">
-                                <label class="form-check-label">Friendly </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option2">
-                                <label class="form-check-label">Aggressive </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option3">
-                                <label class="form-check-label">Playful </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option4">
-                                <label class="form-check-label">Not good with children </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" value="option5">
-                                <label class="form-check-label">Not good with puppies </label>
-                            </div>
-                            <!-- Picture -->
-                            <style>
-                                .profile-pic img {
-                                    height: 150px;
-                                }
-                            </style>
-                            <hr class="my-4" />
-                            <div class="profile-pic">
-                                <h5>Profile Picture</h5>
-                                <img src="src/jas.jpg" class="img-fluid img-thumbnail">
-                            </div>
-                            <div>
-                                <input type="file" name="fileImg" class="imagefile" />
-                            </div>
-                            <!-- end of Right Div -->
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="outer container">
-            <!-- Content -->
-            <div class="upper jumbotron my-4">
-                <!-- Description -->
-                <h1 class="display-4">Log in</h1>
-                <hr class="my-4" />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, quibusdam.</p>
-
-                <!-- Form -->
-                <form method="POST" name="upfrm" action="" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="User Name *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password *" value="" />
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
-                        </div>
-                        <div class="col-md-6">
-                            picture here maybe?
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!-- Script Area -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-        </script>
-    <script type="text/javascript" src="slick.min.js"></script>
-    <script src="bootstrap3-typeahead.js"></script>
+    <script src="src/materialize/js/materialize.js"></script>
     <script>
 
-        localStorage.setItem("dinder-sessionid", "102384628shas286");
+        // Initialize Carousel
+        $('.carousel.carousel-slider').carousel({
+            fullWidth: true,
+            indicators: false
+        });
 
+        $(document).ready(function () {
+            // Initialize Modals
+            $('.modal').modal();
+            // Initialize Dropdown Selectors
+            $('select').formSelect();
+            // Initialize Lookahead
+            $.get("src/breeds.json", function (data) {
+                arr = {};
+                data.forEach(function (e) {
+                    arr[e.name] = null;
+                });
+                $('input.autocomplete').autocomplete({
+                    data: arr
+                });
+            });
+        });
+    </script>
+    <script>
         var logstate = true;
-        console.log("login state: " + logstate);
+        $('.old-pal-messager').hide();
 
         if (logstate) {
-            $(".logout").hide();
-            $(".login").show();
-            $(".navbar-nav > .nav-item > .button2").text("Edit User Profile");
-            $(".navbar-nav > .nav-item > .button2").attr("data-target", "#userRegisterModal");
-            $(".navbar-nav > .nav-item > .button3").text("Add Doggo");
-            $(".navbar-nav > .nav-item > .button3").attr("data-target", "#dogRegisterModal");
-            $(".navbar-nav > .nav-item > .user").text("Hello, citizen 6452363");
+            $('.logout').hide();
+            $('.login').show();
         } else {
-            $(".logout").show();
-            $(".login").hide();
-            $(".navbar-nav > .nav-item > .button2").text("Register");
-            $(".navbar-nav > .nav-item > .button2").attr("data-target", "#userRegisterModal");
-            $(".navbar-nav > .nav-item > .button3").text("Log In");
-            $(".navbar-nav > .nav-item > .button3").attr("data-target", "#loginModal");
-            $(".navbar-nav > .nav-item > .user").text("");
+            $('.login').hide();
+            $('.logout').show();
         }
+        $('.modal-trigger').click(function (d) {
+            var target = d.target.attributes.href.nodeValue;
+            if (target == "#registerDog") {
+                $('.breedAuto').val("");
+                $('.charSel').val([]);
+                $('.genSel').val("None");
+                $('.fixSel').val("None");
+                $('#dogNameText').val("");
+                $('#dogWeightText').val("");
+                $('.input-field label').removeClass('active');
 
-        $('.choose-dog').slick({
-            infinite: true,
-            slidesToShow: 10,
-            slidesToScroll: 3
-        })
-
-        var dogarr = { jrbg: "Justice Ruth Bader Ginsberg", jas: "Justice Antonin Scalia", jsa: "Justice Samuel Alito" };
-        var selected;
-
-        $('.dog').click(function (d) {
-            selected = d.currentTarget.id
-            $('.selected-dog').text('Selected ' + dogarr[selected]);
-            console.log("selected dog:" + selected);
-        })
-
-    </script>
-
-    <script>
-        var breed;
-        var $input = $(".breed-typeahead");
-
-        $(".navbar-nav > .button3").click(function () {
-            $input.val("");
-        })
-
-        $.get("src/breeds.json", function (data) {
-            $input.typeahead({ source: data, autoSelect: false });
-        }, 'json')
-
-        $input.change(function () {
-            var current = $input.typeahead("getActive");
-            if (current) {
-                // Some item from your model is active!
-                if (current.name == $input.val()) {
-                    breed = $input.val();
-                } else {
-                    breed = $input.val();
-                }
             }
 
-            $input.attr("value", breed);
-            console.log("breed is: " + breed);
+        });
 
-        })
-    </script>
+        // setInterval(function () {
+        //     var a = $('.breedAuto').val();
+        //     var b = $('.charSel').val();
+        //     var c = $('.genSel').val();
+        //     var d = $('.fixSel').val();
+        //     var e = $('#dogNameText').val();
+        //     var f = $('#dogWeightText').val();
+        //     console.log(a);
+        //     console.log(b);
+        //     console.log(c);
+        //     console.log(d);
+        //     console.log(e);
+        //     console.log(f);
+        // }, 3000);
 
-    <script>
-        $(".new-matches").show();
-        $(".messenger").hide();
-
-        var matchesCount = $(".old-matches-list")[0].childElementCount;
-        if (matchesCount < 9) {
-            $(".old-matches-list").css("overflow-y", "hidden");
-        }
-
-        var messageReceiver;
-        $(".old-matches-list").click(function (d) {
-            $(".old-matches-list > .active").removeClass("active");
-            $(d.target).addClass("active");
-            messageReceiver = d.target;
-
-            $(".messenger").fadeIn("slow").show();
-            $(".new-matches").fadeOut("slow").hide();
-
-            console.log("message receiver is: " + messageReceiver.id);
-        })
-
-        $(".messenger").click(function (d) {
-            if (d.target.type == 'button') {
-                $(".old-matches-list > .active").removeClass("active");
-                $(".new-matches").fadeIn("slow").show();
-                $(".messenger").fadeOut("slow").hide();
+        $('.new-pal-btn a').click(function (d) {
+            if (d.target.text == "Accept") {
+                $('.carousel.carousel-slider').carousel('prev');
             }
-        })
-
-        var accepted;
-        var candidate = $(".swipe-candidate");
-        var candarr = ["jrbg", "jas", "jsa"];
-        var dogarr = { jrbg: "Justice Ruth Bader Ginsberg", jas: "Justice Antonin Scalia", jsa: "Justice Samuel Alito" };
-        var picarr = { jrbg: "src/jrbg.png", jas: "src/jas.jpg", jsa: "src/jsa.jpg" };
-
-        var candnum = 1;
-        $(".new-matches").click(function (d) {
-            if (d.target.id == "accept") {
-                accepted = true;
+            if (d.target.text == "Deny") {
+                $('.carousel.carousel-slider').carousel('next');
             }
-            if (d.target.id == "decline") {
-                accepted = false;
-            }
-            if (d.target.id == "photo") {
-                return;
-            }
+            console.log($('.carousel.carousel-slider'));
+            console.log(d.target.text);
+        });
 
-            candidate.slideUp(function () {
-                candnum = (candnum + 1) % 3;
-                var cand = candarr[candnum];
-                candidate.children().text(dogarr[cand]);
-                candidate.children().attr("src", picarr[cand]);
-                candidate.fadeIn();
-            })
-            console.log("accepted? " + accepted);
-        })
+        $('.my-dog-select').click(function (d) {
+
+            console.log(d.target);
+        });
+
+        $('.old-pal-select').click(function (d) {
+            $('.new-pal-slider').hide();
+            $('.old-pal-messager').show();
+            console.log(d);
+        });
 
     </script>
 </body>
