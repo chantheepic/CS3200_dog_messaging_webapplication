@@ -54,7 +54,6 @@ $app->post('/api/dogapp/procedure/registerUser', function(Request $request, Resp
     $pdo = $pdo->connect();
 
     $return_value = null;
-    $return_value2 = null;
 
     $name = $_POST["screenname"];
     $username = $_POST["username"];
@@ -64,6 +63,27 @@ $app->post('/api/dogapp/procedure/registerUser', function(Request $request, Resp
     $city = $_POST["cityname"];
 
     $stmt = $pdo->prepare("CALL RegisterUser('$name', '$username', '$password', '$gender', '$zipcode', '$city', @return)");
+    $stmt->bindParam('@return', $return_value);
+    $stmt->execute();
+
+    $sql = "SELECT @return as ret1";
+    $results = current($pdo->query($sql)->fetchAll());
+
+    $body = $response->getBody();
+    $body->write($results['ret1']);
+    return $response;
+});
+
+$app->post('/api/dogapp/procedure/returnUser', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $return_value = null;
+
+    $session_id = $_POST["sessionId"];
+    $user_hash = $_POST["userHash"];
+
+    $stmt = $pdo->prepare("CALL ReturnLogIn('$session_id', '$user_hash', @return)");
     $stmt->bindParam('@return', $return_value);
     $stmt->execute();
 

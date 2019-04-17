@@ -27,7 +27,7 @@ DELIMITER ;
 SELECT @message;
 
 describe user;
-CALL RegisterUser('Alex Name', 'asda', 'Password', 'Male', 02115, 'Boston', @message);
+CALL RegisterUser('Alex Name', 'alex1', 'Password', 'Male', 02115, 'Boston', @message);
 CALL RegisterUser('Katie', 'asdaa', 'Password', 'Female', 02115, 'Boston', @message);
 CALL RegisterUser('Alex Name', 'asda', 'Password', 'MM', 02115, 'Boston', @message);
 

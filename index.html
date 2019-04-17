@@ -44,10 +44,11 @@
         <div class="nav-wrapper container">
             <a class="brand-logo">Dinder</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="orange lighten-1 waves-effect waves-light login"><a class="modal-trigger"
-                        href="#userProfile">Edit User Profile</a></li>
+                <!-- <li class="orange lighten-1 waves-effect waves-light login"><a class="modal-trigger"
+                        href="#userProfile">Edit User Profile</a></li> -->
                 <li class="orange lighten-1 waves-effect waves-light login"><a class="modal-trigger"
                         href="#registerDog">Add Doggo</a></li>
+                <li class="orange lighten-1 waves-effect waves-light login"><a id="logout">Logout</a></li>
                 <li class="orange lighten-1 waves-effect waves-light logout"><a class="modal-trigger"
                         href="#loginUser">Login</a></li>
                 <li class="orange lighten-1 waves-effect waves-light logout"><a class="modal-trigger"
@@ -375,15 +376,43 @@
     <script>
         // Login state of user
         var logstate = false;
+        $('.logout').hide();
+        $('.login').hide();
 
-        // Toggle sections based on user login state
-        if (logstate) {
-            $('.logout').hide();
-            $('.login').show();
-        } else {
-            $('.login').hide();
-            $('.logout').show();
+        var sessionId = '';
+        var userHash = '';
+        // set if condition to see user session working
+        if (false) {
+            var sessionId = '6fcd59c5061a8c885577f28ca658ae3f';
+            var userHash = '946d20c91f154795805cebdefe919ef7';
         }
+
+        $.post("http://localhost/bluehost/public/api/dogapp/procedure/returnUser", { sessionId: sessionId, userHash: userHash }, function (d) {
+            var msg;
+
+            if (d == 1) {
+                logstate = true;
+                msg = "wecome back user";
+            } else {
+                msg = "session not valid or expired";
+            }
+
+            M.toast({ html: msg, displayLength: 1000, classes: "orange" });
+            console.log(msg);
+
+            presentPageElements();
+        });
+
+        function presentPageElements() {
+            // Toggle sections based on user login state
+            if (logstate) {
+                $('.logout').hide();
+                $('.login').show();
+            } else {
+                $('.login').hide();
+                $('.logout').show();
+            }
+        };
 
         // Initially hide message function until a dog pal is selected. Will need to be placed in a function
         $('.old-pal-messager').hide();
@@ -505,15 +534,29 @@
             }
         })
 
+        // Logout Button
+        $('#logout').click(function (d) {
+            localStorage.removeItem("session_id");
+            localStorage.removeItem("user_hash");
+            window.location.reload();
+            console.log("logout done");
+        })
     </script>
 
     <script>
         $(function () {
             // bind form and return callback
+            // User Registration form
             $('#registerUser').ajaxForm(function (d) {
-                M.toast({html: d, displayLength: 1000, classes: "orange"});
+                M.toast({ html: d, displayLength: 1000, classes: "orange" });
                 console.log(d);
             });
+
+            // User Login form
+            // $('#loginUser').ajaxForm(function (d) {
+            //     M.toast({ html: d, displayLength: 1000, classes: "orange" });
+            //     console.log(d);
+            // });
         });
     </script>
 </body>
