@@ -285,7 +285,7 @@
             <!-- Register User Modal -->
             <div id="registerUser" class="modal">
                 <form id="registerUser" method="POST" name="upfrm"
-                    action="http://localhost/bluehost/public/api/dogapp/procedure/registerUser"
+                    action="https://chanminis.online/public/api/dogapp/procedure/registerUser"
                     enctype="multipart/form-data">
 
                     <div class="modal-content">
@@ -387,7 +387,7 @@
             var userHash = '946d20c91f154795805cebdefe919ef7';
         }
 
-        $.post("http://localhost/bluehost/public/api/dogapp/procedure/returnUser", { sessionId: sessionId, userHash: userHash }, function (d) {
+        $.post("https://chanminis.online/public/api/dogapp/procedure/returnUser", { sessionId: sessionId, userHash: userHash }, function (d) {
             var msg;
 
             if (d == 1) {
