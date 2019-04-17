@@ -44,11 +44,16 @@
         <div class="nav-wrapper container">
             <a class="brand-logo">Dinder</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="orange lighten-1 waves-effect waves-light "><a class="modal-trigger" href="#userProfile">Edit
-                        User Profile</a></li>
-                <li class="orange lighten-1 waves-effect waves-light "><a class="modal-trigger" href="#registerDog">Add
-                        Doggo</a></li>
-                <li style="margin: 0px 2em;" class="noselect"> Welcome Back User </li>
+                <!-- <li class="orange lighten-1 waves-effect waves-light login"><a class="modal-trigger"
+                        href="#userProfile">Edit User Profile</a></li> -->
+                <li class="orange lighten-1 waves-effect waves-light login"><a class="modal-trigger"
+                        href="#registerDog">Add Doggo</a></li>
+                <li class="orange lighten-1 waves-effect waves-light login"><a id="logout">Logout</a></li>
+                <li class="orange lighten-1 waves-effect waves-light logout"><a class="modal-trigger"
+                        href="#loginUser">Login</a></li>
+                <li class="orange lighten-1 waves-effect waves-light logout"><a class="modal-trigger"
+                        href="#registerUser">Register User</a></li>
+                <li style="margin: 0px 2em;" class="login"> Welcome Back User </li>
             </ul>
         </div>
     </nav>
@@ -197,8 +202,8 @@
                         </div>
                     </div>
                     <div class="input-field col s6">
-                        <input id="dogNameText" type="text" class="">
-                        <label for="dogName">Name</label>
+                        <input id="dogNameText" type="text" name="dogname">
+                        <label for="dogNameText">Name</label>
                     </div>
                     <div class="input-field col s6">
                         <select multiple class="charSel">
@@ -220,7 +225,7 @@
                         <label>Gender</label>
                     </div>
                     <div class="input-field col s6">
-                        <input type="text" id="autocomplete-input" class="autocomplete breedAuto">
+                        <input type="text" id="autocomplete-input" class="autocomplete breedAuto" name="breed">
                         <label for="autocomplete-input">Breed</label>
                     </div>
                     <div class="input-field col s6">
@@ -232,8 +237,8 @@
                         <label>Fixed</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="dogWeightText" type="text" class="">
-                        <label for="dogWeight">Weight</label>
+                        <input id="dogWeightText" type="text" name="dogweight">
+                        <label for="dogWeightText">Weight</label>
                     </div>
                     <div class="col s2">
                         <img src="src/jas.jpg" alt="" class="responsive-img">
@@ -241,7 +246,7 @@
                     <div class="file-field input-field col s4">
                         <div class="btn btn-flat">
                             <span>Upload Profile Picture</span>
-                            <input type="file">
+                            <input type="file" name="photo">
                         </div>
                     </div>
                 </div>
@@ -252,11 +257,95 @@
             </div>
     </section>
 
+    <section class="logout">
+        <div class="section row noselect">
+            <!-- Login User Modal -->
+            <div id="loginUser" class="modal">
+                <div class="modal-content">
+                    <div class="collection with-header">
+                        <div class="collection-header orange darken-1 white-text">
+                            <h4>Login</h4>
+                        </div>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="userNameText" type="text" class="">
+                        <label for="userNameText">Username</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="pswdText" type="text" class="">
+                        <label for="pswdText">Password</label>
+                    </div>
+                </div>
+                <!-- Modal Button -->
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-light btn-flat">Login</a>
+                </div>
+            </div>
+
+            <!-- Register User Modal -->
+            <div id="registerUser" class="modal">
+                <form id="registerUser" method="POST" name="upfrm"
+                    action="http://localhost/bluehost/public/api/dogapp/procedure/registerUser"
+                    enctype="multipart/form-data">
+
+                    <div class="modal-content">
+                        <div class="collection with-header">
+                            <div class="collection-header orange darken-1 white-text">
+                                <h4>Register User</h4>
+                            </div>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="userNameText" type="text" name="username">
+                            <label for="userNameText">Username</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="pswdText" type="password" name="password">
+                            <label for="pswdText">Password</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="screenNameText" type="text" name="screenname">
+                            <label for="screenNameText">Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="pswdConfText" type="password" name="paswordconfirm">
+                            <label for="pswdConfText">Confirm Password</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="zipcodeText" type="text" name="zipcode">
+                            <label for="zipcodeText">Zipcode</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select class="genSel" name="gender">
+                                <option value="None" disabled selected>Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <label>Gender</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="cityNameText" type="text" name="cityname">
+                            <label for="cityNameText">City Name</label>
+                        </div>
+                    </div>
+                    <!-- Modal Button -->
+                    <div class="modal-footer">
+                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Register</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
     <!-- Script Area -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
     <script src="src/materialize/js/materialize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"
+        integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i"
+        crossorigin="anonymous"></script>
     <script>
         var selectedMyDog
         var messageRecepient;
@@ -286,16 +375,44 @@
     </script>
     <script>
         // Login state of user
-        var logstate = true;
+        var logstate = false;
+        $('.logout').hide();
+        $('.login').hide();
 
-        // Toggle sections based on user login state
-        if (logstate) {
-            $('.logout').hide();
-            $('.login').show();
-        } else {
-            $('.login').hide();
-            $('.logout').show();
+        var sessionId = '';
+        var userHash = '';
+        // set if condition to see user session working
+        if (false) {
+            var sessionId = '6fcd59c5061a8c885577f28ca658ae3f';
+            var userHash = '946d20c91f154795805cebdefe919ef7';
         }
+
+        $.post("http://localhost/bluehost/public/api/dogapp/procedure/returnUser", { sessionId: sessionId, userHash: userHash }, function (d) {
+            var msg;
+
+            if (d == 1) {
+                logstate = true;
+                msg = "wecome back user";
+            } else {
+                msg = "session not valid or expired";
+            }
+
+            M.toast({ html: msg, displayLength: 1000, classes: "orange" });
+            console.log(msg);
+
+            presentPageElements();
+        });
+
+        function presentPageElements() {
+            // Toggle sections based on user login state
+            if (logstate) {
+                $('.logout').hide();
+                $('.login').show();
+            } else {
+                $('.login').hide();
+                $('.logout').show();
+            }
+        };
 
         // Initially hide message function until a dog pal is selected. Will need to be placed in a function
         $('.old-pal-messager').hide();
@@ -371,7 +488,7 @@
             console.log(id + ' is sending a message to ' + messageRecepient);
         });
 
-        
+
         // Select message recipient dog
         $('.old-pal-select').click(function (d) {
             $('.new-pal-slider').fadeOut('fast', function () {
@@ -417,7 +534,30 @@
             }
         })
 
+        // Logout Button
+        $('#logout').click(function (d) {
+            localStorage.removeItem("session_id");
+            localStorage.removeItem("user_hash");
+            window.location.reload();
+            console.log("logout done");
+        })
+    </script>
 
+    <script>
+        $(function () {
+            // bind form and return callback
+            // User Registration form
+            $('#registerUser').ajaxForm(function (d) {
+                M.toast({ html: d, displayLength: 1000, classes: "orange" });
+                console.log(d);
+            });
+
+            // User Login form
+            // $('#loginUser').ajaxForm(function (d) {
+            //     M.toast({ html: d, displayLength: 1000, classes: "orange" });
+            //     console.log(d);
+            // });
+        });
     </script>
 </body>
 
