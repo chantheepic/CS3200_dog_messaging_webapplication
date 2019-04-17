@@ -49,6 +49,32 @@ $app->get('/api/dogapp/procedure/test4', function(Request $request, Response $re
     return $response->withJson($result, 200);
 });
 
+$app->post('/api/dogapp/procedure/registerUser', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $return_value = null;
+    $return_value2 = null;
+
+    $name = $_POST["screenname"];
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $gender = $_POST["gender"];
+    $zipcode = $_POST["zipcode"];
+    $city = $_POST["cityname"];
+
+    $stmt = $pdo->prepare("CALL RegisterUser('$name', '$username', '$password', '$gender', '$zipcode', '$city', @return)");
+    $stmt->bindParam('@return', $return_value);
+    $stmt->execute();
+
+    $sql = "SELECT @return as ret1";
+    $results = current($pdo->query($sql)->fetchAll());
+
+    $body = $response->getBody();
+    $body->write($results['ret1']);
+    return $response;
+});
+
 function fetch_d($query, $response){
     try{
         $database = new DogDatabase();
