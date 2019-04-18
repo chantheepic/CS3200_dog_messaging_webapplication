@@ -71,12 +71,12 @@ CREATE TABLE seen (
 );
 
 -- Message
-
+use chanmini_cs3200_dog;
 DROP TABLE IF EXISTS message;
 CREATE TABLE message (
     message_id INT(10) PRIMARY KEY AUTO_INCREMENT,
     time_sent TIMESTAMP NOT NULL,
-    content TINYTEXT NOT NULL,
+    content VARCHAR(180) NOT NULL,
     flag TINYINT NOT NULL,
     dog_id1 INT NOT NULL,
     dog_id2 INT NOT NULL,
