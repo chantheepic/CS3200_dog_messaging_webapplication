@@ -23,10 +23,15 @@ CREATE PROCEDURE RecommendDogs
     FROM user
 	WHERE user_id = dogs_user_id;
 
-    SELECT dog_id
-    FROM dog JOIN user ON user_id
+    SELECT UNIQUE dog_id
+    FROM dog JOIN user ON user_id JOIN blocked ON user_id
     WHERE dog.dog_id != id
     AND user.zipcode = dogs_zipcode
+    AND dog.user_id NOT IN
+        (SELECT blocker_id, blockee_id
+         FROM blocked
+         WHERE blockee_id = dogs_user_id
+         OR blocker_id = dogs_user_id)
     LIMIT 10;
 
   END //
