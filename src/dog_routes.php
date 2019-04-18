@@ -27,7 +27,7 @@ $app->get('/api/dogapp/procedure/test3', function(Request $request, Response $re
     $pdo = $pdo->connect();
 
     $stmt = $pdo->prepare("CALL test3('asdahsbj', @return)");
-    $stmt->bindParam('@return', $return_value, PDO::PARAM_STR, 4000); 
+    $stmt->bindParam('@return', $return_value, PDO::PARAM_STR, 4000);
     $return_value = null;
     $stmt->execute();
 
@@ -45,7 +45,7 @@ $app->get('/api/dogapp/procedure/test4', function(Request $request, Response $re
     $name = 'one';
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-    
+
     return $response->withJson($result, 200);
 });
 
@@ -95,6 +95,131 @@ $app->post('/api/dogapp/procedure/returnUser', function(Request $request, Respon
     return $response;
 });
 
+$app->post('/api/dogapp/procedure/recommendDogs', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $return_value = null;
+
+    $dog_id = $_POST["dogId"];
+
+    $stmt = $pdo->prepare("CALL RecommendDogs('$dog_id', @return)");
+    $stmt->bindParam('@return', $return_value);
+    $stmt->execute();
+
+    $sql = "SELECT @return as ret1";
+    $results = current($pdo->query($sql)->fetchAll());
+
+    $body = $response->getBody();
+    $body->write($results['ret1']);
+    return $response;
+});
+
+$app->post('/api/dogapp/procedure/getDogInfo', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $return_value = null;
+
+    $dog_id = $_POST["dogId"];
+
+    $stmt = $pdo->prepare("CALL GetDogInfo('$dog_id', @return)");
+    $stmt->bindParam('@return', $return_value);
+    $stmt->execute();
+
+    $sql = "SELECT @return as ret1";
+    $results = current($pdo->query($sql)->fetchAll());
+
+    $body = $response->getBody();
+    $body->write($results['ret1']);
+    return $response;
+});
+
+$app->post('/api/dogapp/procedure/getDogPictures', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $return_value = null;
+
+    $dog_id = $_POST["dogId"];
+
+    $stmt = $pdo->prepare("CALL GetDogPictures('$dog_id', @return)");
+    $stmt->bindParam('@return', $return_value);
+    $stmt->execute();
+
+    $sql = "SELECT @return as ret1";
+    $results = current($pdo->query($sql)->fetchAll());
+
+    $body = $response->getBody();
+    $body->write($results['ret1']);
+    return $response;
+});
+
+$app->post('/api/dogapp/procedure/getDogTemperaments', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $return_value = null;
+
+    $dog_id = $_POST["dogId"];
+
+    $stmt = $pdo->prepare("CALL GetDogTemperaments('$dog_id', @return)");
+    $stmt->bindParam('@return', $return_value);
+    $stmt->execute();
+
+    $sql = "SELECT @return as ret1";
+    $results = current($pdo->query($sql)->fetchAll());
+
+    $body = $response->getBody();
+    $body->write($results['ret1']);
+    return $response;
+});
+
+$app->post('/api/dogapp/procedure/getDogBreed', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $return_value = null;
+
+    $dog_id = $_POST["dogId"];
+
+    $stmt = $pdo->prepare("CALL GetDogBreed('$dog_id', @return)");
+    $stmt->bindParam('@return', $return_value);
+    $stmt->execute();
+
+    $sql = "SELECT @return as ret1";
+    $results = current($pdo->query($sql)->fetchAll());
+
+    $body = $response->getBody();
+    $body->write($results['ret1']);
+    return $response;
+});
+
+$app->post('/api/dogapp/procedure/registerDog', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $return_value = null;
+
+    $user_name = $_POST["screenname"];
+    $breed = $_POST["breed"];
+    $dog_name = $_POST["dogname"];
+    $fixed = $_POST["fixed"];
+    $weight = $_POST["weight"];
+    $gender = $_POST["gender"];
+
+    $stmt = $pdo->prepare("CALL RegisterDog('$user_name', '$breed', '$dog_name', '$fixed', '$weight', '$gender' @return)");
+    $stmt->bindParam('@return', $return_value);
+    $stmt->execute();
+
+    $sql = "SELECT @return as ret1";
+    $results = current($pdo->query($sql)->fetchAll());
+
+    $body = $response->getBody();
+    $body->write($results['ret1']);
+    return $response;
+});
+
 function fetch_d($query, $response){
     try{
         $database = new DogDatabase();
@@ -102,7 +227,7 @@ function fetch_d($query, $response){
 
         $statement = $database->query($query);
         $statement->fetchAll(PDO::FETCH_OBJ);
-        
+
         $result = $statement->nextRowset();
         $database = null;
         return $response->withJson($result, 200);
