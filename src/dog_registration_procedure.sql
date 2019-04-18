@@ -4,7 +4,7 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS RegisterDog;
 CREATE PROCEDURE RegisterDog
 (
-    IN user_name INT(3),
+    IN user_name VARCHAR(40),
     IN breed VARCHAR(40),
     IN name VARCHAR(60),
     IN fixed BOOLEAN,
