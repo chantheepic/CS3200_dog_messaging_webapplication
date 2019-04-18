@@ -50,24 +50,24 @@ CREATE TABLE photo (
 DROP TABLE IF EXISTS pal;
 CREATE TABLE pal (
     pal_id INT(10) PRIMARY KEY AUTO_INCREMENT,
-    user1 INT NOT NULL,
-    user2 INT NOT NULL,
+    dog1 INT NOT NULL,
+    dog2 INT NOT NULL,
 
-    CONSTRAINT fk_user1_id FOREIGN KEY (user1) REFERENCES user (user_id),
-    CONSTRAINT fk_user2_id FOREIGN KEY (user2) REFERENCES user (user_id)
+    CONSTRAINT fk_dog1_id FOREIGN KEY (dog1) REFERENCES dog (dog_id),
+    CONSTRAINT fk_dog2_id FOREIGN KEY (dog2) REFERENCES dog (dog_id)
 );
 
 -- Seen
 
 DROP TABLE IF EXISTS seen;
 CREATE TABLE seen (
-    user_id INT(10) NOT NULL,
-    seen_user_id INT(10) NOT NULL,
+    dog_id INT(10) NOT NULL,
+    seen_dog_id INT(10) NOT NULL,
     liked BOOLEAN NOT NULL,
     ts TIMESTAMP,
 
-    CONSTRAINT fk_seeing_user_id FOREIGN KEY (user_id) REFERENCES user (user_id),
-    CONSTRAINT fk_seen_user_id FOREIGN KEY (seen_user_id) REFERENCES user (user_id)
+    CONSTRAINT fk_seeing_dog_id FOREIGN KEY (dog_id) REFERENCES dog (dog_id),
+    CONSTRAINT fk_seen_dog_id FOREIGN KEY (seen_dog_id) REFERENCES user (dog_id)
 );
 
 -- Message
@@ -77,11 +77,12 @@ CREATE TABLE message (
     message_id INT(10) PRIMARY KEY AUTO_INCREMENT,
     time_sent TIMESTAMP NOT NULL,
     content TINYTEXT NOT NULL,
-    sender_id INT NOT NULL,
-    pal_id INT NOT NULL,
+    flag TINYINT NOT NULL,
+    dog_id1 INT NOT NULL,
+    dog_id2 INT NOT NULL,
 
-    CONSTRAINT fk_sender_id FOREIGN KEY (sender_id) REFERENCES user (user_id),
-    CONSTRAINT fk_pal_id FOREIGN KEY (pal_id) REFERENCES pal (pal_id)
+    CONSTRAINT fk_dog_id1 FOREIGN KEY (dog_id1) REFERENCES dog (dog_id),
+    CONSTRAINT fk_dog_id2 FOREIGN KEY (dog_id2) REFERENCES dog (dog_id)
 );
 
 -- Blocked
@@ -115,17 +116,6 @@ CREATE TABLE dog_has_temperament (
     CONSTRAINT fk_temp_id FOREIGN KEY (temperament_id) REFERENCES temperament (temperament_id)
 );
 
--- dog_dislike_temperament
-
-DROP TABLE IF EXISTS dog_dislike_temperament;
-CREATE TABLE dog_dislike_temperament (
-    dog_id INT NOT NULL,
-    temperament_id INT NOT NULL,
-
-    CONSTRAINT fk_temp_dog_id FOREIGN KEY (dog_id) REFERENCES dog (dog_id),
-    CONSTRAINT fk_temp_dis_id FOREIGN KEY (temperament_id) REFERENCES temperament (temperament_id)
-);
-
 -- Breed
 
 DROP TABLE IF EXISTS breed;
@@ -142,4 +132,3 @@ CREATE TABLE session (
     user_id VARCHAR(32) NOT NULL,
     session_start DATETIME NOT NULL
 );
-
