@@ -58,11 +58,39 @@ $app->post('/api/dogapp/procedure/registerUser', function(Request $request, Resp
     $name = $_POST["screenname"];
     $username = $_POST["username"];
     $password = $_POST["password"];
+    $passwordconfirm = $_POST["passwordconfirm"];
     $gender = $_POST["gender"];
     $zipcode = $_POST["zipcode"];
     $city = $_POST["cityname"];
 
-    $stmt = $pdo->prepare("CALL RegisterUser('$name', '$username', '$password', '$gender', '$zipcode', '$city', @return)");
+    if($password == $passwordconfirm){
+        $stmt = $pdo->prepare("CALL RegisterUser('$name', '$username', '$password', '$gender', '$zipcode', '$city', @return)");
+        $stmt->bindParam('@return', $return_value);
+        $stmt->execute();
+    
+        $sql = "SELECT @return as ret1";
+        $results = current($pdo->query($sql)->fetchAll());
+    
+        $body = $response->getBody();
+        $body->write($results['ret1']);
+    } else {
+        $body = $response->getBody();
+        $body->write("passwords don't match");
+    }
+
+    return $response;
+});
+
+$app->post('/api/dogapp/procedure/returnUser', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $return_value = null;
+
+    $session_id = $_POST["sessionId"];
+    $user_id = $_POST["userId"];
+
+    $stmt = $pdo->prepare("CALL ReturnLogIn('$session_id', '$user_id', @return)");
     $stmt->bindParam('@return', $return_value);
     $stmt->execute();
 
@@ -74,24 +102,29 @@ $app->post('/api/dogapp/procedure/registerUser', function(Request $request, Resp
     return $response;
 });
 
-$app->post('/api/dogapp/procedure/returnUser', function(Request $request, Response $response){
+$app->post('/api/dogapp/procedure/loginUser', function(Request $request, Response $response){
+    echo("this");
     $pdo = new DogDatabase();
     $pdo = $pdo->connect();
 
-    $return_value = null;
+    $login_status = null;
+    $session_id = null;
+    $user_id = null;
 
-    $session_id = $_POST["sessionId"];
-    $user_hash = $_POST["userHash"];
+    $user_id = $_POST["username"];
+    $password = $_POST["password"];
 
-    $stmt = $pdo->prepare("CALL ReturnLogIn('$session_id', '$user_hash', @return)");
-    $stmt->bindParam('@return', $return_value);
+    $stmt = $pdo->prepare("CALL LogIn('$user_id', '$password', @login_status, @session_id, @user_id)");
+    $stmt->bindParam('@login_status', $login_status);
+    $stmt->bindParam('@session_id', $session_id);
+    $stmt->bindParam('@user_id', $user_id);
     $stmt->execute();
 
-    $sql = "SELECT @return as ret1";
+    $sql = "SELECT @login_status as ret1, @session_id as ret2, @user_id as ret3";
     $results = current($pdo->query($sql)->fetchAll());
 
     $body = $response->getBody();
-    $body->write($results['ret1']);
+    $body->write($results['ret1'].','.$results['ret2'].','.$results['ret3'].',');
     return $response;
 });
 

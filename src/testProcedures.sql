@@ -44,8 +44,7 @@ DROP PROCEDURE IF EXISTS test4;
 CREATE PROCEDURE test4(in m VARCHAR(60))
  BEGIN
  
- SELECT m;
- SELECT 'ppp';
+ SELECT * from user;
  END //
 DELIMITER ;
 
