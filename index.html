@@ -53,7 +53,7 @@
                         href="#loginUser">Login</a></li>
                 <li class="orange lighten-1 waves-effect waves-light logout"><a class="modal-trigger"
                         href="#registerUser">Register User</a></li>
-                <li style="margin: 0px 2em;" class="login"> Welcome Back User </li>
+                <li style="margin: 0px 2em;" class="login userWelcome"> Welcome Back User </li>
             </ul>
         </div>
     </nav>
@@ -261,32 +261,41 @@
         <div class="section row noselect">
             <!-- Login User Modal -->
             <div id="loginUser" class="modal">
-                <div class="modal-content">
-                    <div class="collection with-header">
-                        <div class="collection-header orange darken-1 white-text">
-                            <h4>Login</h4>
+                <form id="loginUser" method="POST"
+                    action="https://chanminis.online/public/api/dogapp/procedure/loginUser"
+                    enctype="multipart/form-data">
+                    <!-- https://chanminis.online/public/api/dogapp/procedure/loginUser -->
+                    <!-- http://localhost/bluehost/public/api/dogapp/procedure/loginUser -->
+
+                    <div class="modal-content">
+                        <div class="collection with-header">
+                            <div class="collection-header orange darken-1 white-text">
+                                <h4>Login</h4>
+                            </div>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="userNameText" type="text" name="username">
+                            <label for="userNameText">Username</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="pswdText" type="password" name="password">
+                            <label for="pswdText">Password</label>
                         </div>
                     </div>
-                    <div class="input-field col s6">
-                        <input id="userNameText" type="text" class="">
-                        <label for="userNameText">Username</label>
+                    <!-- Modal Button -->
+                    <div class="modal-footer">
+                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Login</button>
                     </div>
-                    <div class="input-field col s6">
-                        <input id="pswdText" type="text" class="">
-                        <label for="pswdText">Password</label>
-                    </div>
-                </div>
-                <!-- Modal Button -->
-                <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-light btn-flat">Login</a>
-                </div>
+                </form>
             </div>
 
             <!-- Register User Modal -->
             <div id="registerUser" class="modal">
-                <form id="registerUser" method="POST" name="upfrm"
+                <form id="registerUser" method="POST"
                     action="https://chanminis.online/public/api/dogapp/procedure/registerUser"
                     enctype="multipart/form-data">
+                    <!-- https://chanminis.online/public/api/dogapp/procedure/registerUser -->
+                    <!-- http://localhost/bluehost/public/api/dogapp/procedure/registerUser -->
 
                     <div class="modal-content">
                         <div class="collection with-header">
@@ -307,7 +316,7 @@
                             <label for="screenNameText">Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="pswdConfText" type="password" name="paswordconfirm">
+                            <input id="pswdConfText" type="password" name="passwordconfirm">
                             <label for="pswdConfText">Confirm Password</label>
                         </div>
                         <div class="input-field col s6">
@@ -379,20 +388,18 @@
         $('.logout').hide();
         $('.login').hide();
 
-        var sessionId = '';
-        var userHash = '';
-        // set if condition to see user session working
-        if (false) {
-            var sessionId = '6fcd59c5061a8c885577f28ca658ae3f';
-            var userHash = '946d20c91f154795805cebdefe919ef7';
-        }
-
-        $.post("https://chanminis.online/public/api/dogapp/procedure/returnUser", { sessionId: sessionId, userHash: userHash }, function (d) {
+        // Check if the session id stored in localstorage is correct
+        var sessionId = (localStorage.getItem('sessionId') != null) ? localStorage.getItem('sessionId') : '';
+        var userId = (localStorage.getItem('userId') != null) ? localStorage.getItem('userId') : '';
+        $.post("https://chanminis.online/public/api/dogapp/procedure/returnUser", { sessionId: sessionId, userId: userId }, function (d) {
+            // https://chanminis.online/public/api/dogapp/procedure/returnUser
+            // http://localhost/bluehost/public/api/dogapp/procedure/returnUser
             var msg;
 
             if (d == 1) {
                 logstate = true;
-                msg = "wecome back user";
+                $('.userWelcome').text("Welcome Back " + userId.toUpperCase());
+                msg = "wecome back " + userId;
             } else {
                 msg = "session not valid or expired";
             }
@@ -536,8 +543,8 @@
 
         // Logout Button
         $('#logout').click(function (d) {
-            localStorage.removeItem("session_id");
-            localStorage.removeItem("user_hash");
+            localStorage.removeItem("sessionId");
+            localStorage.removeItem("userId");
             window.location.reload();
             console.log("logout done");
         })
@@ -553,10 +560,18 @@
             });
 
             // User Login form
-            // $('#loginUser').ajaxForm(function (d) {
-            //     M.toast({ html: d, displayLength: 1000, classes: "orange" });
-            //     console.log(d);
-            // });
+            $('#loginUser').ajaxForm(function (d) {
+                var credentials = d.split(',');
+                localStorage.setItem('sessionId', credentials[1]);
+                localStorage.setItem('userId', credentials[2]);
+
+                if (credentials[0] == "1") {
+                    console.log("login successful user: " + credentials[2])
+                    window.location.reload();
+                } else {
+                    console.log("login failed")
+                }
+            });
         });
     </script>
 </body>

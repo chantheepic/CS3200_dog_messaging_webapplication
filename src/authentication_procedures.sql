@@ -3,7 +3,10 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS RegisterUser;
 CREATE PROCEDURE RegisterUser(IN name VARCHAR(60), IN username VARCHAR(18), IN password VARCHAR(32), IN gender VARCHAR(10), IN zipcode VARCHAR(10), IN city VARCHAR(30), OUT message VARCHAR(32))
  BEGIN
-
+ 
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+	SET message := 'register failed';
+    
     IF(gender != 'Male' AND gender != 'Female' AND gender != 'Other') THEN
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = "not one of predetermined gender";
@@ -27,7 +30,7 @@ DELIMITER ;
 SELECT @message;
 
 describe user;
-CALL RegisterUser('Alex Name', 'alex1', 'Password', 'Male', 02115, 'Boston', @message);
+CALL RegisterUser('Alex Name', 'alex3', 'Password', 'Male', 02115, 'Boston', @message);
 CALL RegisterUser('Katie', 'asdaa', 'Password', 'Female', 02115, 'Boston', @message);
 CALL RegisterUser('Alex Name', 'asda', 'Password', 'MM', 02115, 'Boston', @message);
 
@@ -36,45 +39,46 @@ SELECT * FROM user;
 # User LogIn
 DELIMITER //
 DROP PROCEDURE IF EXISTS LogIn;
-CREATE PROCEDURE LogIn(IN usern VARCHAR(18), IN pswd VARCHAR(32), OUT login_status boolean, OUT session_id VARCHAR(32), OUT user_hash VARCHAR(32))
+CREATE PROCEDURE LogIn(IN usern VARCHAR(18), IN pswd VARCHAR(32), OUT login_status boolean, OUT session_id VARCHAR(32), OUT user_id VARCHAR(32))
  BEGIN
     DECLARE standard VARCHAR(32);
     SELECT password INTO standard FROM user WHERE username = usern;
 
     IF(standard = MD5(CONCAT(usern, pswd))) 
     THEN
-		INSERT INTO session VALUES (MD5(CONCAT(NOW(), usern)), MD5(usern), NOW());
+		INSERT INTO session VALUES (MD5(CONCAT(NOW(), usern)), usern, NOW());
         SET login_status := true;
         SET session_id := MD5(CONCAT(NOW(), usern));
-        SET user_hash := MD5(usern);
+        SET user_id := usern;
     ELSE 
 		SET login_status := false;
         SET session_id := null;
-        SET user_hash := null;
+        SET user_id := null;
     END IF;
  END //
 DELIMITER ;
 
 SELECT @login_status;
 SELECT @session_id;
-SELECT @user_hash;
+SELECT @user_id;
 
 # succeed
-CALL LogIn('alex1', 'Password', @login_status, @session_id, @user_hash);
+CALL LogIn('alex1', 'Password', @login_status, @session_id, @user_id);
 SELECT * FROM session;
+truncate session;
 # fail
-CALL LogIn('Alex', 'password', @login_status, @session_id, @user_hash);
+CALL LogIn('Alex', 'password', @login_status, @session_id, @user_id);
 # fail
-CALL LogIn('alex', 'Password', @login_status, @session_id, @user_hash);
+CALL LogIn('alex', 'Password', @login_status, @session_id, @user_id);
 
 # Return LogIn
 DELIMITER //
 DROP PROCEDURE IF EXISTS ReturnLogIn;
-CREATE PROCEDURE ReturnLogIn(IN session_code VARCHAR(32), IN user_hash VARCHAR(32), OUT login_status boolean)
+CREATE PROCEDURE ReturnLogIn(IN session_code VARCHAR(32), IN userid VARCHAR(32), OUT login_status boolean)
  BEGIN
     DECLARE standard_session_start DATETIME;
     DECLARE standard_session_id VARCHAR(32);
-    SELECT session_id, session_start INTO standard_session_id, standard_session_start FROM session WHERE user_id = user_hash ORDER BY session_start DESC LIMIT 1;
+    SELECT session_id, session_start INTO standard_session_id, standard_session_start FROM session WHERE user_id = userid ORDER BY session_start DESC LIMIT 1;
 
     IF(session_code = standard_session_id AND datediff(now(), standard_session_start) = 0) 
     THEN
@@ -86,7 +90,7 @@ CREATE PROCEDURE ReturnLogIn(IN session_code VARCHAR(32), IN user_hash VARCHAR(3
 DELIMITER ;
 
 SELECT @login_status2;
-CAll ReturnLogIn('b48f8c3183d0d91c4db1ef62158ebb60','946d20c91f154795805cebdefe919ef7', @login_status2);
+CAll ReturnLogIn('d0dc8255e716e49a6e367feeae66f6ce','alex1', @login_status2);
 CAll ReturnLogIn('b48f8c3183d0d91c4db1ef62158ebb61','946d20c91f154795805cebdefe919ef7', @login_status2);
 CAll ReturnLogIn('b48f8c3183d0d91c4db1ef62158ebb60','946d20c91f154795805cebdefe919ef6', @login_status2);
 
