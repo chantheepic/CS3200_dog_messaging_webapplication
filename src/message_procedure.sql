@@ -1,37 +1,31 @@
 use chanmini_cs3200_dog;
 
-DROP PROCEDURE IF EXISTS messagesProc;
+DROP PROCEDURE IF EXISTS retreiveMessage;
 
 DELIMITER //
-
-CREATE PROCEDURE messagesProc
-(
-  user1 VARCHAR(20),
-  user2 VARCHAR(20)
-)
+CREATE PROCEDURE retreiveMessage(sender_id VARCHAR(20), recipient_id VARCHAR(20))
 BEGIN
-	select 
-		u.username as 'sender',
-		m.content as 'message'
-	from message as m
-		left join user as u on (m.sender_id = u.user_id)
-	where m.pal_id =
-		(select 
-			pal_id 
-		from
-			pal
-		where (user1 message= (select user_id from user where username = user1)
-			AND 
-			user2 = (select user_id from user where username = user2))
-			OR
-			(user1 = (select user_id from user where username = user2)
-			AND 
-			user2 = (select user_id from user where username = user1)))
-	order by m.time_sent ASC;
-		
+	SELECT sender.dog_name as 'sender', content, time_sent
+	FROM message as m INNER JOIN dog as sender ON m.dog_id1 = sender.dog_id
+	WHERE (m.dog_id1 LIKE sender_id AND m.dog_id2 LIKE recipient_id) OR (m.dog_id1 LIKE recipient_id AND m.dog_id2 LIKE sender_id)
+	order by m.time_sent DESC;
 END //   
-
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sendMessage;
 
-CALL messagesProc('timmy1','alex12');
+DELIMITER //
+CREATE PROCEDURE sendMessage(sender_id VARCHAR(20), recipient_id VARCHAR(20), content VARCHAR(256))
+BEGIN
+	INSERT INTO message VALUES (0, now(), content, false, sender_id, recipient_id);
+END //   
+DELIMITER ;
+
+CALL sendMessage(1, 2, 'hello');
+CALL sendMessage(2, 1, 'bye');
+CALL sendMessage(2, 3, 'wait');
+CALL retreiveMessage(2, 1);
+CALL retreiveMessage(1, 2);
+select * from message;
+truncate message;
+select * from dog;
