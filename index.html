@@ -472,7 +472,7 @@
 
         function updateMessageLog() {
             // Send message to recipient
-            $.post("http://localhost/bluehost/public/api/dogapp/procedure/retreiveMessage", { sender: selectedMyDog, recipient: messageRecepient }, function (d) {
+            $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveMessage", { sender: selectedMyDog, recipient: messageRecepient }, function (d) {
                 // https://chanminis.online/public/api/dogapp/procedure/retreiveMessage
                 // http://localhost/bluehost/public/api/dogapp/procedure/retreiveMessage
 
@@ -501,7 +501,7 @@
                 $('#msg').val("");
 
                 // Send message to recipient
-                $.post("http://localhost/bluehost/public/api/dogapp/procedure/sendMessage", { sender: selectedMyDog, recipient: messageRecepient, message: msg }, function (d) {
+                $.post("https://chanminis.online/public/api/dogapp/procedure/sendMessage", { sender: selectedMyDog, recipient: messageRecepient, message: msg }, function (d) {
                     // https://chanminis.online/public/api/dogapp/procedure/sendMessage
                     // http://localhost/bluehost/public/api/dogapp/procedure/sendMessage
 
