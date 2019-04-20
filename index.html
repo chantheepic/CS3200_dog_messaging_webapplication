@@ -44,8 +44,6 @@
         <div class="nav-wrapper container">
             <a class="brand-logo">Dinder</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <!-- <li class="orange lighten-1 waves-effect waves-light login"><a class="modal-trigger"
-                        href="#userProfile">Edit User Profile</a></li> -->
                 <li class="orange lighten-1 waves-effect waves-light login"><a class="modal-trigger"
                         href="#registerDog">Add Doggo</a></li>
                 <li class="orange lighten-1 waves-effect waves-light login"><a id="logout">Logout</a></li>
@@ -182,17 +180,6 @@
                 }
             </style>
 
-            <!-- User Profile Modal -->
-            <div id="userProfile" class="modal">
-                <div class="modal-content">
-                    <h4>User Profile</h4>
-                    <p>Things</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-light btn-flat">Save</a>
-                </div>
-            </div>
-
             <!-- Register Dog Modal -->
             <div id="registerDog" class="modal">
                 <div class="modal-content">
@@ -217,7 +204,7 @@
                         <label>Temperament</label>
                     </div>
                     <div class="input-field col s6">
-                        <select class="genSel">
+                        <select class="genSel" name="gender">
                             <option value="None" disabled selected>Select Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -229,7 +216,7 @@
                         <label for="autocomplete-input">Breed</label>
                     </div>
                     <div class="input-field col s6">
-                        <select class="fixSel">
+                        <select class="fixSel" name="fixed">
                             <option value="None" disabled selected>Fixed?</option>
                             <option value="True">Yes</option>
                             <option value="False">No</option>
@@ -237,7 +224,7 @@
                         <label>Fixed</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="dogWeightText" type="text" name="dogweight">
+                        <input id="dogWeightText" type="text" name="weight">
                         <label for="dogWeightText">Weight</label>
                     </div>
                     <div class="col s2">
@@ -429,36 +416,6 @@
         var parent = $(`#${selectedMyDog}`);
         parent.addClass("activeDogSelection");
         parent[0].childNodes[3].classList.add("activeDogSelectionText");
-
-        // Return values from modal. For use with post
-        $('.modal-trigger').click(function (d) {
-            var target = d.target.attributes.href.nodeValue;
-            // reset params
-            // if (target == "#registerDog") {
-            //     $('.breedAuto').val("");
-            //     $('.charSel').val([]);
-            //     $('.genSel').val("None");
-            //     $('.fixSel').val("None");
-            //     $('#dogNameText').val("");
-            //     $('#dogWeightText').val("");
-            //     $('.input-field label').removeClass('active');
-            // }
-        });
-
-        // setInterval(function () {
-        //     var a = $('.breedAuto').val();
-        //     var b = $('.charSel').val();
-        //     var c = $('.genSel').val();
-        //     var d = $('.fixSel').val();
-        //     var e = $('#dogNameText').val();
-        //     var f = $('#dogWeightText').val();
-        //     console.log(a);
-        //     console.log(b);
-        //     console.log(c);
-        //     console.log(d);
-        //     console.log(e);
-        //     console.log(f);
-        // }, 3000);
 
         // Carousel Buttons
         $('.new-pal-btn a').click(function (d) {

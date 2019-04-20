@@ -136,16 +136,11 @@ $app->post('/api/dogapp/procedure/recommendDogs', function(Request $request, Res
 
     $dog_id = $_POST["dogId"];
 
-    $stmt = $pdo->prepare("CALL RecommendDogs('$dog_id', @return)");
-    $stmt->bindParam('@return', $return_value);
+    $stmt = $pdo->prepare("CALL RecommendDogs($dog_id)");
     $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-    $sql = "SELECT @return as ret1";
-    $results = current($pdo->query($sql)->fetchAll());
-
-    $body = $response->getBody();
-    $body->write($results['ret1']);
-    return $response;
+    return $response->withJson($result, 200);
 });
 
 $app->post('/api/dogapp/procedure/getDogInfo', function(Request $request, Response $response){
@@ -234,7 +229,7 @@ $app->post('/api/dogapp/procedure/registerDog', function(Request $request, Respo
 
     $return_value = null;
 
-    $user_name = $_POST["screenname"];
+    $user_name = $_POST["dogname"];
     $breed = $_POST["breed"];
     $dog_name = $_POST["dogname"];
     $fixed = $_POST["fixed"];
