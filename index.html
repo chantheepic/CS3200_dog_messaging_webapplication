@@ -69,15 +69,15 @@
                     <li class="collection-header orange darken-1 white-text">
                         <h4>User Dogs</h4>
                     </li>
-                    <a class="collection-item avatar" id='jas2'>
+                    <a class="collection-item avatar" id='1'>
                         <img src="src/jas.jpg" alt="" class="circle">
                         <span class="title orange-text">Justice Antonin Scalia</span>
                     </a>
-                    <a class="collection-item avatar" id='jrbg2'>
+                    <a class="collection-item avatar" id='3'>
                         <img src="src/jrbg.png" alt="" class="circle">
                         <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
                     </a>
-                    <a class="collection-item avatar" id='jsa2'>
+                    <a class="collection-item avatar" id='5'>
                         <img src="src/jsa.jpg" alt="" class="circle">
                         <span class="title orange-text">Justice Samuel Alito</span>
                     </a>
@@ -90,15 +90,15 @@
                     <li class="collection-header orange darken-1 white-text">
                         <h4>Selected Dog Pals</h4>
                     </li>
-                    <a class="collection-item avatar" id='jas'>
+                    <a class="collection-item avatar" id='2'>
                         <img src="src/jas.jpg" alt="" class="circle">
                         <span class="title orange-text">Justice Antonin Scalia</span>
                     </a>
-                    <a class="collection-item avatar" id='jrbg'>
+                    <a class="collection-item avatar" id='4'>
                         <img src="src/jrbg.png" alt="" class="circle">
                         <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
                     </a>
-                    <a class="collection-item avatar" id='jsa'>
+                    <a class="collection-item avatar" id='6'>
                         <img src="src/jsa.jpg" alt="" class="circle">
                         <span class="title orange-text">Justice Samuel Alito</span>
                     </a>
@@ -130,6 +130,12 @@
                     </div>
                 </ul>
 
+                <style>
+                    .old-pal-messager {
+                        height: 80vh;
+                        overflow-y: scroll;
+                    }
+                </style>
                 <!--  Message Area -->
                 <ul class="collection with-header old-pal-messager">
                     <li class="collection-header orange darken-1 white-text row">
@@ -143,40 +149,13 @@
                             <a href="#" class="btn btn-flat waves-effect waves-light amber">Send</a>
                         </div>
                     </li>
-                    <li class="collection-item">
-                        <span class="title">Name</span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
-                    </li>
-                    <li class="collection-item">
-                        <span class="title">Name</span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
-                    </li>
-                    <li class="collection-item">
-                        <span class="title">Name</span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
-                    </li>
-                    <li class="collection-item">
-                        <span class="title">Name</span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
-                    </li>
-                    <li class="collection-item">
-                        <span class="title">Name</span>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto illo natus, ut culpa
-                            unde quasi, quibusdam repudiandae odit provident quos quam in odio facere molestiae?
-                            Reprehenderit, blanditiis! Blanditiis veniam voluptate fugit quibusdam, provident corrupti
-                            doloremque nemo temporibus eaque placeat magnam.</p>
-                    </li>
-                    <li class="collection-item">
-                        <span class="title">Name</span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, error.</p>
-                    </li>
                 </ul>
             </div>
 
             <!-- Modals -->
             <style>
                 .modal {
-                    height: 100% !important
+                    height: 50vh !important
                 }
             </style>
 
@@ -412,10 +391,10 @@
         $('.old-pal-messager').hide();
 
         // Initial user dog selection. will be given first returned dog id. Will need to be placed in a function
-        selectedMyDog = 'jas2';
-        var parent = $(`#${selectedMyDog}`);
-        parent.addClass("activeDogSelection");
-        parent[0].childNodes[3].classList.add("activeDogSelectionText");
+        // selectedMyDog = '1';
+        // var parent = $(`#${selectedMyDog}`);
+        // parent.addClass("activeDogSelection");
+        // parent[0].childNodes[3].classList.add("activeDogSelectionText");
 
         // Carousel Buttons
         $('.new-pal-btn a').click(function (d) {
@@ -477,8 +456,9 @@
             var parent = $(`#${id}`);
             parent.addClass("activeMessageSelection");
             parent[0].childNodes[3].classList.add("activeMessageSelectionText");
-            console.log(parent[0].childNodes[3]);
 
+            // retrieve past messages
+            updateMessageLog();
             console.log(selectedMyDog + ' is sending a message to ' + id);
         });
 
@@ -490,13 +470,45 @@
             console.log('Swipe Mode');
         });
 
+        function updateMessageLog() {
+            // Send message to recipient
+            $.post("http://localhost/bluehost/public/api/dogapp/procedure/retreiveMessage", { sender: selectedMyDog, recipient: messageRecepient }, function (d) {
+                // https://chanminis.online/public/api/dogapp/procedure/retreiveMessage
+                // http://localhost/bluehost/public/api/dogapp/procedure/retreiveMessage
+
+                // reset chat area
+                $('.old-pal-messager').children('.msg-log').remove();
+
+                d.forEach(function (e) {
+                    console.log(e);
+                    // append to chat area
+                    var msg = `<li class="collection-item msg-log">
+                                <span class="title"><b>FROM:</b> ${e.sender}     <b>AT:</b> ${e.time_sent}</span>
+                                <p>${e.content + " "}</p>
+                            </li>`;
+
+                    $(".old-pal-messager").append(msg);
+                });
+            });
+        };
+
         // Send button inside message section
         $('.send-message').click(function (d) {
             if (d.target.nodeName == 'A') {
-                console.log('sent: ' + $('#msg').val() + ' to ' + messageRecepient);
+                var msg = $('#msg').val();
+                console.log(`${selectedMyDog} sent: ${msg} to ${messageRecepient}`);
+                // empty out message area
                 $('#msg').val("");
+
+                // Send message to recipient
+                $.post("http://localhost/bluehost/public/api/dogapp/procedure/sendMessage", { sender: selectedMyDog, recipient: messageRecepient, message: msg }, function (d) {
+                    // https://chanminis.online/public/api/dogapp/procedure/sendMessage
+                    // http://localhost/bluehost/public/api/dogapp/procedure/sendMessage
+
+                    updateMessageLog();
+                });
             }
-        })
+        });
 
         // Logout Button
         $('#logout').click(function (d) {
@@ -504,7 +516,7 @@
             localStorage.removeItem("userId");
             window.location.reload();
             console.log("logout done");
-        })
+        });
     </script>
 
     <script>
@@ -526,6 +538,7 @@
                     console.log("login successful user: " + credentials[2])
                     window.location.reload();
                 } else {
+                    M.toast({ html: "login failed", displayLength: 1000, classes: "orange" });
                     console.log("login failed")
                 }
             });

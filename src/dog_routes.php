@@ -248,6 +248,32 @@ $app->post('/api/dogapp/procedure/registerDog', function(Request $request, Respo
     return $response;
 });
 
+$app->post('/api/dogapp/procedure/sendMessage', function(Request $request){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $sender = $_POST["sender"];
+    $recipient = $_POST["recipient"];
+    $message = $_POST["message"];
+
+    $stmt = $pdo->prepare("CALL sendMessage($sender, $recipient, '$message')");
+    $stmt->execute();
+});
+
+$app->post('/api/dogapp/procedure/retreiveMessage', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $sender = $_POST["sender"];
+    $recipient = $_POST["recipient"];
+
+    $stmt = $pdo->prepare("CALL retreiveMessage($sender, $recipient)");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    return $response->withJson($result, 200);
+});
+
 function fetch_d($query, $response){
     try{
         $database = new DogDatabase();
