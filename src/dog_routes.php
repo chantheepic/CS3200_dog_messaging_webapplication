@@ -303,6 +303,20 @@ $app->post('/api/dogapp/procedure/retreiveDogPals', function(Request $request, R
     return $response->withJson($result, 200);
 });
 
+$app->post('/api/dogapp/procedure/block', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $dog1_id = $_POST["dog1"];
+    $dog2_id = $_POST["dog2"];
+
+    $stmt = $pdo->prepare("CALL block($dog1_id, $dog2_id)");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    return $response->withJson($result, 200);
+});
+
 function fetch_d($query, $response){
     try{
         $database = new DogDatabase();

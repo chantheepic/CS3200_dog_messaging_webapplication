@@ -22,6 +22,17 @@
             user-select: none;
         }
 
+        .menu-div {
+            width: 5px;
+            height: 5px;
+            background-color: black;
+            margin: 6px 0;
+        }
+
+        .block {
+            float: right;
+        }
+
         ul .activeMessageSelectionText {
             color: white !important;
         }
@@ -481,6 +492,9 @@
                     var dog = `<a class="collection-item avatar" id=${e.dog_id}>
                                     <img src="src/jrbg.jpg" alt="" class="circle">
                                     <span class="title orange-text">${e.dog_name}</span>
+                                    <button class="block" onclick="https://chanminis.online/public/api/dogapp/procedure/block?dog1=${e.dog_id}&dog2=${dog_id}">
+                                        Block
+                                    </button>
                                 </a>`;
 
                     $(".old-pal-select").append(dog);
