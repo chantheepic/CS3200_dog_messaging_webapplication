@@ -147,7 +147,7 @@
             <!-- Register Dog Modal -->
             <div id="registerDog" class="modal">
                 <form id="registerDog" method="POST"
-                    action="http://localhost/bluehost/public/api/dogapp/procedure/registerDog"
+                    action="https://chanminis.online/public/api/dogapp/procedure/registerDog"
                     enctype="multipart/form-data">
                     <!-- https://chanminis.online/public/api/dogapp/procedure/registerDog -->
                     <!-- http://localhost/bluehost/public/api/dogapp/procedure/registerDog -->
@@ -389,7 +389,7 @@
 
         function fetchUserDogs() {
             // Send message to recipient
-            $.post("http://localhost/bluehost/public/api/dogapp/procedure/retreiveUserDogs", { user_id: userId }, function (d) {
+            $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs", { user_id: userId }, function (d) {
                 // https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs
                 // http://localhost/bluehost/public/api/dogapp/procedure/retreiveUserDogs
                 $('.my-dog-select').children('a').remove();

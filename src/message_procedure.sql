@@ -21,9 +21,9 @@ BEGIN
 END //   
 DELIMITER ;
 
-CALL sendMessage(1, 2, 'hello');
-CALL sendMessage(2, 1, 'bye');
-CALL sendMessage(2, 3, 'wait');
+CALL sendMessage(2, 26, 'hello');
+CALL sendMessage(2, 26, 'bye');
+CALL sendMessage(2, 26, 'wait');
 CALL retreiveMessage(2, 1);
 CALL retreiveMessage(1, 2);
 select * from message;
