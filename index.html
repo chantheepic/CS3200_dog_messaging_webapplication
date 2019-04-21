@@ -469,9 +469,8 @@
             // set selected dog
             localStorage.setItem('dogId', selectedMyDog)
 
-            // fetch pals and messages
+            // fetch pals 
             fetchSelectedDogPals();
-            fetchMessageLog();
             console.log(id + ' is sending a message to ' + messageRecepient);
         });
 
@@ -528,6 +527,9 @@
             parent.addClass("activeMessageSelection");
             parent[0].childNodes[3].classList.add("activeMessageSelectionText");
 
+            // set palSelected? to true
+            var palSelected = localStorage.setItem('palSelected', 0);
+            
             // retrieve past messages
             fetchMessageLog();
             console.log(selectedMyDog + ' is sending a message to ' + id);
@@ -538,8 +540,13 @@
             $('.old-pal-messager').fadeOut('fast', function () {
                 $('.new-pal-slider').fadeIn('fast');
             });
+
+            // Unselect pal
             $('.activeMessageSelection').removeClass('activeMessageSelection')
             $('.activeMessageSelectionText').removeClass('activeMessageSelectionText')
+
+            // Mark palSelected? as false
+            var palSelected = localStorage.setItem('palSelected', 0);
             console.log('Swipe Mode');
         });
 
@@ -575,9 +582,12 @@
             });
         };
 
-        // Automatically fetch every 5 seconds
+        // Automatically fetch every 5 seconds when a pal is selected
         setInterval(function () {
-            fetchMessageLog();
+            var isPalSelected = (localStorage.getItem('palSelected') != null) ? localStorage.getItem('palSelected') : '';
+            if (isPalSelected) {
+                fetchMessageLog();
+            }
         }, 5000);
 
         // Send button inside message section
