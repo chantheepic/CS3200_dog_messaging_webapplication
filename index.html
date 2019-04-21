@@ -85,14 +85,6 @@
                     <li class="collection-header orange darken-1 white-text">
                         <h4>Selected Dog Pals</h4>
                     </li>
-                    <a class="collection-item avatar" id='2'>
-                        <img src="src/jas.jpg" alt="" class="circle">
-                        <span class="title orange-text">Justice Antonin Scalia</span>
-                    </a>
-                    <a class="collection-item avatar" id='4'>
-                        <img src="src/jrbg.png" alt="" class="circle">
-                        <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
-                    </a>
                 </ul>
             </div>
 
@@ -158,7 +150,7 @@
                             </div>
                         </div>
                         <div class="input-field col s6">
-                            <input id="dogNameText" type="text" name="dogname">
+                            <input id="dogNameText" type="text" name="dogname" required>
                             <label for="dogNameText">Name</label>
                         </div>
                         <div class="input-field col s6">
@@ -173,7 +165,7 @@
                             <label>Temperament</label>
                         </div>
                         <div class="input-field col s6">
-                            <select class="genSel" name="gender">
+                            <select class="genSel" name="gender" required>
                                 <option value="None" disabled selected>Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -185,7 +177,7 @@
                             <label for="autocomplete-input">Breed</label>
                         </div>
                         <div class="input-field col s6">
-                            <select class="fixSel" name="fixed">
+                            <select class="fixSel" name="fixed" required>
                                 <option value="None" disabled selected>Fixed?</option>
                                 <option value="True">Yes</option>
                                 <option value="False">No</option>
@@ -235,11 +227,11 @@
                             </div>
                         </div>
                         <div class="input-field col s6">
-                            <input id="userNameText" type="text" name="username">
+                            <input id="userNameText" type="text" name="username" required>
                             <label for="userNameText">Username</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="pswdText" type="password" name="password">
+                            <input id="pswdText" type="password" name="password" required>
                             <label for="pswdText">Password</label>
                         </div>
                     </div>
@@ -265,27 +257,27 @@
                             </div>
                         </div>
                         <div class="input-field col s6">
-                            <input id="userNameText" type="text" name="username">
+                            <input id="userNameText" type="text" name="username" required>
                             <label for="userNameText">Username</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="pswdText" type="password" name="password">
+                            <input id="pswdText" type="password" name="password" required>
                             <label for="pswdText">Password</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="screenNameText" type="text" name="screenname">
+                            <input id="screenNameText" type="text" name="screenname" required>
                             <label for="screenNameText">Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="pswdConfText" type="password" name="passwordconfirm">
+                            <input id="pswdConfText" type="password" name="passwordconfirm" required>
                             <label for="pswdConfText">Confirm Password</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="zipcodeText" type="text" name="zipcode">
+                            <input id="zipcodeText" type="text" name="zipcode" required>
                             <label for="zipcodeText">Zipcode</label>
                         </div>
                         <div class="input-field col s6">
-                            <select class="genSel" name="gender">
+                            <select class="genSel" name="gender" required>
                                 <option value="None" disabled selected>Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -294,7 +286,7 @@
                             <label>Gender</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="cityNameText" type="text" name="cityname">
+                            <input id="cityNameText" type="text" name="cityname" required>
                             <label for="cityNameText">City Name</label>
                         </div>
                     </div>
@@ -456,6 +448,36 @@
             fetchMessageLog();
             console.log(id + ' is sending a message to ' + messageRecepient);
         });
+
+        function fetchUserPal() {
+            // Send message to recipient
+            $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs", { user_id: userId }, function (d) {
+                // https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs
+                // http://localhost/bluehost/public/api/dogapp/procedure/retreiveUserDogs
+                $('.my-dog-select').children('a').remove();
+
+                var once = true;
+                d.forEach(function (e) {
+                    console.log(e);
+                    // append to chat area
+                    var dog = `<a class="collection-item avatar" id=${e.dog_id}>
+                                    <img src="src/jsa.jpg" alt="" class="circle">
+                                    <span class="title orange-text">${e.dog_name}</span>
+                                </a>`;
+
+                    $(".my-dog-select").append(dog);
+
+                    // select first dog when logging in
+                    if (once) {
+                        selectedMyDog = e.dog_id;
+                        var parent = $(`#${selectedMyDog}`);
+                        parent.addClass("activeDogSelection");
+                        parent[0].childNodes[3].classList.add("activeDogSelectionText");
+                        once = false;
+                    }
+                });
+            });
+        };
 
 
         // Select message recipient dog
