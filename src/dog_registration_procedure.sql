@@ -50,7 +50,7 @@ SELECT * FROM user;
 DROP PROCEDURE IF EXISTS retreiveUserDogs;
 # Retreive dogs
 DELIMITER //
-DROP PROCEDURE IF EXISTS retreiveUserDogs;CREATE PROCEDURE retreiveUserDogs(IN userId INT(10))
+CREATE PROCEDURE retreiveUserDogs(IN userId INT(10))
   BEGIN
     SELECT dog_id, dog_name FROM dog WHERE user_id = userId;
   END //
