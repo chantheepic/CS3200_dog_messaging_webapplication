@@ -162,7 +162,7 @@
             <!-- Register Dog Modal -->
             <div id="registerDog" class="modal">
                 <form id="registerDog" method="POST"
-                    action="https://chanminis.online/public/api/dogapp/procedure/registerDog"
+                    action="http://localhost/bluehost/public/api/dogapp/procedure/registerDog"
                     enctype="multipart/form-data">
                     <!-- https://chanminis.online/public/api/dogapp/procedure/registerDog -->
                     <!-- http://localhost/bluehost/public/api/dogapp/procedure/registerDog -->
@@ -220,12 +220,16 @@
                                 <input type="file" name="photo">
                             </div>
                         </div>
+                        <div class="input-field col s6">
+                            <input id="userIdText" type="text" name="user_id">
+                        </div>
+                    </div>
+                    <!-- Modal Button -->
+                    <div class="modal-footer">
+                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Register
+                            Dog</button>
                     </div>
                 </form>
-                <!-- Modal Button -->
-                <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-light btn-flat">Register</a>
-                </div>
             </div>
     </section>
 
@@ -373,6 +377,9 @@
                 logstate = true;
                 $('.userWelcome').text("Welcome Back " + userName.toUpperCase());
                 msg = "wecome back " + userName;
+                // prepare dog registration user id input
+                $("#userIdText").val(userId);
+                $("#userIdText").hide();
             } else {
                 msg = "session not valid or expired";
             }
@@ -553,6 +560,10 @@
             });
 
             // Dog Registration form
+            $('#registerDog').ajaxForm(function (d) {
+                M.toast({ html: d, displayLength: 1000, classes: "orange" });
+                console.log(d);
+            });
         });
     </script>
 </body>

@@ -2,20 +2,23 @@
 
 DELIMITER //
 DROP PROCEDURE IF EXISTS RegisterDog;
-CREATE PROCEDURE RegisterDog(IN user_name VARCHAR(40), IN breed VARCHAR(40), IN name VARCHAR(60), IN fixed BOOLEAN, IN weight INT(3), IN gender VARCHAR(10), IN description TEXT, OUT message VARCHAR(32))
+CREATE PROCEDURE RegisterDog
+(
+    IN user_id VARCHAR(40),
+    IN breed VARCHAR(40),
+    IN name VARCHAR(60),
+    IN fixed BOOLEAN,
+    IN weight INT(3),
+    IN gender VARCHAR(10),
+    IN description TEXT,
+    OUT message VARCHAR(40)
+)
   BEGIN
-
-  	DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+  
+	DECLARE dog_breed_id INT;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION 
 	SET message := 'register failed';
     
-    DECLARE dog_breed_id INT;
-    DECLARE user_id INT;
-
-    SELECT user_id
-    INTO user_id
-    FROM user
-    WHERE username = user_name;
-
     SELECT breed_id
     INTO dog_breed_id
     FROM breed
@@ -32,8 +35,14 @@ CREATE PROCEDURE RegisterDog(IN user_name VARCHAR(40), IN breed VARCHAR(40), IN 
     END IF;
 
     INSERT INTO dog VALUES(dog_id, user_id, dog_breed_id, name, fixed, weight, gender, description);
-    SET message := 'register successful'; 
+    SET message := 'register successful';
   END //
 DELIMITER ;
 
-CALL RegisterDog('sarah97', 'Akita', 'Dirk', 1, 40, 'Female', 'Dirk is dog');
+SELECT @message;
+CALL RegisterDog(2, 'Akita', 'Dirk', 1, 40, 'Female', 'Dirk is dog', @message);
+CALL RegisterDog(78, 'Akita', 'AAA', 1, 40, 'Male', 'AAA is a dog', @message);
+
+SELECT * FROM dog;
+SELECT * FROM user;
+

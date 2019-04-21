@@ -231,14 +231,14 @@ $app->post('/api/dogapp/procedure/registerDog', function(Request $request, Respo
 
     $return_value = null;
 
-    $user_name = $_POST["dogname"];
+    $user_id = $_POST["user_id"];
     $breed = $_POST["breed"];
     $dog_name = $_POST["dogname"];
     $fixed = $_POST["fixed"];
     $weight = $_POST["weight"];
     $gender = $_POST["gender"];
 
-    $stmt = $pdo->prepare("CALL RegisterDog('$user_name', '$breed', '$dog_name', '$fixed', '$weight', '$gender' @return)");
+    $stmt = $pdo->prepare("CALL RegisterDog('$user_id', '$breed', '$dog_name', 1, '$weight', '$gender', ' ', @return)");
     $stmt->bindParam('@return', $return_value);
     $stmt->execute();
 
