@@ -400,9 +400,11 @@
                     // select first dog when logging in
                     if (once) {
                         selectedMyDog = e.dog_id;
+                        localStorage.setItem('dogId', selectedMyDog);
                         var parent = $(`#${selectedMyDog}`);
                         parent.addClass("activeDogSelection");
                         parent[0].childNodes[3].classList.add("activeDogSelectionText");
+                        fetchSelectedDogPals();
                         once = false;
                     }
                 });
@@ -445,16 +447,21 @@
             parent.addClass("activeDogSelection");
             parent[0].childNodes[3].classList.add("activeDogSelectionText");
 
+            localStorage.setItem('dogId', selectedMyDog)
+            fetchSelectedDogPals();
+
             fetchMessageLog();
             console.log(id + ' is sending a message to ' + messageRecepient);
         });
 
-        function fetchUserPal() {
+        function fetchSelectedDogPals() {
+            var dogId = (localStorage.getItem('dogId') != null) ? localStorage.getItem('dogId') : '';
+            var userId = (localStorage.getItem('userId') != null) ? localStorage.getItem('userId') : '';
+
             // Send message to recipient
-            $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs", { user_id: userId }, function (d) {
-                // https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs
-                // http://localhost/bluehost/public/api/dogapp/procedure/retreiveUserDogs
-                $('.my-dog-select').children('a').remove();
+            $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveDogPals", { user_id: userId, dog_id :dogId }, function (d) {
+                // https://chanminis.online/public/api/dogapp/procedure/retreiveDogPals
+                // http://localhost/bluehost/public/api/dogapp/procedure/retreiveDogPals
 
                 var once = true;
                 d.forEach(function (e) {
@@ -465,16 +472,7 @@
                                     <span class="title orange-text">${e.dog_name}</span>
                                 </a>`;
 
-                    $(".my-dog-select").append(dog);
-
-                    // select first dog when logging in
-                    if (once) {
-                        selectedMyDog = e.dog_id;
-                        var parent = $(`#${selectedMyDog}`);
-                        parent.addClass("activeDogSelection");
-                        parent[0].childNodes[3].classList.add("activeDogSelectionText");
-                        once = false;
-                    }
+                    $(".old-pal-select").append(dog);
                 });
             });
         };
@@ -515,6 +513,8 @@
             $('.old-pal-messager').fadeOut('fast', function () {
                 $('.new-pal-slider').fadeIn('fast');
             });
+            $('.activeMessageSelection').removeClass('activeMessageSelection')
+            $('.activeMessageSelectionText').removeClass('activeMessageSelectionText')
             console.log('Swipe Mode');
         });
 
