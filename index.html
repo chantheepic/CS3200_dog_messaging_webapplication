@@ -51,14 +51,21 @@
         <div class="nav-wrapper container">
             <a class="brand-logo">Dinder</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="orange lighten-1 waves-effect waves-light login"><a class="modal-trigger"
-                        href="#registerDog">Add Doggo</a></li>
-                <li class="orange lighten-1 waves-effect waves-light login"><a id="logout">Logout</a></li>
-                <li class="orange lighten-1 waves-effect waves-light logout"><a class="modal-trigger"
-                        href="#loginUser">Login</a></li>
-                <li class="orange lighten-1 waves-effect waves-light logout"><a class="modal-trigger"
-                        href="#registerUser">Register User</a></li>
-                <li style="margin: 0px 2em;" class="login userWelcome"> Welcome Back User </li>
+                <li class="orange lighten-1 waves-effect waves-light login">
+                    <a class="modal-trigger" href="#registerDog">Add Doggo</a>
+                </li>
+                <li class="orange lighten-1 waves-effect waves-light login">
+                    <a id="logout">Logout</a>
+                </li>
+                <li class="orange lighten-1 waves-effect waves-light logout">
+                    <a class="modal-trigger" href="#loginUser">Login</a>
+                </li>
+                <li class="orange lighten-1 waves-effect waves-light logout">
+                    <a class="modal-trigger" href="#registerUser">Register User</a>
+                </li>
+                <li style="margin: 0px 2em;" class="login userWelcome"> 
+                    Welcome Back User 
+                </li>
             </ul>
         </div>
     </nav>
@@ -132,7 +139,7 @@
             <!-- Modals -->
             <style>
                 .modal {
-                    height: 50vh !important
+                    height: 100vh !important
                 }
             </style>
 
@@ -155,7 +162,7 @@
                         </div>
                         <div class="input-field col s6">
                             <select multiple class="charSel">
-                                <option value="" disabled selected>Select all that apply</option>
+                                <option value disabled >Select all that apply</option>
                                 <option value="Friendly">Friendly</option>
                                 <option value="Aggressive">Aggressive</option>
                                 <option value="Playful">Playful</option>
@@ -165,28 +172,28 @@
                             <label>Temperament</label>
                         </div>
                         <div class="input-field col s6">
-                            <select class="genSel" name="gender" required>
-                                <option value="None" disabled selected>Select Gender</option>
+                            <select class="genSel" name="gender">
+                                <option disabled selected value>Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                             <label>Gender</label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" id="autocomplete-input" class="autocomplete breedAuto" name="breed">
+                            <input type="text" id="autocomplete-input" class="autocomplete breedAuto" name="breed" required>
                             <label for="autocomplete-input">Breed</label>
                         </div>
                         <div class="input-field col s6">
-                            <select class="fixSel" name="fixed" required>
-                                <option value="None" disabled selected>Fixed?</option>
+                            <select class="fixSel" name="fixed" placeholder="fixed?">
+                                <option disabled selected value>Fixed?</option>
                                 <option value="True">Yes</option>
                                 <option value="False">No</option>
                             </select>
                             <label>Fixed</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="dogWeightText" type="text" name="weight">
-                            <label for="dogWeightText">Weight</label>
+                            <input id="dogWeightText" type="number" name="weight" required>
+                            <label for="dogWeightText">Weight (in pounds)</label>
                         </div>
                         <div class="col s2">
                             <img src="src/jas.jpg" alt="" class="responsive-img">
@@ -194,7 +201,7 @@
                         <div class="file-field input-field col s4">
                             <div class="btn btn-flat">
                                 <span>Upload Profile Picture</span>
-                                <input type="file" name="photo">
+                                <input type="file" name="photo" required>
                             </div>
                         </div>
                         <div class="input-field col s6">
@@ -203,8 +210,9 @@
                     </div>
                     <!-- Modal Button -->
                     <div class="modal-footer">
-                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Register
-                            Dog</button>
+                        <button type="submit" class="waves-effect waves-light btn-flat">
+                            Register Dog
+                        </button>
                     </div>
                 </form>
             </div>
@@ -237,7 +245,7 @@
                     </div>
                     <!-- Modal Button -->
                     <div class="modal-footer">
-                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Login</button>
+                        <button type="submit" class="waves-effect waves-light btn-flat">Login</button>
                     </div>
                 </form>
             </div>
@@ -273,7 +281,7 @@
                             <label for="pswdConfText">Confirm Password</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="zipcodeText" type="text" name="zipcode" required>
+                            <input id="zipcodeText" type="number" name="zipcode" min = "00001" max= "99999" required >
                             <label for="zipcodeText">Zipcode</label>
                         </div>
                         <div class="input-field col s6">
@@ -292,7 +300,7 @@
                     </div>
                     <!-- Modal Button -->
                     <div class="modal-footer">
-                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Register</button>
+                        <button type="submit" class="waves-effect waves-light btn-flat">Register</button>
                     </div>
                 </form>
             </div>
@@ -580,6 +588,10 @@
             $('#registerUser').ajaxForm(function (d) {
                 M.toast({ html: d, displayLength: 1000, classes: "orange" });
                 console.log(d);
+                if (d == "register successful")
+                {
+                    $('#registerUser').modal('close');
+                }
             });
 
             // User Login form
@@ -591,7 +603,9 @@
                 console.log(credentials);
                 if (credentials[0] == "1") {
                     console.log("login successful user: " + credentials[2])
+                    $('#loginUser').modal('close');
                     window.location.reload();
+
                 } else {
                     M.toast({ html: "login failed", displayLength: 1000, classes: "orange" });
                     console.log("login failed")
@@ -603,6 +617,10 @@
                 M.toast({ html: d, displayLength: 1000, classes: "orange" });
                 fetchUserDogs();
                 console.log(d);
+                if (d == "register successful")
+                {
+                    $('#registerDog').modal('close');
+                }
             });
         });
     </script>
