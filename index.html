@@ -161,7 +161,7 @@
                             <label for="dogNameText">Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <select multiple class="charSel">
+                            <select multiple class="charSel" name="temperament">
                                 <option value disabled >Select all that apply</option>
                                 <option value="Friendly">Friendly</option>
                                 <option value="Aggressive">Aggressive</option>
@@ -455,18 +455,21 @@
             parent.addClass("activeDogSelection");
             parent[0].childNodes[3].classList.add("activeDogSelectionText");
 
+            // set selected dog
             localStorage.setItem('dogId', selectedMyDog)
-            fetchSelectedDogPals();
 
+            // fetch pals and messages
+            fetchSelectedDogPals();
             fetchMessageLog();
             console.log(id + ' is sending a message to ' + messageRecepient);
         });
 
+        // Fetch Pals
         function fetchSelectedDogPals() {
             var dogId = (localStorage.getItem('dogId') != null) ? localStorage.getItem('dogId') : '';
             var userId = (localStorage.getItem('userId') != null) ? localStorage.getItem('userId') : '';
 
-            // Send message to recipient
+            // retrieve pals
             $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveDogPals", { user_id: userId, dog_id :dogId }, function (d) {
                 // https://chanminis.online/public/api/dogapp/procedure/retreiveDogPals
                 // http://localhost/bluehost/public/api/dogapp/procedure/retreiveDogPals
@@ -535,13 +538,23 @@
                 // reset chat area
                 $('.old-pal-messager').children('.msg-log').remove();
 
+                var dogId = (localStorage.getItem('dogId') != null) ? localStorage.getItem('dogId') : '';
+
                 d.forEach(function (e) {
                     console.log(e);
                     // append to chat area
-                    var msg = `<li class="collection-item msg-log">
-                                <span class="title"><b>FROM:</b> ${e.sender} <b>TO DOG ID:</b> ${messageRecepient} <b>AT:</b> ${e.time_sent}</span>
+                    var msg = 
+                            `<li class="collection-item msg-log">
+                                <span class="title"><b>FROM:</b> ${e.sender} <b> <b>AT:</b> ${e.time_sent}</span>
                                 <p>${e.content + " "}</p>
                             </li>`;
+
+                    if(e.sender == dogId) {
+                        `<li class="collection-item msg-log" background-color = "#ffcc00">
+                            span class="title"><b>FROM:</b> ${e.sender} <b> <b>AT:</b> ${e.time_sent}</span>
+                            <p>${e.content + " "}</p>
+                        </li>`;
+                    }
 
                     $(".old-pal-messager").append(msg);
                 });
