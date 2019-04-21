@@ -5,7 +5,7 @@ DROP PROCEDURE IF EXISTS retreiveMessage;
 DELIMITER //
 CREATE PROCEDURE retreiveMessage(sender_id VARCHAR(20), recipient_id VARCHAR(20))
 BEGIN
-	SELECT sender.dog_name as 'sender', content, time_sent
+	SELECT sender.dog_name as 'sender', content, time_sent, sender.dog_id
 	FROM message as m INNER JOIN dog as sender ON m.dog_id1 = sender.dog_id
 	WHERE (m.dog_id1 LIKE sender_id AND m.dog_id2 LIKE recipient_id) OR (m.dog_id1 LIKE recipient_id AND m.dog_id2 LIKE sender_id)
 	order by m.time_sent DESC;

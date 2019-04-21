@@ -49,6 +49,12 @@
             background-color: sandybrown !important;
         }
 
+        ul .sentMessage {
+            background-color: sandybrown !important;
+            width:100%;
+            text-align: right;
+        }
+
         .old-pal-messager,
         .my-dog-select,
         .old-pal-select {
@@ -430,7 +436,6 @@
         // Initially hide message function until a dog pal is selected. Will need to be placed in a function
         $('.old-pal-messager').hide();
 
-
         // Carousel Buttons
         $('.new-pal-btn a').click(function (d) {
             if (d.target.text == "Accept") {
@@ -444,6 +449,10 @@
 
         // Select User dog
         $('.my-dog-select').click(function (d) {
+
+            // clear pals
+            $('.old-pal-select').children('.pal').remove();
+
             var targ = $(d.target.parentElement);
             var id;
             if (targ.prop("nodeName") == "A") {
@@ -464,7 +473,8 @@
             parent[0].childNodes[3].classList.add("activeDogSelectionText");
 
             // set selected dog
-            localStorage.setItem('dogId', selectedMyDog)
+            localStorage.setItem('dogId', selectedMyDog);
+            localStorage.setItem('palSelected', 0);
 
             // fetch pals 
             fetchSelectedDogPals();
@@ -484,10 +494,10 @@
                 d.forEach(function (e) {
                     console.log(e);
                     // append to chat area
-                    var dog = `<a class="collection-item avatar" id=${e.dog_id}>
-                                    <img src="src/jrbg.jpg" alt="" class="circle">
+                    var dog = `<a class="collection-item pal avatar" id=${e.dog_id}>
+                                    <img src="src/jrbg.png" alt="" class="circle">
                                     <span class="title orange-text">${e.dog_name}</span>
-                                    <button class="block" onclick="https://chanminis.online/public/api/dogapp/procedure/block?dog1=${e.dog_id}&dog2=${dogId}">
+                                    <button class="block" onclick="blockDogs(${e.dog_id}, ${dogId})"> 
                                         Block
                                     </button>
                                 </a>`;
@@ -497,7 +507,18 @@
             });
         };
 
+        // Block dogs
+        function blockDogs (dog1, dog2 ) {
+            $.post("https://chanminis.online/public/api/dogapp/procedure/block", {dog1, dog2}, function (d) {
+            });
 
+            //clear old pals
+            $('.old-pal-select').children('.pal').remove();
+
+            // fetch all pals
+            fetchSelectedDogPals();
+        };
+          
         // Select message recipient dog
         $('.old-pal-select').click(function (d) {
             $('.new-pal-slider').fadeOut('fast', function () {
@@ -524,7 +545,7 @@
             parent[0].childNodes[3].classList.add("activeMessageSelectionText");
 
             // set palSelected? to true
-            var palSelected = localStorage.setItem('palSelected', 0);
+            var palSelected = localStorage.setItem('palSelected', 1);
 
             // retrieve past messages
             fetchMessageLog();
@@ -558,17 +579,20 @@
 
                 d.forEach(function (e) {
                     console.log(e);
+                    console.log(selectedMyDog);
+
                     // append to chat area
                     var msg = 
                             `<li class="collection-item msg-log">
-                                <span class="title"><b>FROM:</b> ${e.sender} <b> <b>AT:</b> ${e.time_sent}</span>
+                                <span class="title"><b>FROM:</b> ${e.sender} <b>AT:</b> ${e.time_sent}</span>
                                 <p>${e.content + " "}</p>
                             </li>`;
 
-                    if(e.sender == dogId) {
-                        `<li class="collection-item msg-log" background-color = "#ffcc00">
-                            span class="title"><b>FROM:</b> ${e.sender} <b> <b>AT:</b> ${e.time_sent}</span>
-                            <p>${e.content + " "}</p>
+                    if(e.dog_id == selectedMyDog) {
+                        msg =
+                        `<li class="msg-log sentMessage">
+                            <span class="title">${e.time_sent}</span>
+                            <p><b>${e.content + " "}<b></p>
                         </li>`;
                     }
 
