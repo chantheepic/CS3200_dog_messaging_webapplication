@@ -132,3 +132,53 @@ CREATE PROCEDURE deleteDog(userId INT(10), dogId INT(10))
 
   END //
 DELIMITER ;
+
+# Add Dog To Seen
+DROP PROCEDURE IF EXISTS addToSeen;
+DELIMITER //
+CREATE PROCEDURE addToSeen(dogId INT(10), seenDogId INT(10), accepted TINYINT(1))
+  BEGIN
+
+    DECLARE auth_dog_id INT;
+	DECLARE auth_seen_id INT;
+
+    SELECT d.dog_id 
+    INTO auth_dog_id
+    FROM dog d
+    WHERE d.dog_id = dogId;
+
+    SELECT d.dog_id 
+    INTO auth_seen_id
+    FROM dog d
+    WHERE d.dog_id = seenDogId;
+
+    INSERT into seen values (auth_dog_id, auth_seen_id, accepted, now());
+
+  END //
+DELIMITER ;
+
+# Create match automatically
+DROP TRIGGER IF EXISTS createPal;
+DELIMITER //
+CREATE TRIGGER createPal
+	AFTER INSERT ON seen
+    FOR EACH ROW
+BEGIN
+	IF (NEW.liked = true) THEN
+		IF (select count(*)
+			from seen s
+			where new.seen_dog_id = s.dog_id 
+			and new.dog_id = s.seen_dog_id 
+			and liked = 1) >= 1 
+		THEN
+			INSERT INTO pal(dog1, dog2) 
+            VALUES (new.dog_id, new.seen_dog_id); 
+		END IF;
+	END IF;
+END; //
+
+DELIMITER ;
+
+
+
+

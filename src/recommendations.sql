@@ -12,10 +12,10 @@ CREATE PROCEDURE RecommendDogs(dogId INT(10))
     FROM dog join user using (user_id)
     WHERE dog_id = dogId;
 
-    SELECT DISTINCT d.dog_id, d.dog_name, d.fixed, b.breed_name, d.gender, d.weight, photo_id
+    SELECT DISTINCT d.dog_id, d.dog_name, d.fixed, b.breed_name, d.gender, d.weight, p.photo_id
     FROM dog d JOIN user u using (user_id) 
 		JOIN breed b using (breed_id)
-		join photo p using (dog_id)
+		LEFT JOIN photo p using (dog_id)
     WHERE d.dog_id != dogId
     AND d.user_id != dogs_user_id
     AND ROUND(u.zipcode / 100, 0) = ROUND(dogs_zipcode / 100, 0)
@@ -28,9 +28,9 @@ CREATE PROCEDURE RecommendDogs(dogId INT(10))
         FROM blocked b
 		WHERE b.blockee_id = dogs_user_id)
 	AND d.dog_id not in 
-		(SELECT seen_user_id
+		(SELECT seen_dog_id
         FROM seen s
-		WHERE s.user_id = dogs_user_id)
+		WHERE s.dog_id = dogId)
     LIMIT 10;
   END //
 DELIMITER ;

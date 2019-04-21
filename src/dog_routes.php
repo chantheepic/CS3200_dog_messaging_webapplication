@@ -317,6 +317,22 @@ $app->post('/api/dogapp/procedure/block', function(Request $request, Response $r
     return $response->withJson($result, 200);
 });
 
+
+$app->post('/api/dogapp/procedure/addToSeen', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $dogId = $_POST["dogId"];
+    $seenDogId = $_POST["seenDogId"];
+    $accepted = $_POST["accepted"];
+
+    $stmt = $pdo->prepare("CALL addToSeen($dogId, $seenDogId, $accepted)");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    return $response->withJson($result, 200);
+});
+
 function fetch_d($query, $response){
     try{
         $database = new DogDatabase();
