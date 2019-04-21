@@ -22,11 +22,8 @@
             user-select: none;
         }
 
-        .menu-div {
-            width: 5px;
-            height: 5px;
-            background-color: black;
-            margin: 6px 0;
+        .carousel-image {
+            height: 100vh;
         }
 
         .block, .delete {
@@ -64,6 +61,7 @@
 
         .old-pal-messager,
         .my-dog-select,
+        .new-pal-slider,
         .old-pal-select {
             height: 80vh;
             overflow-y: scroll;
@@ -128,18 +126,18 @@
                     <div style="margin-top: -1px" class="carousel carousel-slider center">
                         <div class="carousel-fixed-item left new-pal-btn">
                             <a class="col s1"></a>
-                            <a class="btn waves-effect white deep-orange-text darken-text-2 col s4">Accept</a>
+                            <a class="btn waves-effect white deep-orange-text darken-text-2 col s4" onclick=acceptDog()>Accept</a>
                             <a class="col s2"></a>
-                            <a class="btn waves-effect white deep-orange-text darken-text-2 col s4">Deny</a>
+                            <a class="btn waves-effect white deep-orange-text darken-text-2 col s4" onclick=denyDog()>Deny</a>
                             <a class="col s1"></a>
                         </div>
                         <div class="carousel-item red white-text" href="#one!">
                             <h2>Current Suggestion</h2>
-                            <p class="white-text">This is your first panel</p>
-                        </div>
-                        <div class="carousel-item blue white-text" href="#two!">
-                            <h2>Next Suggestion</h2>
-                            <p class="white-text">This is your second panel</p>
+                            <p class="white-text">This is your first panel for your selected dog</p>
+                            <p class="white-text">Scroll down to find the buttons</p>
+                            <br /><br /><br />
+                            <p class="white-text">If you keep seeing this panel when you click accept or deny</p>
+                            <p class="white-text">Please wait for more users to register and check back in some time</p>
                         </div>
                     </div>
                 </ul>
@@ -527,23 +525,53 @@
                     console.log(e);
                     // append to chat area
                     var dog =  
-                        `<div class="carousel-item red white-text" href="#one!">
+                        `<div class="carousel-item red white-text ${e.dog_id} " href="#one!" id="${e.dog_id}">
                             <h2 id="photo">${e.dog_name}</h2>
                             <p>Breed: ${e.breed_name} &nbsp &nbsp Gender: ${e.gender} &nbsp &nbsp Weight: ${e.weight}lbs  &nbsp &nbsp Fixed: ${e.fixed == 1? 'Yes' : 'No'}</p>
-                            <img src="src/jas.jpg" class="img-fluid img-thumbnail" id="photo"> 
+                            <img class = "carousel-img" src="src/jas.jpg" class="img-fluid img-thumbnail" id="photo"> 
                             
                         </div>`
                     
                     $(".carousel-slider").append(dog);
                     
                 });
-
                 // Initialize Carousel
-        $('.carousel.carousel-slider').carousel({
-            fullWidth: true,
-            indicators: false
-        });
+                $('.carousel.carousel-slider').carousel({
+                    fullWidth: true,
+                    indicators: false
+                });
             });
+        };
+
+        // accept potential pals
+        function acceptDog(dogId) { 
+            addToSeen(1);
+        };
+        
+        // deny potential pals
+        function denyDog(dogId) {
+            addToSeen(0);
+        };
+
+
+        //  add To seen
+        function addToSeen(liked) {   
+            $('*').each(function(){
+                if($(this).css('z-index') == 0) {
+                    if(this.id) {
+                        $.post("https://chanminis.online/public/api/dogapp/procedure/addToSeen", 
+                            {dogId:selectedMyDog, seenDogId:this.id, accepted:1}, 
+                            function (d) {
+                                console.log(d);
+                                // TO:DO fetch new recommendations
+                                // TO:DO update carousel
+                            });
+                    }
+                }
+            });     
+
+             // clear pals
+             $('.carousel-slider').children('.pal').remove();
         };
 
         // Block dogs
