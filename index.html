@@ -29,9 +29,16 @@
             margin: 6px 0;
         }
 
-        .block {
+        .block, .delete {
+            background-color: orange;
+            color: white;
             float: right;
+            height: 100%;
         }
+
+        /* .block {
+            background-color: darkred;
+        } */
 
         ul .activeMessageSelectionText {
             color: white !important;
@@ -325,7 +332,7 @@
     <!-- Script Area -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="src/materialize/js/materialize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"
         integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i"
@@ -410,12 +417,12 @@
 
                 var once = true;
                 d.forEach(function (e) {
-                    console.log(e);
                     // append to chat area
-                    var dog = `<a class="collection-item avatar" id=${e.dog_id}>
+                    var dog =  `<a class="collection-item avatar" id=${e.dog_id}>
                                     <img src="src/jsa.jpg" alt="" class="circle">
-                                    <span class="title orange-text">${e.dog_name}</span>
+                                    <span class="title orange-text">${e.dog_name}</span> 
                                 </a>`;
+                                // <button class="delete">Delete</button>
 
                     $(".my-dog-select").append(dog);
 
@@ -485,25 +492,57 @@
             var dogId = (localStorage.getItem('dogId') != null) ? localStorage.getItem('dogId') : '';
             var userId = (localStorage.getItem('userId') != null) ? localStorage.getItem('userId') : '';
 
+            // retrieve potential pals
+            fetchRecommendedDogs(dogId);
+
             // retrieve pals
             $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveDogPals", { user_id: userId, dog_id :dogId }, function (d) {
                 // https://chanminis.online/public/api/dogapp/procedure/retreiveDogPals
                 // http://localhost/bluehost/public/api/dogapp/procedure/retreiveDogPals
 
-                var once = true;
                 d.forEach(function (e) {
-                    console.log(e);
                     // append to chat area
                     var dog = `<a class="collection-item pal avatar" id=${e.dog_id}>
                                     <img src="src/jrbg.png" alt="" class="circle">
                                     <span class="title orange-text">${e.dog_name}</span>
                                     <button class="block" onclick="blockDogs(${e.dog_id}, ${dogId})"> 
                                         Block
-                                    </button>
+                                    </button>                     
                                 </a>`;
+
+                                // <button class="delete"> 
+                                //         Delete
+                                //     </button>
 
                     $(".old-pal-select").append(dog);
                 });
+            });
+        };
+
+        // Retrieve potential pals
+        function fetchRecommendedDogs(dogId) {
+            $.post("https://chanminis.online/public/api/dogapp/procedure/recommendDogs", {dogId: dogId}, function (d) {
+                console.log(d);
+                d.forEach(function (e) {
+                    console.log(e);
+                    // append to chat area
+                    var dog =  
+                        `<div class="carousel-item red white-text" href="#one!">
+                            <h2 id="photo">${e.dog_name}</h2>
+                            <p>Breed: ${e.breed_name} &nbsp &nbsp Gender: ${e.gender} &nbsp &nbsp Weight: ${e.weight}lbs  &nbsp &nbsp Fixed: ${e.fixed == 1? 'Yes' : 'No'}</p>
+                            <img src="src/jas.jpg" class="img-fluid img-thumbnail" id="photo"> 
+                            
+                        </div>`
+                    
+                    $(".carousel-slider").append(dog);
+                    
+                });
+
+                // Initialize Carousel
+        $('.carousel.carousel-slider').carousel({
+            fullWidth: true,
+            indicators: false
+        });
             });
         };
 
