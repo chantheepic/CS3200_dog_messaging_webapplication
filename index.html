@@ -518,6 +518,11 @@
             });
         };
 
+        // Automatically fetch every 5 seconds
+        setInterval(function () {
+            fetchMessageLog();
+        }, 5000);
+
         // Send button inside message section
         $('.send-message').click(function (d) {
             if (d.target.nodeName == 'A') {
