@@ -1,7 +1,7 @@
 # Dog Registration
 
-DELIMITER //
 DROP PROCEDURE IF EXISTS RegisterDog;
+DELIMITER //
 CREATE PROCEDURE RegisterDog
 (
     IN user_id INT(10),
@@ -47,10 +47,10 @@ CALL RegisterDog(78, 'Akita', 'AAA', 1, 40, 'Male', 'AAA is a dog', @message);
 SELECT * FROM dog;
 SELECT * FROM user;
 
+DROP PROCEDURE IF EXISTS retreiveUserDogs;
 # Retreive dogs
 DELIMITER //
-DROP PROCEDURE IF EXISTS retreiveUserDogs;
-CREATE PROCEDURE retreiveUserDogs(IN userId INT(10))
+DROP PROCEDURE IF EXISTS retreiveUserDogs;CREATE PROCEDURE retreiveUserDogs(IN userId INT(10))
   BEGIN
     SELECT dog_id, dog_name FROM dog WHERE user_id = userId;
   END //
@@ -62,33 +62,30 @@ select * from dog;
 CALL retreiveUserDogs(78);
 
 # Retreive Dog Pals
-DELIMITER //
 DROP PROCEDURE IF EXISTS retreiveDogPals;
-CREATE PROCEDURE retreiveDogPals(IN userId INT(10), IN dogID INT(10))
+DELIMITER //
+CREATE PROCEDURE retreiveDogPals(userId INT(10), dogId INT(10))
   BEGIN
 
-    DECLARE authenticatedDog_id INT;
+    DECLARE auth_dog_id INT;
     
     SELECT dog_id 
-    INTO dog_id
+    INTO auth_dog_id
     FROM dog 
     WHERE user_id = userId AND dog_id = dogID;
 	
-    SELECT DISTINCT d.dog_id, d.dog_name
-    FROM pal p join dog d on (p.dog1 = dog_id) 
-    WHERE (p.dog2 = authenticatedDog_id)
-	UNION
-	SELECT DISTINCT d.dog_id, d.dog_name
-    FROM pal p join dog d on (p.dog2 = dog_id) 
-    WHERE (p.dog1 = authenticatedDog_id)
+    SELECT d.dog_id, d.dog_name
+    FROM pal p join dog d on (p.dog1 = d.dog_id) 
+    WHERE (p.dog2 = auth_dog_id)
+	
     
   END //
 DELIMITER ;
 
 
 # Block users
-DELIMITER //
 DROP PROCEDURE IF EXISTS block;
+DELIMITER //
 CREATE PROCEDURE block(IN dog1_id INT(10), IN dog2_id INT(10))
   BEGIN
 
