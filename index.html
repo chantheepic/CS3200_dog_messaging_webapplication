@@ -37,6 +37,13 @@
         ul .activeDogSelection {
             background-color: sandybrown !important;
         }
+
+        .old-pal-messager,
+        .my-dog-select,
+        .old-pal-select {
+            height: 80vh;
+            overflow-y: scroll;
+        }
     </style>
 
     <!-- Navbar -->
@@ -69,18 +76,6 @@
                     <li class="collection-header orange darken-1 white-text">
                         <h4>User Dogs</h4>
                     </li>
-                    <a class="collection-item avatar" id='1'>
-                        <img src="src/jas.jpg" alt="" class="circle">
-                        <span class="title orange-text">Justice Antonin Scalia</span>
-                    </a>
-                    <a class="collection-item avatar" id='3'>
-                        <img src="src/jrbg.png" alt="" class="circle">
-                        <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
-                    </a>
-                    <a class="collection-item avatar" id='5'>
-                        <img src="src/jsa.jpg" alt="" class="circle">
-                        <span class="title orange-text">Justice Samuel Alito</span>
-                    </a>
                 </ul>
             </div>
 
@@ -97,10 +92,6 @@
                     <a class="collection-item avatar" id='4'>
                         <img src="src/jrbg.png" alt="" class="circle">
                         <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
-                    </a>
-                    <a class="collection-item avatar" id='6'>
-                        <img src="src/jsa.jpg" alt="" class="circle">
-                        <span class="title orange-text">Justice Samuel Alito</span>
                     </a>
                 </ul>
             </div>
@@ -130,12 +121,6 @@
                     </div>
                 </ul>
 
-                <style>
-                    .old-pal-messager {
-                        height: 80vh;
-                        overflow-y: scroll;
-                    }
-                </style>
                 <!--  Message Area -->
                 <ul class="collection with-header old-pal-messager">
                     <li class="collection-header orange darken-1 white-text row">
@@ -161,65 +146,75 @@
 
             <!-- Register Dog Modal -->
             <div id="registerDog" class="modal">
-                <div class="modal-content">
-                    <div class="collection with-header">
-                        <div class="collection-header orange darken-1 white-text">
-                            <h4>Register Doggo</h4>
+                <form id="registerDog" method="POST"
+                    action="https://chanminis.online/public/api/dogapp/procedure/registerDog"
+                    enctype="multipart/form-data">
+                    <!-- https://chanminis.online/public/api/dogapp/procedure/registerDog -->
+                    <!-- http://localhost/bluehost/public/api/dogapp/procedure/registerDog -->
+                    <div class="modal-content">
+                        <div class="collection with-header">
+                            <div class="collection-header orange darken-1 white-text">
+                                <h4>Register Doggo</h4>
+                            </div>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="dogNameText" type="text" name="dogname">
+                            <label for="dogNameText">Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select multiple class="charSel">
+                                <option value="" disabled selected>Select all that apply</option>
+                                <option value="Friendly">Friendly</option>
+                                <option value="Aggressive">Aggressive</option>
+                                <option value="Playful">Playful</option>
+                                <option value="Not good with children">Not good with children</option>
+                                <option value="Not good with puppies">Not good with puppies</option>
+                            </select>
+                            <label>Temperament</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select class="genSel" name="gender">
+                                <option value="None" disabled selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <label>Gender</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" id="autocomplete-input" class="autocomplete breedAuto" name="breed">
+                            <label for="autocomplete-input">Breed</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select class="fixSel" name="fixed">
+                                <option value="None" disabled selected>Fixed?</option>
+                                <option value="True">Yes</option>
+                                <option value="False">No</option>
+                            </select>
+                            <label>Fixed</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="dogWeightText" type="text" name="weight">
+                            <label for="dogWeightText">Weight</label>
+                        </div>
+                        <div class="col s2">
+                            <img src="src/jas.jpg" alt="" class="responsive-img">
+                        </div>
+                        <div class="file-field input-field col s4">
+                            <div class="btn btn-flat">
+                                <span>Upload Profile Picture</span>
+                                <input type="file" name="photo">
+                            </div>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="userIdText" type="text" name="user_id">
                         </div>
                     </div>
-                    <div class="input-field col s6">
-                        <input id="dogNameText" type="text" name="dogname">
-                        <label for="dogNameText">Name</label>
+                    <!-- Modal Button -->
+                    <div class="modal-footer">
+                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Register
+                            Dog</button>
                     </div>
-                    <div class="input-field col s6">
-                        <select multiple class="charSel">
-                            <option value="" disabled selected>Select all that apply</option>
-                            <option value="Friendly">Friendly</option>
-                            <option value="Aggressive">Aggressive</option>
-                            <option value="Playful">Playful</option>
-                            <option value="Not good with children">Not good with children</option>
-                            <option value="Not good with puppies">Not good with puppies</option>
-                        </select>
-                        <label>Temperament</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <select class="genSel" name="gender">
-                            <option value="None" disabled selected>Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                        <label>Gender</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input type="text" id="autocomplete-input" class="autocomplete breedAuto" name="breed">
-                        <label for="autocomplete-input">Breed</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <select class="fixSel" name="fixed">
-                            <option value="None" disabled selected>Fixed?</option>
-                            <option value="True">Yes</option>
-                            <option value="False">No</option>
-                        </select>
-                        <label>Fixed</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="dogWeightText" type="text" name="weight">
-                        <label for="dogWeightText">Weight</label>
-                    </div>
-                    <div class="col s2">
-                        <img src="src/jas.jpg" alt="" class="responsive-img">
-                    </div>
-                    <div class="file-field input-field col s4">
-                        <div class="btn btn-flat">
-                            <span>Upload Profile Picture</span>
-                            <input type="file" name="photo">
-                        </div>
-                    </div>
-                </div>
-                <!-- Modal Button -->
-                <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-light btn-flat">Register</a>
-                </div>
+                </form>
             </div>
     </section>
 
@@ -357,6 +352,7 @@
         // Check if the session id stored in localstorage is correct
         var sessionId = (localStorage.getItem('sessionId') != null) ? localStorage.getItem('sessionId') : '';
         var userId = (localStorage.getItem('userId') != null) ? localStorage.getItem('userId') : '';
+        var userName = (localStorage.getItem('userName') != null) ? localStorage.getItem('userName') : '';
         $.post("https://chanminis.online/public/api/dogapp/procedure/returnUser", { sessionId: sessionId, userId: userId }, function (d) {
             // https://chanminis.online/public/api/dogapp/procedure/returnUser
             // http://localhost/bluehost/public/api/dogapp/procedure/returnUser
@@ -364,8 +360,11 @@
 
             if (d == 1) {
                 logstate = true;
-                $('.userWelcome').text("Welcome Back " + userId.toUpperCase());
-                msg = "wecome back " + userId;
+                $('.userWelcome').text("Welcome Back " + userName.toUpperCase());
+                msg = "wecome back " + userName;
+                // prepare dog registration user id input
+                $("#userIdText").val(userId);
+                $("#userIdText").hide();
             } else {
                 msg = "session not valid or expired";
             }
@@ -377,6 +376,7 @@
         });
 
         function presentPageElements() {
+            fetchUserDogs();
             // Toggle sections based on user login state
             if (logstate) {
                 $('.logout').hide();
@@ -387,14 +387,39 @@
             }
         };
 
+        function fetchUserDogs() {
+            // Send message to recipient
+            $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs", { user_id: userId }, function (d) {
+                // https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs
+                // http://localhost/bluehost/public/api/dogapp/procedure/retreiveUserDogs
+                $('.my-dog-select').children('a').remove();
+
+                var once = true;
+                d.forEach(function (e) {
+                    console.log(e);
+                    // append to chat area
+                    var dog = `<a class="collection-item avatar" id=${e.dog_id}>
+                                    <img src="src/jsa.jpg" alt="" class="circle">
+                                    <span class="title orange-text">${e.dog_name}</span>
+                                </a>`;
+
+                    $(".my-dog-select").append(dog);
+
+                    // select first dog when logging in
+                    if (once) {
+                        selectedMyDog = e.dog_id;
+                        var parent = $(`#${selectedMyDog}`);
+                        parent.addClass("activeDogSelection");
+                        parent[0].childNodes[3].classList.add("activeDogSelectionText");
+                        once = false;
+                    }
+                });
+            });
+        };
+
         // Initially hide message function until a dog pal is selected. Will need to be placed in a function
         $('.old-pal-messager').hide();
 
-        // Initial user dog selection. will be given first returned dog id. Will need to be placed in a function
-        // selectedMyDog = '1';
-        // var parent = $(`#${selectedMyDog}`);
-        // parent.addClass("activeDogSelection");
-        // parent[0].childNodes[3].classList.add("activeDogSelectionText");
 
         // Carousel Buttons
         $('.new-pal-btn a').click(function (d) {
@@ -428,6 +453,7 @@
             parent.addClass("activeDogSelection");
             parent[0].childNodes[3].classList.add("activeDogSelectionText");
 
+            fetchMessageLog();
             console.log(id + ' is sending a message to ' + messageRecepient);
         });
 
@@ -458,7 +484,7 @@
             parent[0].childNodes[3].classList.add("activeMessageSelectionText");
 
             // retrieve past messages
-            updateMessageLog();
+            fetchMessageLog();
             console.log(selectedMyDog + ' is sending a message to ' + id);
         });
 
@@ -470,7 +496,7 @@
             console.log('Swipe Mode');
         });
 
-        function updateMessageLog() {
+        function fetchMessageLog() {
             // Send message to recipient
             $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveMessage", { sender: selectedMyDog, recipient: messageRecepient }, function (d) {
                 // https://chanminis.online/public/api/dogapp/procedure/retreiveMessage
@@ -483,7 +509,7 @@
                     console.log(e);
                     // append to chat area
                     var msg = `<li class="collection-item msg-log">
-                                <span class="title"><b>FROM:</b> ${e.sender}     <b>AT:</b> ${e.time_sent}</span>
+                                <span class="title"><b>FROM:</b> ${e.sender} <b>TO DOG ID:</b> ${messageRecepient} <b>AT:</b> ${e.time_sent}</span>
                                 <p>${e.content + " "}</p>
                             </li>`;
 
@@ -505,7 +531,7 @@
                     // https://chanminis.online/public/api/dogapp/procedure/sendMessage
                     // http://localhost/bluehost/public/api/dogapp/procedure/sendMessage
 
-                    updateMessageLog();
+                    fetchMessageLog();
                 });
             }
         });
@@ -514,6 +540,7 @@
         $('#logout').click(function (d) {
             localStorage.removeItem("sessionId");
             localStorage.removeItem("userId");
+            localStorage.removeItem("userName");
             window.location.reload();
             console.log("logout done");
         });
@@ -532,8 +559,9 @@
             $('#loginUser').ajaxForm(function (d) {
                 var credentials = d.split(',');
                 localStorage.setItem('sessionId', credentials[1]);
-                localStorage.setItem('userId', credentials[2]);
-
+                localStorage.setItem('userName', credentials[2]);
+                localStorage.setItem('userId', credentials[3]);
+                console.log(credentials);
                 if (credentials[0] == "1") {
                     console.log("login successful user: " + credentials[2])
                     window.location.reload();
@@ -541,6 +569,13 @@
                     M.toast({ html: "login failed", displayLength: 1000, classes: "orange" });
                     console.log("login failed")
                 }
+            });
+
+            // Dog Registration form
+            $('#registerDog').ajaxForm(function (d) {
+                M.toast({ html: d, displayLength: 1000, classes: "orange" });
+                fetchUserDogs();
+                console.log(d);
             });
         });
     </script>

@@ -4,24 +4,21 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS RegisterDog;
 CREATE PROCEDURE RegisterDog
 (
-    IN user_name VARCHAR(40),
+    IN user_id INT(10),
     IN breed VARCHAR(40),
     IN name VARCHAR(60),
     IN fixed BOOLEAN,
     IN weight INT(3),
     IN gender VARCHAR(10),
-    IN description TEXT
+    IN description TEXT,
+    OUT message VARCHAR(40)
 )
   BEGIN
-
-    DECLARE dog_breed_id INT;
-    DECLARE user_id INT;
-
-    SELECT user_id
-    INTO user_id
-    FROM user
-    WHERE username = user_name;
-
+  
+	DECLARE dog_breed_id INT;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+	SET message := 'register failed';
+    
     SELECT breed_id
     INTO dog_breed_id
     FROM breed
@@ -38,7 +35,25 @@ CREATE PROCEDURE RegisterDog
     END IF;
 
     INSERT INTO dog VALUES(dog_id, user_id, dog_breed_id, name, fixed, weight, gender, description);
+    SET message := 'register successful';
   END //
 DELIMITER ;
 
-CALL RegisterDog('sarah97', 'Akita', 'Dirk', 1, 40, 'Female', 'Dirk is dog');
+SELECT @message;
+CALL RegisterDog(2, 'Akita', 'Dirk', 1, 40, 'Female', 'Dirk is dog', @message);
+CALL RegisterDog(78, 'Akita', 'AAA', 1, 40, 'Male', 'AAA is a dog', @message);
+
+SELECT * FROM dog;
+SELECT * FROM user;
+
+# Retreive Pal
+DELIMITER //
+DROP PROCEDURE IF EXISTS retreiveUserDogs;
+CREATE PROCEDURE retreiveUserDogs(IN userId INT(10))
+  BEGIN
+  SELECT dog_id, dog_name FROM dog WHERE user_id = userId;
+  END //
+DELIMITER ;
+delete from dog where user_id = 78;
+select * from dog;
+CALL retreiveUserDogs(78);

@@ -109,22 +109,24 @@ $app->post('/api/dogapp/procedure/loginUser', function(Request $request, Respons
 
     $login_status = null;
     $session_id = null;
+    $user_name = null;
     $user_id = null;
 
-    $user_id = $_POST["username"];
+    $user_name = $_POST["username"];
     $password = $_POST["password"];
 
-    $stmt = $pdo->prepare("CALL LogIn('$user_id', '$password', @login_status, @session_id, @user_id)");
+    $stmt = $pdo->prepare("CALL LogIn('$user_name', '$password', @login_status, @session_id, @user_name, @user_id)");
     $stmt->bindParam('@login_status', $login_status);
     $stmt->bindParam('@session_id', $session_id);
+    $stmt->bindParam('@user_name', $user_name);
     $stmt->bindParam('@user_id', $user_id);
     $stmt->execute();
 
-    $sql = "SELECT @login_status as ret1, @session_id as ret2, @user_id as ret3";
+    $sql = "SELECT @login_status as ret1, @session_id as ret2, @user_name as ret3, @user_id as ret4";
     $results = current($pdo->query($sql)->fetchAll());
 
     $body = $response->getBody();
-    $body->write($results['ret1'].','.$results['ret2'].','.$results['ret3'].',');
+    $body->write($results['ret1'].','.$results['ret2'].','.$results['ret3'].','.$results['ret4'].',');
     return $response;
 });
 
@@ -229,14 +231,14 @@ $app->post('/api/dogapp/procedure/registerDog', function(Request $request, Respo
 
     $return_value = null;
 
-    $user_name = $_POST["dogname"];
+    $user_id = $_POST["user_id"];
     $breed = $_POST["breed"];
     $dog_name = $_POST["dogname"];
     $fixed = $_POST["fixed"];
     $weight = $_POST["weight"];
     $gender = $_POST["gender"];
 
-    $stmt = $pdo->prepare("CALL RegisterDog('$user_name', '$breed', '$dog_name', '$fixed', '$weight', '$gender' @return)");
+    $stmt = $pdo->prepare("CALL RegisterDog('$user_id', '$breed', '$dog_name', '$fixed', '$weight', '$gender', ' ', @return)");
     $stmt->bindParam('@return', $return_value);
     $stmt->execute();
 
@@ -268,6 +270,19 @@ $app->post('/api/dogapp/procedure/retreiveMessage', function(Request $request, R
     $recipient = $_POST["recipient"];
 
     $stmt = $pdo->prepare("CALL retreiveMessage($sender, $recipient)");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    return $response->withJson($result, 200);
+});
+
+$app->post('/api/dogapp/procedure/retreiveUserDogs', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $user_id = $_POST["user_id"];
+
+    $stmt = $pdo->prepare("CALL retreiveUserDogs($user_id)");
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
 

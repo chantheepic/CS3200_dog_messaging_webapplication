@@ -15,15 +15,15 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS sendMessage;
 
 DELIMITER //
-CREATE PROCEDURE sendMessage(sender_id VARCHAR(20), recipient_id VARCHAR(20), content VARCHAR(256))
+CREATE PROCEDURE sendMessage(sender_id VARCHAR(20), recipient_id VARCHAR(20), content VARCHAR(180))
 BEGIN
 	INSERT INTO message VALUES (0, now(), content, false, sender_id, recipient_id);
 END //   
 DELIMITER ;
 
-CALL sendMessage(1, 2, 'hello');
-CALL sendMessage(2, 1, 'bye');
-CALL sendMessage(2, 3, 'wait');
+CALL sendMessage(2, 26, 'hello');
+CALL sendMessage(2, 26, 'bye');
+CALL sendMessage(2, 26, 'wait');
 CALL retreiveMessage(2, 1);
 CALL retreiveMessage(1, 2);
 select * from message;
