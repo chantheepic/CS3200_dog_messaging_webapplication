@@ -77,6 +77,10 @@ CREATE PROCEDURE retreiveDogPals(userId INT(10), dogId INT(10))
     SELECT d.dog_id, d.dog_name
     FROM pal p join dog d on (p.dog1 = d.dog_id) 
     WHERE (p.dog2 = auth_dog_id)
+    UNION
+	  SELECT d.dog_id, d.dog_name
+    FROM pal p join dog d on (p.dog2 = d.dog_id) 
+    WHERE (p.dog1 = auth_dog_id);
 	
     
   END //
