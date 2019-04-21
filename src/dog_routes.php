@@ -238,7 +238,7 @@ $app->post('/api/dogapp/procedure/registerDog', function(Request $request, Respo
     $weight = $_POST["weight"];
     $gender = $_POST["gender"];
 
-    $stmt = $pdo->prepare("CALL RegisterDog('$user_id', '$breed', '$dog_name', 1, '$weight', '$gender', ' ', @return)");
+    $stmt = $pdo->prepare("CALL RegisterDog('$user_id', '$breed', '$dog_name', '$fixed', '$weight', '$gender', ' ', @return)");
     $stmt->bindParam('@return', $return_value);
     $stmt->execute();
 
@@ -270,6 +270,19 @@ $app->post('/api/dogapp/procedure/retreiveMessage', function(Request $request, R
     $recipient = $_POST["recipient"];
 
     $stmt = $pdo->prepare("CALL retreiveMessage($sender, $recipient)");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    return $response->withJson($result, 200);
+});
+
+$app->post('/api/dogapp/procedure/retreiveUserDogs', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $user_id = $_POST["user_id"];
+
+    $stmt = $pdo->prepare("CALL retreiveUserDogs($user_id)");
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
 

@@ -4,7 +4,7 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS RegisterDog;
 CREATE PROCEDURE RegisterDog
 (
-    IN user_id VARCHAR(40),
+    IN user_id INT(10),
     IN breed VARCHAR(40),
     IN name VARCHAR(60),
     IN fixed BOOLEAN,
@@ -46,3 +46,14 @@ CALL RegisterDog(78, 'Akita', 'AAA', 1, 40, 'Male', 'AAA is a dog', @message);
 SELECT * FROM dog;
 SELECT * FROM user;
 
+# Retreive Pal
+DELIMITER //
+DROP PROCEDURE IF EXISTS retreiveUserDogs;
+CREATE PROCEDURE retreiveUserDogs(IN userId INT(10))
+  BEGIN
+  SELECT dog_id, dog_name FROM dog WHERE user_id = userId;
+  END //
+DELIMITER ;
+delete from dog where user_id = 78;
+select * from dog;
+CALL retreiveUserDogs(78);

@@ -37,6 +37,13 @@
         ul .activeDogSelection {
             background-color: sandybrown !important;
         }
+
+        .old-pal-messager,
+        .my-dog-select,
+        .old-pal-select {
+            height: 80vh;
+            overflow-y: scroll;
+        }
     </style>
 
     <!-- Navbar -->
@@ -69,18 +76,6 @@
                     <li class="collection-header orange darken-1 white-text">
                         <h4>User Dogs</h4>
                     </li>
-                    <a class="collection-item avatar" id='1'>
-                        <img src="src/jas.jpg" alt="" class="circle">
-                        <span class="title orange-text">Justice Antonin Scalia</span>
-                    </a>
-                    <a class="collection-item avatar" id='3'>
-                        <img src="src/jrbg.png" alt="" class="circle">
-                        <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
-                    </a>
-                    <a class="collection-item avatar" id='5'>
-                        <img src="src/jsa.jpg" alt="" class="circle">
-                        <span class="title orange-text">Justice Samuel Alito</span>
-                    </a>
                 </ul>
             </div>
 
@@ -97,10 +92,6 @@
                     <a class="collection-item avatar" id='4'>
                         <img src="src/jrbg.png" alt="" class="circle">
                         <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
-                    </a>
-                    <a class="collection-item avatar" id='6'>
-                        <img src="src/jsa.jpg" alt="" class="circle">
-                        <span class="title orange-text">Justice Samuel Alito</span>
                     </a>
                 </ul>
             </div>
@@ -130,12 +121,6 @@
                     </div>
                 </ul>
 
-                <style>
-                    .old-pal-messager {
-                        height: 80vh;
-                        overflow-y: scroll;
-                    }
-                </style>
                 <!--  Message Area -->
                 <ul class="collection with-header old-pal-messager">
                     <li class="collection-header orange darken-1 white-text row">
@@ -391,6 +376,7 @@
         });
 
         function presentPageElements() {
+            fetchUserDogs();
             // Toggle sections based on user login state
             if (logstate) {
                 $('.logout').hide();
@@ -401,14 +387,39 @@
             }
         };
 
+        function fetchUserDogs() {
+            // Send message to recipient
+            $.post("http://localhost/bluehost/public/api/dogapp/procedure/retreiveUserDogs", { user_id: userId }, function (d) {
+                // https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs
+                // http://localhost/bluehost/public/api/dogapp/procedure/retreiveUserDogs
+                $('.my-dog-select').children('a').remove();
+
+                var once = true;
+                d.forEach(function (e) {
+                    console.log(e);
+                    // append to chat area
+                    var dog = `<a class="collection-item avatar" id=${e.dog_id}>
+                                    <img src="src/jsa.jpg" alt="" class="circle">
+                                    <span class="title orange-text">${e.dog_name}</span>
+                                </a>`;
+
+                    $(".my-dog-select").append(dog);
+
+                    // select first dog when logging in
+                    if (once) {
+                        selectedMyDog = e.dog_id;
+                        var parent = $(`#${selectedMyDog}`);
+                        parent.addClass("activeDogSelection");
+                        parent[0].childNodes[3].classList.add("activeDogSelectionText");
+                        once = false;
+                    }
+                });
+            });
+        };
+
         // Initially hide message function until a dog pal is selected. Will need to be placed in a function
         $('.old-pal-messager').hide();
 
-        // Initial user dog selection. will be given first returned dog id. Will need to be placed in a function
-        // selectedMyDog = '1';
-        // var parent = $(`#${selectedMyDog}`);
-        // parent.addClass("activeDogSelection");
-        // parent[0].childNodes[3].classList.add("activeDogSelectionText");
 
         // Carousel Buttons
         $('.new-pal-btn a').click(function (d) {
@@ -442,6 +453,7 @@
             parent.addClass("activeDogSelection");
             parent[0].childNodes[3].classList.add("activeDogSelectionText");
 
+            fetchMessageLog();
             console.log(id + ' is sending a message to ' + messageRecepient);
         });
 
@@ -472,7 +484,7 @@
             parent[0].childNodes[3].classList.add("activeMessageSelectionText");
 
             // retrieve past messages
-            updateMessageLog();
+            fetchMessageLog();
             console.log(selectedMyDog + ' is sending a message to ' + id);
         });
 
@@ -484,7 +496,7 @@
             console.log('Swipe Mode');
         });
 
-        function updateMessageLog() {
+        function fetchMessageLog() {
             // Send message to recipient
             $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveMessage", { sender: selectedMyDog, recipient: messageRecepient }, function (d) {
                 // https://chanminis.online/public/api/dogapp/procedure/retreiveMessage
@@ -497,7 +509,7 @@
                     console.log(e);
                     // append to chat area
                     var msg = `<li class="collection-item msg-log">
-                                <span class="title"><b>FROM:</b> ${e.sender}     <b>AT:</b> ${e.time_sent}</span>
+                                <span class="title"><b>FROM:</b> ${e.sender} <b>TO DOG ID:</b> ${messageRecepient} <b>AT:</b> ${e.time_sent}</span>
                                 <p>${e.content + " "}</p>
                             </li>`;
 
@@ -519,7 +531,7 @@
                     // https://chanminis.online/public/api/dogapp/procedure/sendMessage
                     // http://localhost/bluehost/public/api/dogapp/procedure/sendMessage
 
-                    updateMessageLog();
+                    fetchMessageLog();
                 });
             }
         });
@@ -562,6 +574,7 @@
             // Dog Registration form
             $('#registerDog').ajaxForm(function (d) {
                 M.toast({ html: d, displayLength: 1000, classes: "orange" });
+                fetchUserDogs();
                 console.log(d);
             });
         });
