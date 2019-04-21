@@ -70,10 +70,14 @@ CREATE PROCEDURE retreiveDogPals(IN userId INT(10), IN dogID INT(10))
     INTO dog_id
     FROM dog 
     WHERE user_id = userId AND dog_id = dogID;
-
-    SELECT dog_id, dog_name
-    FROM pal
-    WHERE (dog1 = authenticatedDog_id || dog2 = authenticatedDog_id)
-
+	
+    SELECT DISTINCT d.dog_id, d.dog_name
+    FROM pal p join dog d on (p.dog1 = dog_id) 
+    WHERE (p.dog2 = authenticatedDog_id)
+	UNION
+	SELECT DISTINCT d.dog_id, d.dog_name
+    FROM pal p join dog d on (p.dog2 = dog_id) 
+    WHERE (p.dog1 = authenticatedDog_id)
+    
   END //
 DELIMITER ;
