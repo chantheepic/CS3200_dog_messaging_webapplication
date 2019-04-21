@@ -17,11 +17,20 @@ CREATE TABLE user (
     city VARCHAR(30)
 );
 
+-- Breed
+
+DROP TABLE IF EXISTS breed;
+CREATE TABLE breed (
+    breed_id INT(10) PRIMARY KEY AUTO_INCREMENT,
+    breed_name VARCHAR(40) NOT NULL
+);
+
 -- Dog
 
 DROP TABLE IF EXISTS dog;
 CREATE TABLE dog (
     dog_id INT(10) PRIMARY KEY AUTO_INCREMENT,
+    dog_name VARCHAR(40),
     user_id INT NOT NULL,
     breed_id INT DEFAULT NULL,
     fixed BOOLEAN DEFAULT NULL,
@@ -32,7 +41,6 @@ CREATE TABLE dog (
     CONSTRAINT fk_breed_id FOREIGN KEY (breed_id) REFERENCES breed (breed_id),
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user (user_id)
 );
-
 -- Photo
 
 DROP TABLE IF EXISTS photo;
@@ -67,7 +75,7 @@ CREATE TABLE seen (
     ts TIMESTAMP,
 
     CONSTRAINT fk_seeing_dog_id FOREIGN KEY (dog_id) REFERENCES dog (dog_id),
-    CONSTRAINT fk_seen_dog_id FOREIGN KEY (seen_dog_id) REFERENCES user (dog_id)
+    CONSTRAINT fk_seen_dog_id FOREIGN KEY (seen_dog_id) REFERENCES dog (dog_id)
 );
 
 -- Message
@@ -97,7 +105,7 @@ CREATE TABLE blocked (
 );
 
 -- Temperament
-
+DROP TABLE IF EXISTS dog_has_temperament;
 DROP TABLE IF EXISTS temperament;
 CREATE TABLE temperament (
     temperament_id INT(10) PRIMARY KEY AUTO_INCREMENT,
@@ -114,14 +122,6 @@ CREATE TABLE dog_has_temperament (
 
     CONSTRAINT fk_dog_temp_id FOREIGN KEY (dog_id) REFERENCES dog (dog_id),
     CONSTRAINT fk_temp_id FOREIGN KEY (temperament_id) REFERENCES temperament (temperament_id)
-);
-
--- Breed
-
-DROP TABLE IF EXISTS breed;
-CREATE TABLE breed (
-    breed_id INT(10) PRIMARY KEY AUTO_INCREMENT,
-    breed_name VARCHAR(40) NOT NULL
 );
 
 -- User Session

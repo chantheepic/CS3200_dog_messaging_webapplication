@@ -46,14 +46,38 @@ CALL RegisterDog(78, 'Akita', 'AAA', 1, 40, 'Male', 'AAA is a dog', @message);
 SELECT * FROM dog;
 SELECT * FROM user;
 
-# Retreive Pal
+# Retreive dogs
 DELIMITER //
 DROP PROCEDURE IF EXISTS retreiveUserDogs;
 CREATE PROCEDURE retreiveUserDogs(IN userId INT(10))
   BEGIN
-  SELECT dog_id, dog_name FROM dog WHERE user_id = userId;
+    SELECT dog_id, dog_name FROM dog WHERE user_id = userId;
   END //
 DELIMITER ;
 delete from dog where user_id = 78;
 select * from dog;
 CALL retreiveUserDogs(78);
+
+# Retreive Dog Pals
+DELIMITER //
+DROP PROCEDURE IF EXISTS retreiveDogPals;
+CREATE PROCEDURE retreiveDogPals(IN userId INT(10), IN dogID INT(10))
+  BEGIN
+
+    DECLARE authenticatedDog_id INT;
+    
+    SELECT dog_id 
+    INTO dog_id
+    FROM dog 
+    WHERE user_id = userId AND dog_id = dogID;
+	
+    SELECT DISTINCT d.dog_id, d.dog_name
+    FROM pal p join dog d on (p.dog1 = dog_id) 
+    WHERE (p.dog2 = authenticatedDog_id)
+	UNION
+	SELECT DISTINCT d.dog_id, d.dog_name
+    FROM pal p join dog d on (p.dog2 = dog_id) 
+    WHERE (p.dog1 = authenticatedDog_id)
+    
+  END //
+DELIMITER ;

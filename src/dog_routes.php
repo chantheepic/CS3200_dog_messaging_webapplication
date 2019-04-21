@@ -289,6 +289,20 @@ $app->post('/api/dogapp/procedure/retreiveUserDogs', function(Request $request, 
     return $response->withJson($result, 200);
 });
 
+$app->post('/api/dogapp/procedure/retreiveDogPals', function(Request $request, Response $response){
+    $pdo = new DogDatabase();
+    $pdo = $pdo->connect();
+
+    $user_id = $_POST["user_id"];
+    $dog_id = $_POST["dog_id"];
+
+    $stmt = $pdo->prepare("CALL retreiveDogPals($user_id, $dog_id)");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    return $response->withJson($result, 200);
+});
+
 function fetch_d($query, $response){
     try{
         $database = new DogDatabase();

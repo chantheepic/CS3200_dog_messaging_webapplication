@@ -51,14 +51,21 @@
         <div class="nav-wrapper container">
             <a class="brand-logo">Dinder</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="orange lighten-1 waves-effect waves-light login"><a class="modal-trigger"
-                        href="#registerDog">Add Doggo</a></li>
-                <li class="orange lighten-1 waves-effect waves-light login"><a id="logout">Logout</a></li>
-                <li class="orange lighten-1 waves-effect waves-light logout"><a class="modal-trigger"
-                        href="#loginUser">Login</a></li>
-                <li class="orange lighten-1 waves-effect waves-light logout"><a class="modal-trigger"
-                        href="#registerUser">Register User</a></li>
-                <li style="margin: 0px 2em;" class="login userWelcome"> Welcome Back User </li>
+                <li class="orange lighten-1 waves-effect waves-light login">
+                    <a class="modal-trigger" href="#registerDog">Add Doggo</a>
+                </li>
+                <li class="orange lighten-1 waves-effect waves-light login">
+                    <a id="logout">Logout</a>
+                </li>
+                <li class="orange lighten-1 waves-effect waves-light logout">
+                    <a class="modal-trigger" href="#loginUser">Login</a>
+                </li>
+                <li class="orange lighten-1 waves-effect waves-light logout">
+                    <a class="modal-trigger" href="#registerUser">Register User</a>
+                </li>
+                <li style="margin: 0px 2em;" class="login userWelcome"> 
+                    Welcome Back User 
+                </li>
             </ul>
         </div>
     </nav>
@@ -85,14 +92,6 @@
                     <li class="collection-header orange darken-1 white-text">
                         <h4>Selected Dog Pals</h4>
                     </li>
-                    <a class="collection-item avatar" id='2'>
-                        <img src="src/jas.jpg" alt="" class="circle">
-                        <span class="title orange-text">Justice Antonin Scalia</span>
-                    </a>
-                    <a class="collection-item avatar" id='4'>
-                        <img src="src/jrbg.png" alt="" class="circle">
-                        <span class="title orange-text">Justice Ruth <br> Bader Ginsburg</span>
-                    </a>
                 </ul>
             </div>
 
@@ -140,7 +139,7 @@
             <!-- Modals -->
             <style>
                 .modal {
-                    height: 50vh !important
+                    height: 100vh !important
                 }
             </style>
 
@@ -158,12 +157,12 @@
                             </div>
                         </div>
                         <div class="input-field col s6">
-                            <input id="dogNameText" type="text" name="dogname">
+                            <input id="dogNameText" type="text" name="dogname" required>
                             <label for="dogNameText">Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <select multiple class="charSel">
-                                <option value="" disabled selected>Select all that apply</option>
+                            <select multiple class="charSel" name="temperament">
+                                <option value disabled >Select all that apply</option>
                                 <option value="Friendly">Friendly</option>
                                 <option value="Aggressive">Aggressive</option>
                                 <option value="Playful">Playful</option>
@@ -174,27 +173,27 @@
                         </div>
                         <div class="input-field col s6">
                             <select class="genSel" name="gender">
-                                <option value="None" disabled selected>Select Gender</option>
+                                <option disabled selected value>Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                             <label>Gender</label>
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" id="autocomplete-input" class="autocomplete breedAuto" name="breed">
+                            <input type="text" id="autocomplete-input" class="autocomplete breedAuto" name="breed" required>
                             <label for="autocomplete-input">Breed</label>
                         </div>
                         <div class="input-field col s6">
-                            <select class="fixSel" name="fixed">
-                                <option value="None" disabled selected>Fixed?</option>
+                            <select class="fixSel" name="fixed" placeholder="fixed?">
+                                <option disabled selected value>Fixed?</option>
                                 <option value="True">Yes</option>
                                 <option value="False">No</option>
                             </select>
                             <label>Fixed</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="dogWeightText" type="text" name="weight">
-                            <label for="dogWeightText">Weight</label>
+                            <input id="dogWeightText" type="number" name="weight" required>
+                            <label for="dogWeightText">Weight (in pounds)</label>
                         </div>
                         <div class="col s2">
                             <img src="src/jas.jpg" alt="" class="responsive-img">
@@ -202,7 +201,7 @@
                         <div class="file-field input-field col s4">
                             <div class="btn btn-flat">
                                 <span>Upload Profile Picture</span>
-                                <input type="file" name="photo">
+                                <input type="file" name="photo" required>
                             </div>
                         </div>
                         <div class="input-field col s6">
@@ -211,8 +210,9 @@
                     </div>
                     <!-- Modal Button -->
                     <div class="modal-footer">
-                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Register
-                            Dog</button>
+                        <button type="submit" class="waves-effect waves-light btn-flat">
+                            Register Dog
+                        </button>
                     </div>
                 </form>
             </div>
@@ -235,17 +235,17 @@
                             </div>
                         </div>
                         <div class="input-field col s6">
-                            <input id="userNameText" type="text" name="username">
+                            <input id="userNameText" type="text" name="username" required>
                             <label for="userNameText">Username</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="pswdText" type="password" name="password">
+                            <input id="pswdText" type="password" name="password" required>
                             <label for="pswdText">Password</label>
                         </div>
                     </div>
                     <!-- Modal Button -->
                     <div class="modal-footer">
-                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Login</button>
+                        <button type="submit" class="waves-effect waves-light btn-flat">Login</button>
                     </div>
                 </form>
             </div>
@@ -265,27 +265,27 @@
                             </div>
                         </div>
                         <div class="input-field col s6">
-                            <input id="userNameText" type="text" name="username">
+                            <input id="userNameText" type="text" name="username" required>
                             <label for="userNameText">Username</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="pswdText" type="password" name="password">
+                            <input id="pswdText" type="password" name="password" required>
                             <label for="pswdText">Password</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="screenNameText" type="text" name="screenname">
+                            <input id="screenNameText" type="text" name="screenname" required>
                             <label for="screenNameText">Name</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="pswdConfText" type="password" name="passwordconfirm">
+                            <input id="pswdConfText" type="password" name="passwordconfirm" required>
                             <label for="pswdConfText">Confirm Password</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="zipcodeText" type="text" name="zipcode">
+                            <input id="zipcodeText" type="number" name="zipcode" min = "00001" max= "99999" required >
                             <label for="zipcodeText">Zipcode</label>
                         </div>
                         <div class="input-field col s6">
-                            <select class="genSel" name="gender">
+                            <select class="genSel" name="gender" required>
                                 <option value="None" disabled selected>Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -294,13 +294,13 @@
                             <label>Gender</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="cityNameText" type="text" name="cityname">
+                            <input id="cityNameText" type="text" name="cityname" required>
                             <label for="cityNameText">City Name</label>
                         </div>
                     </div>
                     <!-- Modal Button -->
                     <div class="modal-footer">
-                        <button type="submit" class="modal-close waves-effect waves-light btn-flat">Register</button>
+                        <button type="submit" class="waves-effect waves-light btn-flat">Register</button>
                     </div>
                 </form>
             </div>
@@ -408,9 +408,11 @@
                     // select first dog when logging in
                     if (once) {
                         selectedMyDog = e.dog_id;
+                        localStorage.setItem('dogId', selectedMyDog);
                         var parent = $(`#${selectedMyDog}`);
                         parent.addClass("activeDogSelection");
                         parent[0].childNodes[3].classList.add("activeDogSelectionText");
+                        fetchSelectedDogPals();
                         once = false;
                     }
                 });
@@ -453,9 +455,38 @@
             parent.addClass("activeDogSelection");
             parent[0].childNodes[3].classList.add("activeDogSelectionText");
 
+            // set selected dog
+            localStorage.setItem('dogId', selectedMyDog)
+
+            // fetch pals and messages
+            fetchSelectedDogPals();
             fetchMessageLog();
             console.log(id + ' is sending a message to ' + messageRecepient);
         });
+
+        // Fetch Pals
+        function fetchSelectedDogPals() {
+            var dogId = (localStorage.getItem('dogId') != null) ? localStorage.getItem('dogId') : '';
+            var userId = (localStorage.getItem('userId') != null) ? localStorage.getItem('userId') : '';
+
+            // retrieve pals
+            $.post("https://chanminis.online/public/api/dogapp/procedure/retreiveDogPals", { user_id: userId, dog_id :dogId }, function (d) {
+                // https://chanminis.online/public/api/dogapp/procedure/retreiveDogPals
+                // http://localhost/bluehost/public/api/dogapp/procedure/retreiveDogPals
+
+                var once = true;
+                d.forEach(function (e) {
+                    console.log(e);
+                    // append to chat area
+                    var dog = `<a class="collection-item avatar" id=${e.dog_id}>
+                                    <img src="src/jrbg.jpg" alt="" class="circle">
+                                    <span class="title orange-text">${e.dog_name}</span>
+                                </a>`;
+
+                    $(".old-pal-select").append(dog);
+                });
+            });
+        };
 
 
         // Select message recipient dog
@@ -493,6 +524,8 @@
             $('.old-pal-messager').fadeOut('fast', function () {
                 $('.new-pal-slider').fadeIn('fast');
             });
+            $('.activeMessageSelection').removeClass('activeMessageSelection')
+            $('.activeMessageSelectionText').removeClass('activeMessageSelectionText')
             console.log('Swipe Mode');
         });
 
@@ -505,13 +538,23 @@
                 // reset chat area
                 $('.old-pal-messager').children('.msg-log').remove();
 
+                var dogId = (localStorage.getItem('dogId') != null) ? localStorage.getItem('dogId') : '';
+
                 d.forEach(function (e) {
                     console.log(e);
                     // append to chat area
-                    var msg = `<li class="collection-item msg-log">
-                                <span class="title"><b>FROM:</b> ${e.sender} <b>TO DOG ID:</b> ${messageRecepient} <b>AT:</b> ${e.time_sent}</span>
+                    var msg = 
+                            `<li class="collection-item msg-log">
+                                <span class="title"><b>FROM:</b> ${e.sender} <b> <b>AT:</b> ${e.time_sent}</span>
                                 <p>${e.content + " "}</p>
                             </li>`;
+
+                    if(e.sender == dogId) {
+                        `<li class="collection-item msg-log" background-color = "#ffcc00">
+                            span class="title"><b>FROM:</b> ${e.sender} <b> <b>AT:</b> ${e.time_sent}</span>
+                            <p>${e.content + " "}</p>
+                        </li>`;
+                    }
 
                     $(".old-pal-messager").append(msg);
                 });
@@ -558,6 +601,10 @@
             $('#registerUser').ajaxForm(function (d) {
                 M.toast({ html: d, displayLength: 1000, classes: "orange" });
                 console.log(d);
+                if (d == "register successful")
+                {
+                    $('#registerUser').modal('close');
+                }
             });
 
             // User Login form
@@ -569,7 +616,9 @@
                 console.log(credentials);
                 if (credentials[0] == "1") {
                     console.log("login successful user: " + credentials[2])
+                    $('#loginUser').modal('close');
                     window.location.reload();
+
                 } else {
                     M.toast({ html: "login failed", displayLength: 1000, classes: "orange" });
                     console.log("login failed")
@@ -581,6 +630,10 @@
                 M.toast({ html: d, displayLength: 1000, classes: "orange" });
                 fetchUserDogs();
                 console.log(d);
+                if (d == "register successful")
+                {
+                    $('#registerDog').modal('close');
+                }
             });
         });
     </script>
