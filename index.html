@@ -206,13 +206,10 @@
                             <input id="dogWeightText" type="number" name="weight" required>
                             <label for="dogWeightText">Weight (in pounds)</label>
                         </div>
-                        <div class="col s2">
-                            <img src="src/jas.jpg" alt="" class="responsive-img">
-                        </div>
                         <div class="file-field input-field col s4">
                             <div class="btn btn-flat">
                                 <span>Upload Profile Picture</span>
-                                <input type="file" name="photo" required>
+                                <input type="file" name="photo" accept="image/*" required>
                             </div>
                         </div>
                         <div class="input-field col s6">
@@ -471,7 +468,6 @@
 
             // fetch pals 
             fetchSelectedDogPals();
-            console.log(id + ' is sending a message to ' + messageRecepient);
         });
 
         // Fetch Pals
@@ -491,7 +487,7 @@
                     var dog = `<a class="collection-item avatar" id=${e.dog_id}>
                                     <img src="src/jrbg.jpg" alt="" class="circle">
                                     <span class="title orange-text">${e.dog_name}</span>
-                                    <button class="block" onclick="https://chanminis.online/public/api/dogapp/procedure/block?dog1=${e.dog_id}&dog2=${dog_id}">
+                                    <button class="block" onclick="https://chanminis.online/public/api/dogapp/procedure/block?dog1=${e.dog_id}&dog2=${dogId}">
                                         Block
                                     </button>
                                 </a>`;
@@ -529,10 +525,9 @@
 
             // set palSelected? to true
             var palSelected = localStorage.setItem('palSelected', 0);
-            
+
             // retrieve past messages
             fetchMessageLog();
-            console.log(selectedMyDog + ' is sending a message to ' + id);
         });
 
         // Return to swipe button inside message section
@@ -585,7 +580,7 @@
         // Automatically fetch every 5 seconds when a pal is selected
         setInterval(function () {
             var isPalSelected = (localStorage.getItem('palSelected') != null) ? localStorage.getItem('palSelected') : '';
-            if (isPalSelected) {
+            if (isPalSelected == 1) {
                 fetchMessageLog();
             }
         }, 5000);
