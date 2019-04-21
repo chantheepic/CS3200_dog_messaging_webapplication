@@ -129,6 +129,8 @@ CREATE TABLE breed (
 DROP TABLE IF EXISTS session;
 CREATE TABLE session (
     session_id VARCHAR(32) PRIMARY KEY,
-    user_id VARCHAR(32) NOT NULL,
-    session_start DATETIME NOT NULL
+    user_id INT(10) NOT NULL,
+    session_start DATETIME NOT NULL,
+    
+    CONSTRAINT fk_session_id FOREIGN KEY (user_id) REFERENCES user (user_id)
 );

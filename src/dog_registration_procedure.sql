@@ -2,18 +2,12 @@
 
 DELIMITER //
 DROP PROCEDURE IF EXISTS RegisterDog;
-CREATE PROCEDURE RegisterDog
-(
-    IN user_name VARCHAR(40),
-    IN breed VARCHAR(40),
-    IN name VARCHAR(60),
-    IN fixed BOOLEAN,
-    IN weight INT(3),
-    IN gender VARCHAR(10),
-    IN description TEXT
-)
+CREATE PROCEDURE RegisterDog(IN user_name VARCHAR(40), IN breed VARCHAR(40), IN name VARCHAR(60), IN fixed BOOLEAN, IN weight INT(3), IN gender VARCHAR(10), IN description TEXT, OUT message VARCHAR(32))
   BEGIN
 
+  	DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+	SET message := 'register failed';
+    
     DECLARE dog_breed_id INT;
     DECLARE user_id INT;
 
@@ -38,6 +32,7 @@ CREATE PROCEDURE RegisterDog
     END IF;
 
     INSERT INTO dog VALUES(dog_id, user_id, dog_breed_id, name, fixed, weight, gender, description);
+    SET message := 'register successful'; 
   END //
 DELIMITER ;
 

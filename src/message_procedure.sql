@@ -15,7 +15,7 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS sendMessage;
 
 DELIMITER //
-CREATE PROCEDURE sendMessage(sender_id VARCHAR(20), recipient_id VARCHAR(20), content VARCHAR(256))
+CREATE PROCEDURE sendMessage(sender_id VARCHAR(20), recipient_id VARCHAR(20), content VARCHAR(180))
 BEGIN
 	INSERT INTO message VALUES (0, now(), content, false, sender_id, recipient_id);
 END //   
