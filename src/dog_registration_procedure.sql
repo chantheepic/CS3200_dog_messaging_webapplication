@@ -75,42 +75,40 @@ CREATE PROCEDURE retreiveDogPals(userId INT(10), dogId INT(10))
     WHERE user_id = userId AND dog_id = dogID;
 	
     SELECT d.dog_id, d.dog_name
-    FROM pal p join dog d on (p.dog1 = d.dog_id) 
+    FROM pal p join dog d on (p.dog1 = d.dog_id)
     WHERE (p.dog2 = auth_dog_id)
     UNION
 	SELECT d.dog_id, d.dog_name
-    FROM pal p join dog d on (p.dog2 = d.dog_id) 
+    FROM pal p join dog d on (p.dog2 = d.dog_id)
     WHERE (p.dog1 = auth_dog_id);
-	
-    
+
   END //
 DELIMITER ;
-
 
 # Block users
 DROP PROCEDURE IF EXISTS block;
 DELIMITER //
-CREATE PROCEDURE block(IN dog1_id INT(10), IN dog2_id INT(10))
+CREATE PROCEDURE block(dog1_id INT(10), dog2_id INT(10))
   BEGIN
 
     DECLARE user_id INT;
     DECLARE blocker_id INT;
 
-    SELECT user_id
+    SELECT d.user_id
     INTO user_id
-    FROM dog
-    WHERE dog1_id = dog_id;
+    FROM dog d
+    WHERE dog1_id = d.dog_id;
 
-    SELECT user_id
+    SELECT d.user_id
     INTO blocker_id
-    FROM dog
-    WHERE dog2_id = dog_id;
+    FROM dog d
+    WHERE d.dog_id = dog2_id;
 
     INSERT INTO blocked VALUES(user_id, blocker_id);
 
     DELETE 
     FROM pal 
-	WHERE (dog1 = dog1_id && dog2 = dog2_id) || (dog2 = dog1_id && dog1 = dog2_id)
+	WHERE (dog1 = dog1_id && dog2 = dog2_id) || (dog2 = dog1_id && dog1 = dog2_id);
 
   END //
 DELIMITER ;
