@@ -67,11 +67,8 @@
             overflow-y: scroll;
         }
 
-        .new-pal-slider{
-            max-height: 60vh;
-        }
         #photo{
-            max-height: 30vh;
+            max-height: 50vh;
             object-fit: contain;
         }
     </style>
@@ -122,27 +119,6 @@
                     <li class="collection-header orange darken-1 white-text">
                         <h4>Selected Dog Pals</h4>
                     </li>
-                    <a class="collection-item pal avatar" id=54>
-                        <img src="src/jrbg.png" alt="" class="circle">
-                        <span class="title orange-text">ta1dog1</span>
-                        <button class="block" onclick=""> 
-                            Block
-                        </button>                     
-                    </a>
-                    <a class="collection-item pal avatar" id=55>
-                        <img src="src/jrbg.png" alt="" class="circle">
-                        <span class="title orange-text">ta1dog2</span>
-                        <button class="block" onclick=""> 
-                            Block
-                        </button>                     
-                    </a>
-                        <a class="collection-item pal avatar" id=56>
-                        <img src="src/jrbg.png" alt="" class="circle">
-                        <span class="title orange-text">ta1dog3</span>
-                        <button class="block" onclick=""> 
-                            Block
-                        </button>                     
-                    </a>
                 </ul>
             </div>
 
@@ -441,6 +417,7 @@
                 // https://chanminis.online/public/api/dogapp/procedure/retreiveUserDogs
                 // http://localhost/bluehost/public/api/dogapp/procedure/retreiveUserDogs
                 $('.my-dog-select').children('a').remove();
+                $('.old-pal-select').children('.pal').remove();
 
                 var once = true;
                 d.forEach(function (e) {
@@ -485,7 +462,7 @@
         $('.my-dog-select').click(function (d) {
 
             // clear pals
-            //$('.old-pal-select').children('.pal').remove();
+            $('.old-pal-select').children('.pal').remove();
 
             var targ = $(d.target.parentElement);
             var id;
