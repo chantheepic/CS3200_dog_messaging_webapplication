@@ -70,7 +70,7 @@ INSERT INTO seen(dog_id, seen_dog_id, liked, ts) VALUES
 (4, 2, 0, '2019-03-20 10:15:32');
 
 -- Pal
-INSERT INTO pal(dog_id1, dog_id2) VALUES
+INSERT INTO pal(dog1, dog2) VALUES
 (3, 1),
 (2, 3);
 
