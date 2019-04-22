@@ -7,11 +7,8 @@ https://jquery.com/
 Bootstrap
 https://getbootstrap.com/
 
-Bootstrap 3 Typeahead
-https://github.com/bassjobsen/Bootstrap-3-Typeahead
-
-Slick Carousel
-http://kenwheeler.github.io/slick/
+Materialize CSS
+https://materializecss.com/
 
 Slim Framework
 https://www.slimframework.com/
